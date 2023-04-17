@@ -25,4 +25,5 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="color_text_view">#D85E5E</color>
     <color name="base_color_indicator">#E9EBF1</color>
+    <color name="color_FFCA00">#FFCA00</color>
 </resources>

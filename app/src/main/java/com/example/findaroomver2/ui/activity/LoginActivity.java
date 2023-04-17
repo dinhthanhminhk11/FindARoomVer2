@@ -1,50 +1,52 @@
 package com.example.findaroomver2.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.findaroomver2.MainActivity;
-import com.example.findaroomver2.R;
-import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.findaroomver2.databinding.ActivityLoginBinding;
+import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputLayout txtUsername, txtPassword;
-    Button btnSignIn;
-    TextView tvDangKy;
+    private ActivityLoginBinding binding;
+    private LoginViewModel loginViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btnSignIn = findViewById(R.id.btn_Login);
-        tvDangKy = findViewById(R.id.tv_SignUp);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
-        final  Intent intentMain = new Intent(this, MainActivity.class);
-        final  Intent intentRegister = new Intent(this, RegisterActivity.class);
+        binding.username.setText("0987655431");
+        binding.password.setText("1234567d");
+        binding.btnLogin.setOnClickListener(v -> {
+            loginViewModel.login(new UserLoginRequest(binding.username.getText().toString(), binding.password.getText().toString()));
+        });
 
-        //ấn đăng nhập chuyển vào màn hình chính
-        btnSignIn.setOnClickListener(new View.OnClickListener(){
+        loginViewModel.getProgress().observe(this, new Observer<Integer>() {
             @Override
-            public void onClick(View v) {
-                startActivity(intentMain);
+            public void onChanged(Integer integer) {
+
             }
         });
 
-        //ấn vào màn hình đăng ký tài khoản
-        tvDangKy.setOnClickListener(new View.OnClickListener(){
-
+        loginViewModel.getUserResponseLoginMutableLiveData().observe(this, new Observer<UserResponseLogin>() {
             @Override
-            public void onClick(View v) {
-                startActivity(intentRegister);
+            public void onChanged(UserResponseLogin userResponseLogin) {
+                if(userResponseLogin.getMessage().getStatus().equals("success")){
+                    Toast.makeText(LoginActivity.this, "Login thanh công", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(LoginActivity.this, "Login thật bại", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-   }
+    }
 }
