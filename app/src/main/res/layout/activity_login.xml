@@ -23,7 +23,7 @@
                 android:textAlignment="center"
                 android:textColor="#FFCA00"
                 android:textFontWeight="800"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
         </FrameLayout>
 
         <LinearLayout
@@ -72,8 +72,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quên mật khẩu?"
                 android:layout_gravity="end"
+                android:text="Quên mật khẩu?"
                 android:textColor="#2767A5"
                 android:textSize="18sp" />
 
@@ -89,16 +89,17 @@
                 android:textFontWeight="500" />
 
             <LinearLayout
-                android:layout_marginTop="24dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:orientation="horizontal">
+
                 <View
                     android:id="@+id/line1"
                     android:layout_width="150dp"
                     android:layout_height="@dimen/size_2"
-                    android:background="#F2F5F8"
                     android:layout_gravity="center_vertical"
+                    android:background="#F2F5F8"
                     app:layout_constraintEnd_toStartOf="@+id/tvOr"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvOr" />
@@ -107,8 +108,8 @@
                     android:id="@+id/tvOr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/roboto"
                     android:text="Hoặc"
                     android:textColor="#2767A5"
@@ -120,47 +121,43 @@
                     android:id="@+id/line2"
                     android:layout_width="150dp"
                     android:layout_height="1dp"
-                    android:background="#F2F5F8"
-                    android:layout_marginLeft="15dp"
                     android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:background="#F2F5F8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvOr"
                     app:layout_constraintTop_toTopOf="@id/tvOr" />
             </LinearLayout>
 
 
-
-
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="163dp"
                 android:layout_height="45dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="25dp">
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                android:background="@drawable/button_background">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/login_gg"
-                    android:layout_width="280px"
-                    android:layout_height="90px"
-                    android:layout_marginLeft="100px"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/button_background"
-                    android:fontFamily="@font/noto_sans"
-                    android:text="Google"
-                    android:textFontWeight="500"
-                    tools:ignore="TouchTargetSizeCheck" />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/google_icon_img"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:textFontWeight="500"
+                        android:text="Google"/>
+                </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/login_fb"
-                    android:layout_width="280px"
-                    android:layout_height="90px"
-                    android:layout_marginLeft="230px"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/button_background"
-                    android:fontFamily="@font/noto_sans"
-                    android:text="Facebook"
-                    android:textFontWeight="500"
-                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
