@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home_vector"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/navigation_thongbao"
+        android:icon="@drawable/bell_vector"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/navigation_dangtin"
+        android:icon="@drawable/uppost_vector"
+        android:title="Feeds" />
+    <item
+        android:id="@+id/navigation_bantin"
+        android:icon="@drawable/post_vector"
+        android:title="Feeds" />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@drawable/user_vector"
+        android:title="User" />
+
+</menu>
