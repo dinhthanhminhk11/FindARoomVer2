@@ -11,7 +11,7 @@
         >
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="@dimen/size_120"
             >
 
             <TextView
@@ -21,7 +21,7 @@
                 android:fontFamily="@font/noto_sans"
                 android:text="ĐĂNG NHẬP"
                 android:textAlignment="center"
-                android:textColor="#FFCA00"
+                android:textColor="@color/color_FFCA00"
                 android:textFontWeight="800"
                 android:textSize="24sp" />
         </FrameLayout>
@@ -84,7 +84,7 @@
                 android:layout_marginTop="40dp"
                 android:backgroundTint="#FFCA00"
                 android:fontFamily="@font/noto_sans"
-                android:text="Đăng Nhập"
+                android:text="@string/login"
                 android:textColor="@color/black"
                 android:textFontWeight="500" />
 
@@ -131,7 +131,8 @@
 
 
             <LinearLayout
-                android:layout_width="163dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"

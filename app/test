@@ -1,0 +1,30 @@
+đăng nhập
+url: auth/login
+method: POST
+request
+{
+  "username": "0987655431",
+  "password": "1234567d"
+}
+response
+
+{
+  "data": {
+    "_id": "643ca05351714870ed019bfd",
+    "fullname": "Dung",
+    "email": "dunghaph123@gmail.com",
+    "phone": "0987655431",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNjYTA1MzUxNzE0ODcwZWQwMTliZmQiLCJpYXQiOjE2ODE2OTQ4NDIsImV4cCI6MTcxMzI1MjQ0Mn0.e3zczAK_8FJHWuZ39VeMd9OkG-17CXRPSVBwaJxUtdQ"
+  },
+  "message": {
+    "status": "success"
+  }
+}
+
+
+
+[
+
+]
+
+convert json to java
