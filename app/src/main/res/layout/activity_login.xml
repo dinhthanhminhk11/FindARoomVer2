@@ -133,7 +133,7 @@
             <LinearLayout
                 android:layout_marginHorizontal="50dp"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:orientation="vertical"
