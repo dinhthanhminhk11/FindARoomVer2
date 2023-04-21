@@ -28,6 +28,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        activityRegisterBinding.btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         activityRegisterBinding.checkboxFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

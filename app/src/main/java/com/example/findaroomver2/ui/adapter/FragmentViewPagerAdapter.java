@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.example.findaroomver2.ui.fragment.HomeFragment;
 import com.example.findaroomver2.ui.fragment.ListPostFragment;
 import com.example.findaroomver2.ui.fragment.NotificationFragment;
-import com.example.findaroomver2.ui.fragment.PostNewsFragment;
 import com.example.findaroomver2.ui.fragment.UserFragment;
 
 public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
