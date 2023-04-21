@@ -9,28 +9,36 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btnDangKy;
-    TextView tvDangNhap;
+    ActivityRegisterBinding activityRegisterBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
-        btnDangKy = findViewById(R.id.btn_SignUp);
-        tvDangNhap = findViewById(R.id.tv_SignIn);
-
+        activityRegisterBinding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        setContentView(activityRegisterBinding.getRoot());
         final Intent intentDangNhap = new Intent(this, LoginActivity.class);
-
-        tvDangNhap.setOnClickListener(new View.OnClickListener() {
+        activityRegisterBinding.tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intentDangNhap);
             }
         });
 
+        activityRegisterBinding.checkboxFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        activityRegisterBinding.checkboxRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
