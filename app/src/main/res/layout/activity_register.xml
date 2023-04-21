@@ -1,243 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            android:layout_height="match_parent">
+
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                >
+                android:layout_height="120dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ĐĂNG KÝ"
-                    android:textAlignment="center"
                     android:layout_gravity="center"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="800"
+                    android:text="ĐĂNG KÝ"
+                    android:textAlignment="center"
                     android:textColor="#FFCA00"
-                    android:textSize="24dp"
-                    />
+                    android:textFontWeight="800"
+                    android:textSize="24dp" />
             </FrameLayout>
 
             <LinearLayout
-                android:backgroundTint="@color/white"
-                android:layout_marginTop="120dp"
-                android:orientation="vertical"
-                android:padding="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="120dp"
+                android:backgroundTint="@color/white"
+                android:orientation="vertical"
+                android:padding="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
-                    android:textColor="@color/black"
                     android:text="Nhập số điện thoại"
-                    />
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtSdt"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    app:boxStrokeColor="@color/black"
-                    app:hintTextColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:hint="Nhập số điện thoại"
+                    app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:hintTextColor="@color/black">
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/sodienthoai"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_fullname"/>
+                    android:textColor="#F80101" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
-                    android:textColor="@color/black"
                     android:text="Nhập địa chỉ email"
-                    />
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtEmail"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    app:boxStrokeColor="@color/black"
-                    app:hintTextColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:hint="Nhập địa chỉ email"
+                    app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:hintTextColor="@color/black">
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/diachiemai"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_fullname1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_fullname1"/>
+                    android:textColor="#F80101" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
-                    android:textColor="@color/black"
                     android:text="Nhập số họ và tên"
-                    />
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtUser"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    app:boxStrokeColor="@color/black"
-                    app:hintTextColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:hint="Nhập họ và tên"
+                    app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:hintTextColor="@color/black">
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/username"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_phone"/>
+                    android:textColor="#F80101" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
-                    android:textColor="@color/black"
                     android:text="Nhập mật khẩu"
-                    />
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtPassword"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    app:boxStrokeColor="@color/black"
-                    app:hintTextColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:hint="Nhập số mật khẩu"
+                    app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:hintTextColor="@color/black">
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/password"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_pass"/>
+                    android:textColor="#F80101" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
-                    android:textColor="@color/black"
                     android:text="Nhập lại mật khẩu"
-                    />
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtPassword_02"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    app:boxStrokeColor="@color/black"
-                    app:hintTextColor="@color/black"
+                    android:layout_height="wrap_content"
                     android:hint="Nhập lại mật khẩu"
+                    app:boxStrokeColor="@color/black"
                     app:errorEnabled="true"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    app:hintTextColor="@color/black">
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
                         android:id="@+id/password_02"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_pass22"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_pass22"/>
+                    android:textColor="#F80101" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Chọn trạng thái tài khoản"
-                        android:fontFamily="@font/noto_sans"
-                        android:textFontWeight="500"
                         android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/noto_sans"
+                        android:text="Chọn trạng thái tài khoản"
                         android:textColor="@color/black"
-                        />
-                    <CheckBox android:id="@+id/checkbox_Find"
+                        android:textFontWeight="500" />
+
+                    <CheckBox
+                        android:checked="true"
+                        android:id="@+id/checkbox_Find"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Người tìm nhà"
                         android:fontFamily="@font/noto_sans"
-                        android:onClick="onCheckboxClicked"/>
-                    <CheckBox android:id="@+id/checkbox_Rent"
+                        android:onClick="onCheckboxClicked"
+                        android:text="Người tìm nhà" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_Rent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Người cho thuê nhà"
                         android:fontFamily="@font/noto_sans"
-                        android:onClick="onCheckboxClicked"/>
+                        android:onClick="onCheckboxClicked"
+                        android:text="Người cho thuê nhà" />
                 </LinearLayout>
+
                 <TextView
+                    android:id="@+id/txt_err_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#F80101"
                     android:layout_marginStart="16dp"
-                    android:id="@+id/txt_err_status"/>
+                    android:textColor="#F80101" />
 
 
                 <Button
                     android:id="@+id/btn_SignUp"
-                    android:text="Đăng Ký"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/black"
-                    android:backgroundTint="#FFCA00"
-                    android:fontFamily="@font/noto_sans"
-                    android:textFontWeight="500"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#FFCA00"
+                    android:fontFamily="@font/noto_sans"
+                    android:text="Đăng Ký"
+                    android:textColor="@color/black"
+                    android:textFontWeight="500" />
 
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -245,19 +259,30 @@
                         android:text="Bạn đã có tài khoản? "
                         android:textSize="15dp"
                         tools:ignore="TextSizeCheck" />
+
                     <TextView
                         android:id="@+id/tv_SignIn"
-                        android:text="Đăng nhập ngay"
-                        android:textColor="#FFCA00"
-                        android:textSize="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        />
+                        android:text="Đăng nhập ngay"
+                        android:textColor="#FFCA00"
+                        android:textSize="15dp" />
                 </LinearLayout>
 
             </LinearLayout>
 
         </FrameLayout>
     </ScrollView>
-
-</LinearLayout>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
+</RelativeLayout>

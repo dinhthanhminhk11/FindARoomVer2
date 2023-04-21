@@ -26,4 +26,6 @@
     <color name="color_text_view">#D85E5E</color>
     <color name="base_color_indicator">#E9EBF1</color>
     <color name="color_FFCA00">#FFCA00</color>
+    <color name="color_F6F6F6">#F6F6F6</color>
+    <color name="blue">#000000</color>
 </resources>

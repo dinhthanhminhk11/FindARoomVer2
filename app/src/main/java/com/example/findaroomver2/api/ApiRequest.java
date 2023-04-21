@@ -1,6 +1,7 @@
 package com.example.findaroomver2.api;
 
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.UserResponseLogin;
 
 import retrofit2.Call;
@@ -15,4 +16,7 @@ public interface ApiRequest {
 
     @GET("getUserByToken")
     Call<UserResponseLogin> getUserByToken(@Header("x-access-token") String token);
+
+    @POST("auth/register")
+    Call<UserResponseLogin> register(@Body UserRegisterRequest userRegisterRequest);
 }
