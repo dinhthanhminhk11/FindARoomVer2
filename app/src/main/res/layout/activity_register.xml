@@ -186,7 +186,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="center">
                     <TextView
@@ -198,28 +198,16 @@
                         android:layout_marginBottom="8dp"
                         android:textColor="@color/black"
                         />
-                    <RelativeLayout
-                        android:background="@drawable/category_boder"
-                        android:layout_width="343dp"
-                        android:layout_height="40dp">
-
-                        <TextView
-                            android:id="@+id/txtTrangthai"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="10dp"
-                            android:text="Người Thuê/Người cho thuê"
-                            android:textColor="#8A98A4"
-                            android:textSize="15dp" />
-
-                        <Spinner
-                            android:id="@+id/spinnerDientich"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignBottom="@id/txtTrangthai"/>
-                    </RelativeLayout>
+                    <CheckBox android:id="@+id/checkbox_Find"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Người tìm nhà"
+                        android:onClick="onCheckboxClicked"/>
+                    <CheckBox android:id="@+id/checkbox_Rent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Người cho thuê nhà"
+                        android:onClick="onCheckboxClicked"/>
                 </LinearLayout>
                 <TextView
                     android:layout_width="match_parent"

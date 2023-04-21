@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.NotificationFragment">
+    tools:context=".ui.fragment.ListPostFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:text="màn hiển thị danh sách thông báo" />
+        android:textSize="24sp"
+        android:text="Màn hển thị dnah sách các bài đăng" />
 
 </FrameLayout>

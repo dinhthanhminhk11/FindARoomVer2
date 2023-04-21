@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="TransparentBackground" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="FullScreenDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/yellowEFC900</item>
+    </style>
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="SampleProgress">
+        <item name="android:layout_width">260dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+    <style name="Title_All_Input">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--    <style name="BaseAppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">-->
+<!--        <item name="bottomSheetStyle">@style/BaseAppModalStyle</item>-->
+<!--        <item name="android:navigationBarColor">#FFFFFF</item>-->
+<!--        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>-->
+<!--    </style>-->
+
+<!--    <style name="BaseAppModalStyle" parent="Widget.Design.BottomSheet.Modal">-->
+<!--        <item name="android:background">@drawable/bg_top_rounded</item>-->
+<!--        <item name="behavior_peekHeight">720dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="ButtonMainBottomMenu">-->
+<!--        <item name="android:background">@drawable/circular_button</item>-->
+<!--        <item name="android:padding">16dp</item>-->
+<!--    </style>-->
+
+<!--    <style name="SquareButton" parent="ButtonMainBottomMenu" />-->
+<!--    <style name="BaseTextTitleMain" parent="Widget.AppCompat.TextView">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">?actionBarSize</item>-->
+<!--        <item name="android:gravity">center_vertical</item>-->
+<!--        <item name="android:paddingStart">16dp</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:textSize">24sp</item>-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--    </style>-->
+
+<!--    <style name="ItemSeparationLineHorizontal">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">1dp</item>-->
+<!--        <item name="android:background">@color/base_color_indicator</item>-->
+<!--    </style>-->
+<!--    <style name="ItemSeparationLineVertical">-->
+<!--        <item name="android:layout_width">1dp</item>-->
+<!--        <item name="android:layout_height">match_parent</item>-->
+<!--        <item name="android:background">@color/base_color_indicator</item>-->
+<!--    </style>-->
+</resources>
