@@ -1,14 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragment.HomeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/helloTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_10"
+                android:text="@string/title_home_hello"
+                android:textColor="@color/yellowEFC900"
+                android:textSize="@dimen/text_size_24"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/contentTitleHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_6"
+                android:text="@string/content_home_hello"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_12" />
+
+            <EditText
+                android:id="@+id/etSearchHomeFragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50"
+                android:layout_below="@+id/contentTitleHome"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_30"
+                android:background="@drawable/framesearch_homefragment"
+                android:drawableLeft="@drawable/ic_search_homefragment"
+                android:drawablePadding="@dimen/size_10"
+                android:hint="@string/titleSearch_homeFragment"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapSentences|textAutoComplete"
+                android:paddingVertical="@dimen/size_15"
+                android:paddingLeft="@dimen/size_16"
+                android:textColor="@color/black"
+                android:textColorHint="@color/color_858585"
+                android:textSize="@dimen/text_size_12"
+                tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/titleTrend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_30"
+                android:text="@string/title_home_trend"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listItemTrend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_8"
+                android:overScrollMode="never"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/titleForYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/title_home_for_you"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvPost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:padding="8dp" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

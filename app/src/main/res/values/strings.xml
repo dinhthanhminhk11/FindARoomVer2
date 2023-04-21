@@ -8,7 +8,7 @@
     <string name="forgot_password">Quên mật khẩu?</string>
     <string name="or">Hoặc</string>
     <!-- TODO: Remove or change this placeholder text -->
-
+    <string name="login">Đăng nhập</string>
     <string name="title_home_hello">Xin chào!</string>
     <string name="content_home_hello">Hãy cùng chúng tôi tim 1 ngôi nhà thật là ưng ý.</string>
     <string name="titleSearch_homeFragment">Tìm kiếm</string>
