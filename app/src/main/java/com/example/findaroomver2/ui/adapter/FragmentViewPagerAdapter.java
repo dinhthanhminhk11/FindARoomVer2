@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.findaroomver2.ui.fragment.HomeFragment;
+import com.example.findaroomver2.ui.fragment.ListPostFragment;
 import com.example.findaroomver2.ui.fragment.NotificationFragment;
-import com.example.findaroomver2.ui.fragment.PostFragment;
 import com.example.findaroomver2.ui.fragment.PostNewsFragment;
 import com.example.findaroomver2.ui.fragment.UserFragment;
 
@@ -18,7 +18,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
     HomeFragment homeFragment;
     NotificationFragment notificationFragment;
     PostNewsFragment postNewsFragment;
-    PostFragment postFragment;
+    ListPostFragment listPostFragment;
     UserFragment userFragment;
     private Fragment mCurrentFragment;
 
@@ -27,7 +27,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
         postNewsFragment = new PostNewsFragment();
-        postFragment = new PostFragment();
+        listPostFragment = new ListPostFragment();
         userFragment = new UserFragment();
     }
 
@@ -44,7 +44,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 return postNewsFragment;
             case 3:
-                return postFragment;
+                return listPostFragment;
             case 4:
                 return userFragment;
             default:

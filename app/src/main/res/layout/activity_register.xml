@@ -202,11 +202,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Người tìm nhà"
+                        android:fontFamily="@font/noto_sans"
                         android:onClick="onCheckboxClicked"/>
                     <CheckBox android:id="@+id/checkbox_Rent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Người cho thuê nhà"
+                        android:fontFamily="@font/noto_sans"
                         android:onClick="onCheckboxClicked"/>
                 </LinearLayout>
                 <TextView
