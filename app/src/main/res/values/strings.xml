@@ -2,4 +2,43 @@
     <string name="app_name">FindARoomVer2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Đăng nhập</string>
+    <string name="input_phone_number">Nhập số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="or">Hoặc</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="title_home_hello">Xin chào!</string>
+    <string name="content_home_hello">Hãy cùng chúng tôi tim 1 ngôi nhà thật là ưng ý.</string>
+    <string name="titleSearch_homeFragment">Tìm kiếm</string>
+    <string name="title_home_trend">Tin nổi bật</string>
+    <string name="title_home_for_you">Dành cho bạn</string>
+    <string name="count_view">Lượt xem</string>
+    <string name="count_feedback">Đánh giá</string>
+    <string name="Utility">Tiện ích</string>
+    <string name="Information">Thông tin</string>
+    <string name="Information_room">Thông tin phòng</string>
+    <string name="Position">Vị trí</string>
+    <string name="content_text_detail">Cho thuê phòng trọ giá rẻ ở  Bắc Từ Liêm, Hà Nội</string>
+    <string name="api_key_app">AIzaSyDId5Ne9ty3PAl9aMBW4A-_7WcXfH7ngFA</string>
+    <string name="more_content">Mô tả thêm</string>
+    <string name="rankandfeedback">Xếp hạng và đánh giá</string>
+    <string name="message">Nhắn tin</string>
+    <string name="call">Liên hệ</string>
+    <array name="spTP">
+        <item>Chọn tỉnh/thành phố</item>
+    </array>
+    <array name="spQH">
+        <item>Chọn quận/huyện</item>
+    </array>
+
+    <array name="spXP">
+        <item>Chọn xã/phường</item>
+    </array>
+    <array name="spDP">
+        <item>
+            Chọn đường/phố
+        </item>
+    </array>
 </resources>
