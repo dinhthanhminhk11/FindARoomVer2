@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_120"
-            >
+            android:layout_height="@dimen/size_120">
 
             <TextView
                 android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Nhập số điện thoại"
+                android:hint="Nhập số điện thoại hoặc email"
                 app:boxStrokeColor="@color/black"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/black">
@@ -96,9 +96,10 @@
 
                 <View
                     android:id="@+id/line1"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/size_2"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="#F2F5F8"
                     app:layout_constraintEnd_toStartOf="@+id/tvOr"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,10 +120,11 @@
 
                 <View
                     android:id="@+id/line2"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
                     android:background="#F2F5F8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvOr"
@@ -131,32 +133,34 @@
 
 
             <LinearLayout
-                android:layout_marginHorizontal="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="25dp"
-                android:orientation="vertical"
-                android:background="@drawable/button_background">
+                android:background="@drawable/button_background"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/google_icon_img"/>
+                        android:src="@drawable/google_icon_img" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="5dp"
-                        android:textFontWeight="500"
-                        android:text="Google"/>
+                        android:text="Google"
+                        android:textFontWeight="500" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -188,5 +192,21 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

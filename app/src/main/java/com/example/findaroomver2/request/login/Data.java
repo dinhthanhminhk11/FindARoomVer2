@@ -11,6 +11,8 @@ public class Data {
     private String email;
     @SerializedName("phone")
     private String phone;
+    @SerializedName("tokenDevice")
+    private String tokenDevice;
     @SerializedName("accessToken")
     private String accessToken;
 
@@ -32,5 +34,9 @@ public class Data {
 
     public String getAccessToken() {
         return accessToken;
+    }
+
+    public String getTokenDevice() {
+        return tokenDevice;
     }
 }
