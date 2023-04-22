@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel.getUserResponseLoginMutableLiveData().observe(this, new Observer<UserResponseLogin>() {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
-                if (userResponseLogin.getMessage().getStatus().equals("success")) {
+                if (userResponseLogin.getMessage().isStatus()) {
 
                     MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
                     UserClient userClient = UserClient.getInstance();
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-                    Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, userResponseLogin.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
