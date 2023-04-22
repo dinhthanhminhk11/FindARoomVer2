@@ -15,9 +15,7 @@ import com.example.findaroomver2.databinding.ActivityMainBinding;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
-import com.example.findaroomver2.ui.activity.LoginActivity;
 import com.example.findaroomver2.ui.adapter.FragmentViewPagerAdapter;
-import com.example.findaroomver2.viewmodel.LoginViewModel;
 import com.example.findaroomver2.viewmodel.MainViewModel;
 
 import nl.joery.animatedbottombar.AnimatedBottomBar;

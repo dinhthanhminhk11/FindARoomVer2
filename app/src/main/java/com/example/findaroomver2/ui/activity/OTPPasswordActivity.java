@@ -12,7 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -24,6 +23,7 @@ import com.example.findaroomver2.databinding.ActivityOtppasswordBinding;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.response.TextResponse;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.OTPPassViewModel;
 
 public class OTPPasswordActivity extends AppCompatActivity {
@@ -83,7 +83,9 @@ public class OTPPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (binding.otp.getText().toString().isEmpty()) {
-                    Toast.makeText(OTPPasswordActivity.this, "Chưa nhập OTP", Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(OTPPasswordActivity.this, "Bạn chưa nhập OTP", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.otp.getText().toString().length() > 6 || binding.otp.getText().toString().length() < 6) {
+                    CustomToast.ct(OTPPasswordActivity.this, "Mã OTP gồm 6 kí tự", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 } else {
                     viewModel.checkOTPPass(new Verify(mail, binding.otp.getText().toString()));
                 }
@@ -112,7 +114,7 @@ public class OTPPasswordActivity extends AppCompatActivity {
                     intent.putExtra(AppConstant.EMAIL_USER, mail);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(OTPPasswordActivity.this, textResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(OTPPasswordActivity.this, textResponse.getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }
             }
         });
@@ -121,9 +123,9 @@ public class OTPPasswordActivity extends AppCompatActivity {
             @Override
             public void onChanged(TextResponse textResponse) {
                 if (textResponse.isStatus()) {
-                    Toast.makeText(OTPPasswordActivity.this, textResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(OTPPasswordActivity.this, textResponse.getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 } else {
-                    Toast.makeText(OTPPasswordActivity.this, textResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(OTPPasswordActivity.this, textResponse.getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }
             }
         });

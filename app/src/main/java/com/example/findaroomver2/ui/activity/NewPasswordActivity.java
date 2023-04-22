@@ -27,6 +27,7 @@ import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.NewPassViewModel;
 
 public class NewPasswordActivity extends AppCompatActivity {
@@ -50,8 +51,15 @@ public class NewPasswordActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check nhập rỗng cac kiểu ở đây nhưngt ạm thời chưa làm
-                newPassViewModel.newPassWord(new UserLoginRequest(mail, binding.passwordAgain.getText().toString()));
+                if (binding.password.getText().toString().length() == 0) {
+                    CustomToast.ct(NewPasswordActivity.this, "Bạn chưa nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.passwordAgain.getText().toString().length() == 0) {
+                    CustomToast.ct(NewPasswordActivity.this, "Bạn chưa nhập lại nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (!binding.passwordAgain.getText().toString().equals(binding.password.getText().toString())) {
+                    CustomToast.ct(NewPasswordActivity.this, "Mật khẩu không trùng nhau", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else {
+                    newPassViewModel.newPassWord(new UserLoginRequest(mail, binding.passwordAgain.getText().toString()));
+                }
             }
         });
 

@@ -1,9 +1,10 @@
 package com.example.findaroomver2.ui.activity;
 
+import static com.example.findaroomver2.ui.activity.RegisterActivity.isGmail;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -13,6 +14,7 @@ import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityForgotBinding;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.response.TextResponse;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.ForgotPassViewModel;
 
 public class ForgotActivity extends AppCompatActivity {
@@ -38,7 +40,9 @@ public class ForgotActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (binding.username.getText().toString().isEmpty()) {
-                    Toast.makeText(ForgotActivity.this, "Bạn chưa nhập email", Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(ForgotActivity.this, "Bạn chưa nhập email", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (!isGmail(binding.username.getText().toString())) {
+                    CustomToast.ct(ForgotActivity.this, "Nhập sai định dạng email", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 } else {
                     forgotPassViewModel.sendMailForgotPass(new Email(binding.username.getText().toString()));
                 }
@@ -60,7 +64,7 @@ public class ForgotActivity extends AppCompatActivity {
                     intent.putExtra(AppConstant.EMAIL_USER, binding.username.getText().toString().trim());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(ForgotActivity.this, textResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(ForgotActivity.this, textResponse.getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }
             }
         });

@@ -27,6 +27,7 @@ import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.RegisterViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -54,7 +55,25 @@ public class RegisterActivity extends AppCompatActivity {
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerViewModel.register(new UserRegisterRequest(binding.sodienthoai.getText().toString(), binding.diachiemai.getText().toString(), binding.password02.getText().toString(), binding.username.getText().toString(), role, "token"));
+                if (binding.sodienthoai.getText().toString().length() == 0) {
+                    CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (!isPhoneNumber(binding.sodienthoai.getText().toString())) {
+                    CustomToast.ct(RegisterActivity.this, "Định dạng số điện thoại bị sai", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.diachiemai.getText().toString().length() == 0) {
+                    CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập email", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (!isGmail(binding.diachiemai.getText().toString())) {
+                    CustomToast.ct(RegisterActivity.this, "Định dạng email bị sai", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.username.getText().toString().length() == 0) {
+                    CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập họ tên", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.password.getText().toString().length() == 0) {
+                    CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (binding.password02.getText().toString().length() == 0) {
+                    CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập lại nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                } else if (!binding.password02.getText().toString().equals(binding.password.getText().toString())) {
+                    CustomToast.ct(RegisterActivity.this, "Mật khẩu không trùng nhau", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                }else {
+                    registerViewModel.register(new UserRegisterRequest(binding.sodienthoai.getText().toString(), binding.diachiemai.getText().toString(), binding.password02.getText().toString(), binding.username.getText().toString(), role, "token"));
+                }
             }
         });
 
@@ -158,5 +177,15 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         dialog.show();
+    }
+
+    private boolean isPhoneNumber(String input) {
+        String phoneRegex = "^(03|05|07|08|09)+([0-9]{8})\\b";
+        return input.matches(phoneRegex);
+    }
+
+    public static boolean isGmail(String input) {
+        String gmailRegex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
+        return input.matches(gmailRegex);
     }
 }

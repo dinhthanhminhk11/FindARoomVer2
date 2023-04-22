@@ -16,6 +16,7 @@ import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,9 +36,12 @@ public class LoginActivity extends AppCompatActivity {
 
         binding.btnLogin.setOnClickListener(v -> {
             if (binding.username.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Bạn chưa nhập email hoặc số điện thoại", Toast.LENGTH_SHORT).show();
+                CustomToast.ct(this, "Bạn chưa nhập email hoặc số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
             } else if (binding.password.getText().toString().isEmpty()) {
-                Toast.makeText(this, "Bạn chưa nhập mật khẩu", Toast.LENGTH_SHORT).show();
+                CustomToast.ct(this, "Bạn chưa nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+
+            } else if (!isPhoneNumberOrGmail(binding.username.getText().toString())) {
+                CustomToast.ct(this, "Nhập sai định dạng gmail hoặc số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
             } else {
                 loginViewModel.login(new UserLoginRequest(binding.username.getText().toString(), binding.password.getText().toString()));
             }
@@ -64,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-                    Toast.makeText(LoginActivity.this, userResponseLogin.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                    CustomToast.ct(LoginActivity.this, userResponseLogin.getMessage().getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }
             }
         });
@@ -75,5 +79,12 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+    }
+
+    public static boolean isPhoneNumberOrGmail(String input) {
+        String phoneRegex = "^(03|05|07|08|09)+([0-9]{8})\\b";
+        String gmailRegex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
+
+        return input.matches(phoneRegex) || input.matches(gmailRegex);
     }
 }

@@ -20,6 +20,6 @@
         android:title="Post" />
     <item
         android:id="@+id/tab_user"
-        android:icon="@drawable/uppost_vector"
+        android:icon="@drawable/user_vector"
         android:title="User" />
 </menu>
