@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -76,6 +77,82 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
+                    android:text="Hình ảnh"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_2767A5"
+                    android:textSize="16dp" />
+
+                <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:background="@color/black"
+                    android:elevation="0dp"
+                    android:id="@+id/contentImage"
+                    android:layout_marginTop="16dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp">
+
+                    <com.example.findaroomver2.ui.customview.autoimageslider.SliderView
+                        android:id="@+id/imageItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderAutoCycleEnabled="true"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#FFFEFE"
+                        app:sliderIndicatorUnselectedColor="#FFF"
+                        app:sliderScrollTimeInSec="2"
+                        app:sliderStartAutoCycle="true" />
+
+                </androidx.cardview.widget.CardView>
+
+
+                <LinearLayout
+                    android:id="@+id/choseImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/framesearch_homefragment_ver2"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingVertical="28dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nhấn để tải ảnh"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="(Tối đa 10 hình ảnh)"
+                        android:textColor="@color/black"
+                        android:textSize="14dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/imagechoseimage" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
                     android:text="Chọn loại tin"
                     android:textAllCaps="true"
                     android:textColor="@color/color_2767A5"
@@ -87,8 +164,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Loại tin *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
                     android:id="@+id/listCategoryPost"
@@ -99,16 +175,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Tiêu đề *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/contentTitleHome"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/framesearch_homefragment"
@@ -136,8 +210,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Tỉnh/ Thành phố *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
                     android:id="@+id/listCategoryCty"
@@ -148,11 +221,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Quận/ Huyện *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
                     android:id="@+id/listCategoryDistrict"
@@ -163,11 +235,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Đường/ Phố *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
                     android:id="@+id/listStreet"
@@ -178,11 +249,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Xã/ Phường *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
                     android:id="@+id/listCategoryWard"
@@ -193,11 +263,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Địa chỉ cụ thể *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -230,8 +299,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Diện tích *"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="16dp" />
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -264,6 +332,372 @@
                         android:textSize="15sp" />
                 </RelativeLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Đặt học"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:hint="Nhập tiền cọc"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="VND"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Phòng ngủ"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/contentTitleHome"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập số phòng ngủ"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Phòng tắm"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/contentTitleHome"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập số phòng tắm"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Số lượng người ở*"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/contentTitleHome"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập số lượng người ở"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Ngày vào ở*"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập ngày có thể vào ở"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Giá phòng*"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:hint="Nhập giá phòng"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="VND/Tháng"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Giá điện"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:hint="Nhập giá điện"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="Số"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Giá nước"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:hint="Nhập giá nước"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="Số"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Wifi"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:hint="Nhập giá Wifi"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:text="Tháng"
+                        android:textColor="#808080"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Mô tả*"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:gravity="top|start"
+                    android:hint="Nhập mô tả..."
+                    android:inputType="textMultiLine"
+                    android:lines="8"
+                    android:maxLines="10"
+                    android:minLines="6"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="thông tin liên hệ"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_2767A5"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Số điện thoại *"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập số điện thoại"
+                    android:inputType="number"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp"
+                    tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="tiện ích - nội thất"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_2767A5"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Tiện ích - Nội thất *"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listUtilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:overScrollMode="never" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

@@ -258,10 +258,10 @@ class PickerActivity : BaseActivity(),
     override fun initToolBar(pickerViewData: PickerViewData) {
         val toolbar = findViewById<Toolbar>(R.id.toolbar_picker_bar)
         setSupportActionBar(toolbar)
-        toolbar.setBackgroundColor(pickerViewData.colorActionBar)
+        toolbar.setBackgroundColor(getColor(R.color.yellowEFC900))
         toolbar.setTitleTextColor(pickerViewData.colorActionBarTitle)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.setStatusBarColor(pickerViewData.colorStatusBar)
+            this.setStatusBarColor(getColor(R.color.yellowEFC900))
         }
         val bar = supportActionBar
         if (bar != null) {

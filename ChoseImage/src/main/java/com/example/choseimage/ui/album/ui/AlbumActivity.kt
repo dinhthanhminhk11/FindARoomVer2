@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -41,17 +42,14 @@ import com.example.choseimage.util.setStatusBarColor
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 
-class AlbumActivity : BaseActivity(),
-    AlbumContract.View, AlbumClickListener {
+class AlbumActivity : BaseActivity(), AlbumContract.View, AlbumClickListener {
     private val albumPresenter: AlbumContract.Presenter by lazy {
         AlbumPresenter(
-            this,
-            AlbumRepositoryImpl(
+            this, AlbumRepositoryImpl(
                 ImageDataSourceImpl(contentResolver),
                 FishBunDataSourceImpl(Fishton),
                 CameraDataSourceImpl(this)
-            ),
-            MainUiHandler()
+            ), MainUiHandler()
         )
     }
     private var groupEmptyView: Group? = null
@@ -100,10 +98,10 @@ class AlbumActivity : BaseActivity(),
 
         txtAlbumMessage?.setText(R.string.msg_loading_image)
         setSupportActionBar(toolbar)
-        toolbar.setBackgroundColor(albumViewData.colorActionBar)
+        toolbar.setBackgroundColor(getColor(R.color.yellowEFC900))
         toolbar.setTitleTextColor(albumViewData.colorActionBarTitle)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            this.setStatusBarColor(albumViewData.colorStatusBar)
+            this.setStatusBarColor(getColor(R.color.yellowEFC900))
         }
 
         supportActionBar?.let {
@@ -161,9 +159,7 @@ class AlbumActivity : BaseActivity(),
     }
 
     override fun onActivityResult(
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
+        requestCode: Int, resultCode: Int, data: Intent?
     ) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -207,13 +203,11 @@ class AlbumActivity : BaseActivity(),
     override fun showMinimumImageMessage(currentSelectedCount: Int) {
         recyclerAlbumList?.let {
             it.post {
-                Snackbar
-                    .make(
+                Snackbar.make(
                         it,
                         getString(R.string.msg_minimum_image, currentSelectedCount),
                         Snackbar.LENGTH_SHORT
-                    )
-                    .show()
+                    ).show()
             }
         }
     }
@@ -226,8 +220,7 @@ class AlbumActivity : BaseActivity(),
 
     @SuppressLint("MissingSuperCall")
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>, grantResults: IntArray
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
     ) {
         when (requestCode) {
             PERMISSION_STORAGE -> {
@@ -241,6 +234,7 @@ class AlbumActivity : BaseActivity(),
                     }
                 }
             }
+
             PERMISSION_CAMERA -> {
                 if (grantResults.isNotEmpty()) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -255,9 +249,7 @@ class AlbumActivity : BaseActivity(),
     }
 
     override fun showAlbumList(
-        albumList: List<Album>,
-        imageAdapter: ImageAdapter,
-        albumViewData: AlbumViewData
+        albumList: List<Album>, imageAdapter: ImageAdapter, albumViewData: AlbumViewData
     ) {
         recyclerAlbumList?.visibility = View.VISIBLE
         groupEmptyView?.visibility = View.GONE
@@ -304,9 +296,8 @@ class AlbumActivity : BaseActivity(),
         val recyclerView = recyclerAlbumList ?: return
         val gridLayoutManager = recyclerView.layoutManager as? GridLayoutManager ?: return
 
-        gridLayoutManager.spanCount =
-            if (isLandscape()) albumViewData.albumLandscapeSpanCount
-            else albumViewData.albumPortraitSpanCount
+        gridLayoutManager.spanCount = if (isLandscape()) albumViewData.albumLandscapeSpanCount
+        else albumViewData.albumPortraitSpanCount
     }
 
     override fun refreshAlbumItem(position: Int, imagePath: ArrayList<Uri>) {
@@ -326,9 +317,7 @@ class AlbumActivity : BaseActivity(),
 
 
     private fun setAlbumListAdapter(
-        albumList: List<Album>,
-        imageAdapter: ImageAdapter,
-        albumViewData: AlbumViewData
+        albumList: List<Album>, imageAdapter: ImageAdapter, albumViewData: AlbumViewData
     ) {
         if (adapter == null) {
             adapter = AlbumListAdapter(this, albumViewData.albumThumbnailSize, imageAdapter).also {
