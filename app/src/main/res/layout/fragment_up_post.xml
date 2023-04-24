@@ -1,611 +1,690 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="CHỌN LOẠI TIN"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
                 <TextView
-                    android:text="Loại tin *"
-                    style="@style/Title_All_Input"/>
+                    style="@style/Title_All_Input"
+                    android:text="Loại tin *" />
+
                 <Spinner
                     android:id="@+id/SBD_SP_LoaiTin"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp" />
+
                 <TextView
                     android:id="@+id/SBD_SP_ERR_LOAITIN"
-                    android:text=""
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Tiêu đề *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Tiêu đề *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_Title"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="100dp"
+                    android:background="@drawable/inputbg" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_TITLE"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="VỊ TRÍ ĐĂNG"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <Spinner
                 android:id="@+id/SBD_SP_ThanhPho"
-                android:entries="@array/spTP"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/spTP" />
+
             <TextView
                 android:id="@+id/SBD_SP_ERR_TP"
-                android:text=""
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textColor="#FF0000" />
+
             <Spinner
                 android:id="@+id/SBD_SP_QuanHuyen"
-                android:entries="@array/spQH"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/spQH" />
+
             <TextView
                 android:id="@+id/SBD_SP_ERR_QH"
-                android:text=""
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textColor="#FF0000" />
+
             <Spinner
                 android:id="@+id/SBD_SP_XaPhuong"
-                android:entries="@array/spXP"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/spXP" />
+
             <TextView
                 android:id="@+id/SBD_SP_ERR_XP"
-                android:text=""
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textColor="#FF0000" />
+
             <Spinner
                 android:id="@+id/SBD_SP_DuongPho"
-                android:entries="@array/spDP"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"/>
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:entries="@array/spDP" />
+
             <TextView
                 android:id="@+id/SBD_SP_ERR_DP"
-                android:text=""
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#FF0000"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text=""
+                android:textColor="#FF0000" />
+
             <TextView
-                android:text="Địa chỉ cụ thể *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Địa chỉ cụ thể *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_Adress"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg" />
             </LinearLayout>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="THÔNG TIN PHÒNG"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <TextView
-                android:text="Diện tích *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Diện tích *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_DienTich"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_DienTich"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Đặt Cọc *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Đặt Cọc *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_DatCoc"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_DatCoc"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Phòng ngủ *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Phòng ngủ *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_PhongNgu"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_PhongNgu"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Phòng tắm *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Phòng tắm *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_PhongTam"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_PhongTam"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Số lượng người ở *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Số lượng người ở *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_SLNguoi"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_SLNguoi"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Ngày hết hạn *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Ngày hết hạn *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_NgayHetHan"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_NgayHetHan"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Giá phòng *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Giá phòng *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_GiaPhong"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_GiaPhong"
-                    android:text=""
-                    android:textColor="#FF0000"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
 
             <TextView
-                android:text="Giá điện *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Giá điện *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_GiaDien"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_GiaDien"
-                    android:text=""
-                    android:textColor="#FF0000"
-                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="#FF0000" />
             </LinearLayout>
+
             <TextView
-                android:text="Giá nước *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Giá nước *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:padding="1dp"
                 android:background="@drawable/inputbg"
-                >
+                android:orientation="horizontal"
+                android:padding="1dp">
+
                 <EditText
                     android:id="@+id/SBD_ED_GiaNuoc"
-                    android:inputType="number"
                     android:layout_width="250dp"
-                    android:background="@drawable/bged"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_height="50dp"/>
+                    android:background="@drawable/bged"
+                    android:inputType="number" />
+
                 <Spinner
                     android:id="@+id/SBD_SP_GIANUOC"
-                    android:layout_gravity="right"
-                    android:layout_marginStart="1dp"
                     android:layout_width="130dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="1dp" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/SBD_ED_ERR_GiaNuoc"
-                android:text=""
-                android:textColor="#FF0000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text=""
+                android:textColor="#FF0000" />
+
             <TextView
-                android:text="Wifi *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Wifi *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:padding="1dp"
                 android:background="@drawable/inputbg"
-                >
+                android:orientation="horizontal"
+                android:padding="1dp">
+
                 <EditText
                     android:id="@+id/SBD_ED_GiaWifi"
-                    android:inputType="number"
                     android:layout_width="250dp"
-                    android:background="@drawable/bged"
+                    android:layout_height="50dp"
                     android:layout_marginEnd="5dp"
-                    android:layout_height="50dp"/>
+                    android:background="@drawable/bged"
+                    android:inputType="number" />
+
                 <Spinner
                     android:id="@+id/SBD_SP_GiaWifi"
-                    android:layout_gravity="right"
-                    android:layout_marginStart="1dp"
                     android:layout_width="130dp"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="1dp" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/SBD_ED_ERR_GiaWifi"
-                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="" />
+
             <TextView
-                android:text="Mô tả *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Mô tả *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_Content"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"/>
+                    android:layout_height="100dp"
+                    android:background="@drawable/inputbg" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_Content"
-                    android:text=""
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="" />
             </LinearLayout>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="THÔNG TIN LIÊN HỆ"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <TextView
-                android:text="Số điện thoại *"
-                style="@style/Title_All_Input"/>
+                style="@style/Title_All_Input"
+                android:text="Số điện thoại *" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_margin="10dp"
-                >
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/SBD_ED_Phone"
-                    android:inputType="number"
-                    android:background="@drawable/inputbg"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+                    android:layout_height="50dp"
+                    android:background="@drawable/inputbg"
+                    android:inputType="number" />
+
                 <TextView
                     android:id="@+id/SBD_ED_ERR_Phone"
-                    android:text=""
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="" />
             </LinearLayout>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="TIỆN ÍCH - NỘI THẤT"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center"
-                >
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_margin="5dp"
-                    >
+                    android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/SBD_CB_WCRieng"
-                        android:text="WC riêng"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="WC riêng" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_MayGiat"
-                        android:text="Máy giặt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Máy giặt" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_Tivi"
-                        android:text="Tivi"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Tivi" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_AnNinh"
-                        android:text="An ninh"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="An ninh" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_MayNL"
-                        android:text="Máy nước nóng"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Máy nước nóng" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_Bep"
-                        android:text="Nhà bếp"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Nhà bếp" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_TuDo"
-                        android:text="Tự do"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Tự do" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_margin="5dp"
-                    >
+                    android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/SBD_CB_Wifi"
-                        android:text="Wifi"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Wifi" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_ChoDeXe"
-                        android:text="Chỗ để xe"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Chỗ để xe" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_GacLung"
-                        android:text="Gác lửng"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Gác lửng" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_GiuongNgu"
-                        android:text="Giường ngủ"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Giường ngủ" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_KhongChungChu"
-                        android:text="Không chung chủ"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Không chung chủ" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_TuDoQA"
-                        android:text="Tủ đồ"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Tủ đồ" />
+
                     <CheckBox
                         android:id="@+id/SBD_CB_TuLanh"
-                        android:text="Tủ lạnh"
                         android:layout_width="200dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="Tủ lạnh" />
 
                 </LinearLayout>
             </LinearLayout>
+
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="HÌNH ẢNH"
                 android:textColor="#2767A5"
-                android:layout_margin="10dp"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textSize="25dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:orientation="vertical"
                 android:background="@drawable/background_utilities"
-                >
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:id="@+id/SBD_LinearImageSelect"
-                    android:layout_margin="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:orientation="vertical"
+                    android:layout_margin="5dp"
                     android:gravity="center"
-                    >
+                    android:orientation="vertical">
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="Nhấn để tải ảnh *"
                         android:textSize="20dp"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textStyle="bold" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:text="( Tối đa 6 hình )"
                         android:textSize="20dp"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:textStyle="bold" />
+
                     <ImageView
-                        android:src="@drawable/image_select"
                         android:layout_width="200dp"
-                        android:layout_height="200dp"/>
+                        android:layout_height="200dp"
+                        android:src="@drawable/image_select" />
                 </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/SBD_RCV"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:itemCount="3"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:layout_margin="5dp"
-                    />
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:itemCount="3" />
             </LinearLayout>
+
             <Button
                 android:id="@+id/SBD_btn_Send"
                 android:layout_width="wrap_content"

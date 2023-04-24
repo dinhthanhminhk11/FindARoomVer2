@@ -5,7 +5,8 @@
 
     <!--Size alert dialog-->
     <dimen name="corner_alert_dialog">15dp</dimen>
-
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
     <!--Text size-->
     <dimen name="title_main_size">20sp</dimen>
     <dimen name="header1_size">18sp</dimen>
