@@ -54,8 +54,14 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-    //animatedbottombar
+
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+
+    //google
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.maps.android:android-maps-utils-v3:2.3.0'
 
     // cloudinary
     implementation 'com.cloudinary:cloudinary-android:2.2.0'
