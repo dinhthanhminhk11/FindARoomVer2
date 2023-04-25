@@ -18,7 +18,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
     HomeFragment homeFragment;
     NotificationFragment notificationFragment;
-    UpPostFragment upPostFragment;
+    PostFragment postFragment;
     ListPostFragment listPostFragment;
     UserFragment userFragment;
     private Fragment mCurrentFragment;
@@ -27,7 +27,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm, behavior);
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
-        upPostFragment = new UpPostFragment();
+        postFragment = new PostFragment();
         listPostFragment = new ListPostFragment();
         userFragment = new UserFragment();
     }
@@ -43,7 +43,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return notificationFragment;
             case 2:
-                return new PostFragment();
+                return postFragment;
             case 3:
                 return listPostFragment;
             case 4:
