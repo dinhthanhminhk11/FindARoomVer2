@@ -240,18 +240,18 @@
                         </LinearLayout>
                     </LinearLayout>
                     <View
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="4dp"
                         android:layout_marginTop="5.5dp"
                         android:background="#CC4C4444"
                         android:layout_width="1px"
-                        android:layout_height="160px"
+                        android:layout_height="210px"
                         />
                     <View
                         android:layout_marginLeft="3dp"
                         android:layout_marginTop="5.5dp"
                         android:background="#CC4C4444"
                         android:layout_width="1px"
-                        android:layout_height="160px"
+                        android:layout_height="210px"
                         />
 
                     <LinearLayout
@@ -381,7 +381,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp">
-                <androidx.recyclerview.widget.RecyclerView
+                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listItemPost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
