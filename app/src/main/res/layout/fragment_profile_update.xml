@@ -471,7 +471,7 @@
 
                     <Button
                         android:id="@+id/btn_upgrade"
-                        android:text="nâng cấp tài khoản kinh doanh"
+                        android:text="Nâng cấp tài khoản kinh doanh"
                         android:layout_marginTop="10dp"
                         android:textColor="@color/black"
                         android:backgroundTint="#FFCA00"
@@ -485,7 +485,6 @@
             </LinearLayout>
 
         </ScrollView>
-
 
     </LinearLayout>
 
