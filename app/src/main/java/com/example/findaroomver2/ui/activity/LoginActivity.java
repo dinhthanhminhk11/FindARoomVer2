@@ -3,13 +3,11 @@ package com.example.findaroomver2.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.findaroomver2.MainActivity;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityLoginBinding;
 import com.example.findaroomver2.model.UserClient;
@@ -60,13 +58,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (userResponseLogin.getMessage().isStatus()) {
 
                     MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
+
                     UserClient userClient = UserClient.getInstance();
                     userClient.setEmail(userResponseLogin.getData().getEmail());
                     userClient.setPhone(userResponseLogin.getData().getPhone());
                     userClient.setFullName(userResponseLogin.getData().getFullName());
                     userClient.setId(userResponseLogin.getData().getId());
 
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 } else {
                     CustomToast.ct(LoginActivity.this, userResponseLogin.getMessage().getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }

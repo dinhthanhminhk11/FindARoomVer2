@@ -11,9 +11,12 @@ import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.supplement.DataSupplement;
+import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.retrofit.AndroidUtilities;
 import com.example.findaroomver2.retrofit.RetrofitRequest;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import retrofit2.Call;
@@ -147,6 +150,29 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<TextResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListSupplement(Consumer<DataSupplement> consumer){
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListSupplement().enqueue(new Callback<DataSupplement>() {
+                    @Override
+                    public void onResponse(Call<DataSupplement> call, Response<DataSupplement> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<DataSupplement> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });

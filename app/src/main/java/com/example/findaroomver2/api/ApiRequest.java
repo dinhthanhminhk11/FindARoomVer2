@@ -6,6 +6,10 @@ import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.supplement.DataSupplement;
+import com.example.findaroomver2.response.supplement.Supplement;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,7 +21,7 @@ public interface ApiRequest {
     @POST("auth/login")
     Call<UserResponseLogin> login(@Body UserLoginRequest userLoginRequest);
 
-    @GET("getUserByToken")
+    @GET("auth/getUserByToken")
     Call<UserResponseLogin> getUserByToken(@Header("x-access-token") String token);
 
     @POST("auth/register")
@@ -31,4 +35,7 @@ public interface ApiRequest {
 
     @POST("auth/newPass")
     Call<TextResponse> newPassWord(@Body UserLoginRequest userLogin);
+
+    @GET("supplements/getAllSupplements")
+    Call<DataSupplement> getListSupplement();
 }

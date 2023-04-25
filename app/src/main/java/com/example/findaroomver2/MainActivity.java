@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.getUserResponseLoginMutableLiveData().observe(this, new Observer<UserResponseLogin>() {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
-                MySharedPreferences.getInstance(MainActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
                 UserClient userClient = UserClient.getInstance();
                 userClient.setEmail(userResponseLogin.getData().getEmail());
                 userClient.setPhone(userResponseLogin.getData().getPhone());

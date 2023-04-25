@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +19,26 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.choseimage.FishBun;
 import com.example.choseimage.adapter.image.impl.GlideAdapter;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.FragmentPostBinding;
+import com.example.findaroomver2.response.supplement.DataSupplement;
+import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.adapter.SupplementAdapter;
 import com.example.findaroomver2.ui.adapter.autoimage.ImageAutoSliderAdapter;
 import com.example.findaroomver2.ui.customview.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.findaroomver2.ui.customview.autoimageslider.SliderAnimations;
 import com.example.findaroomver2.ui.customview.autoimageslider.SliderView;
 import com.example.findaroomver2.ui.customview.spinner.NiceSpinner;
 import com.example.findaroomver2.ui.customview.spinner.OnSpinnerItemSelectedListener;
+import com.example.findaroomver2.viewmodel.PostViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,7 +50,9 @@ import java.util.List;
  * Use the {@link PostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PostFragment extends Fragment {
+public class PostFragment extends Fragment implements SupplementAdapter.OnItemClickListener {
+    private PostViewModel postViewModel;
+    private SupplementAdapter supplementAdapter;
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
     private ActivityResultLauncher<Intent> startForResultCallback = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -153,13 +163,15 @@ public class PostFragment extends Fragment {
     }
 
     private void initView() {
-
+        postViewModel = new ViewModelProvider(getActivity()).get(PostViewModel.class);
         String token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
 
-        if (token != null || !token.equals("")) {
+        if (!token.equals("")) {
             binding.contentNullLogin.setVisibility(View.GONE);
+            binding.conentNotNull.setVisibility(View.VISIBLE);
         } else {
             binding.contentNullLogin.setVisibility(View.VISIBLE);
+            binding.conentNotNull.setVisibility(View.GONE);
         }
 
         binding.login.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +218,17 @@ public class PostFragment extends Fragment {
         binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
         binding.imageItem.startAutoCycle();
 
+        postViewModel.getListSupplement();
+        postViewModel.getDataSupplementMutableLiveData().observe(getActivity(), new Observer<DataSupplement>() {
+            @Override
+            public void onChanged(DataSupplement dataSupplement) {
+                supplementAdapter = new SupplementAdapter(dataSupplement.getData());
+                binding.listUtilities.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                binding.listUtilities.setAdapter(supplementAdapter);
+                supplementAdapter.setOnItemClickListener(PostFragment.this);
+            }
+        });
+
     }
 
     @Override
@@ -227,6 +250,16 @@ public class PostFragment extends Fragment {
                     binding.contentImage.setVisibility(View.GONE);
                 }
             }
+        }
+    }
+
+    @Override
+    public void onItemSelected(List<Supplement> selectedItems) {
+        Toast.makeText(getActivity(), "size " + selectedItems.size(), Toast.LENGTH_SHORT).show();
+        for (Supplement sup : selectedItems) {
+            Log.e("MInh", sup.getName());
+            System.out.println(sup.getName());
+
         }
     }
 }
