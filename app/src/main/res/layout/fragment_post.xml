@@ -23,7 +23,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="5dp"
             android:maxLines="2"
-            android:text="Đăng nhập để sửa dụng chức năng này"
+            android:text="Đăng nhập để sử dụng chức năng này"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
