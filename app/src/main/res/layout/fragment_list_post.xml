@@ -8,22 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutHomeToolbar"
-        android:padding="16dp"
-        >
-
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_ios"
-            android:layout_alignParentStart="true"
-            android:contentDescription="TODO"
-            />
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="30dp"
             android:fontFamily="@font/roboto"
             android:text="Tin"
             android:textColor="#333333"
@@ -49,9 +39,8 @@
         android:layout_height="wrap_content" />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/post_viewPager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
 </LinearLayout>

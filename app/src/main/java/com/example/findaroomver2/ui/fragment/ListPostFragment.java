@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.findaroomver2.databinding.FragmentListPostBinding;
 import com.example.findaroomver2.ui.adapter.PostViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 
 public class ListPostFragment extends Fragment {
@@ -41,7 +42,7 @@ public class ListPostFragment extends Fragment {
         postViewPagerAdapter = new PostViewPagerAdapter(getChildFragmentManager(), PostViewPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
 
         fragmentListPostBinding.postViewPager.setAdapter(postViewPagerAdapter);
-        fragmentListPostBinding.postViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        fragmentListPostBinding.postViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -59,6 +60,7 @@ public class ListPostFragment extends Fragment {
         });
 
         fragmentListPostBinding.postTablayout.setupWithViewPager(fragmentListPostBinding.postViewPager);
+
 
     }
 }

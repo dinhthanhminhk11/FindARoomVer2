@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.findaroomver2.ui.fragment.BestPriceFragment;
@@ -13,7 +14,7 @@ import com.example.findaroomver2.ui.fragment.NearestPosrFragment;
 import com.example.findaroomver2.ui.fragment.NewestPostFragment;
 import com.example.findaroomver2.ui.fragment.WatchedFragment;
 
-public class PostViewPagerAdapter extends FragmentStatePagerAdapter {
+public class PostViewPagerAdapter extends FragmentPagerAdapter {
 
     NewestPostFragment newestPostFragment;
     NearestPosrFragment nearestPosrFragment;
