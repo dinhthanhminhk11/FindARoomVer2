@@ -61,10 +61,10 @@ public class NoticeViewPagerAdapter extends FragmentPagerAdapter {
                 title = "Tất Cả";
                 break;
             case 1:
-                title = "Thông báo hệ thống";
+                title = "Hệ thống";
                 break;
             case 2:
-                title = "Thông báo bài viết của bạn";
+                title = "Tin của bạn";
                 break;
 
         }
@@ -72,7 +72,7 @@ public class NoticeViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         if (getmNoticeCurrentFragment() != object) {
             mNoticeCurrentFragment = ((Fragment) object);
         }
