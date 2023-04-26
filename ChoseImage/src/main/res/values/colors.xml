@@ -28,6 +28,7 @@
     <color name="color_FFCA00">#FFCA00</color>
     <color name="color_F6F6F6">#F6F6F6</color>
     <color name="hint_color">#656262</color>
+    <color name="blue">#0000ff</color>
     <color name="color_2767A5">#2767A5</color>
     <color name="light_gray">#fff5f5f5</color>
 </resources>
