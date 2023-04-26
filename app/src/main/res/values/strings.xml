@@ -10,7 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="login">Đăng nhập</string>
     <string name="title_home_hello">Xin chào!</string>
-    <string name="content_home_hello">Hãy cùng chúng tôi tim 1 ngôi nhà thật là ưng ý.</string>
+    <string name="content_home_hello">Hãy cùng chúng tôi tìm 1 nhà trọ thật là ưng ý.</string>
     <string name="titleSearch_homeFragment">Tìm kiếm</string>
     <string name="title_home_trend">Tin nổi bật</string>
     <string name="title_home_for_you">Dành cho bạn</string>

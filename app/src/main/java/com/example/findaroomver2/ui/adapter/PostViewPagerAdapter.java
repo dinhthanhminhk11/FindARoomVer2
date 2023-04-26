@@ -31,9 +31,9 @@ public class PostViewPagerAdapter extends FragmentStatePagerAdapter {
         watchedFragment = new WatchedFragment();
     }
 
-//    public Fragment getmPostCurrentFragment(){
-//        return mPostCurrentFragment;
-//    }
+    public Fragment getmPostCurrentFragment(){
+        return mPostCurrentFragment;
+    }
 
     @NonNull
     @Override
@@ -78,11 +78,11 @@ public class PostViewPagerAdapter extends FragmentStatePagerAdapter {
         return title;
     }
 
-//    @Override
-//    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-//        if (getmPostCurrentFragment() != object) {
-//            mPostCurrentFragment = ((Fragment) object);
-//        }
-//        super.setPrimaryItem(container, position, object);
-//    }
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        if (getmPostCurrentFragment() != object) {
+            mPostCurrentFragment = ((Fragment) object);
+        }
+        super.setPrimaryItem(container, position, object);
+    }
 }

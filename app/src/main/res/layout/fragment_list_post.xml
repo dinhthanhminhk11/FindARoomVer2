@@ -44,7 +44,8 @@
         android:id="@+id/post_tablayout"
         app:tabMode="fixed"
         app:tabGravity="fill"
-        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/post_viewPager"

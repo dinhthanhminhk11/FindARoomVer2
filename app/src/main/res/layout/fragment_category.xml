@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.CategoryFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear_layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layoutHomeToolbar"
+            android:padding="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_ios"
+                android:layout_alignParentStart="true"
+                android:contentDescription="TODO"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:layout_marginLeft="40dp"
+                android:text="Bộ lọc"
+                android:textColor="#333333"
+                android:textSize="18dp"
+                android:textFontWeight="700"/>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="343dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loại tin"
+                android:textSize="16dp"
+                android:textFontWeight="800"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"/>
+            <RelativeLayout
+                android:background="@drawable/category_boder"
+                android:layout_width="343dp"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/txtLoaitin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Phòng trọ/Nhà trọ"
+                    android:textColor="#8A98A4"
+                    android:textSize = "20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerLoaitin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/txtLoaitin"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="343dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tỉnh/Thành phố"
+                android:textSize="16dp"
+                android:textFontWeight="800"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"/>
+            <RelativeLayout
+                android:background="@drawable/category_boder"
+                android:layout_width="343dp"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/txtTTp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Tất cả"
+                    android:textColor="#8A98A4"
+                    android:textSize = "20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerTTp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/txtTTp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="343dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quận/Huyện"
+                android:textSize="16dp"
+                android:textFontWeight="800"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"/>
+            <RelativeLayout
+                android:background="@drawable/category_boder"
+                android:layout_width="343dp"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/txtQuanhuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Tất cả"
+                    android:textColor="#8A98A4"
+                    android:textSize = "20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerQuanhuyen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/txtQuanhuyen"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="343dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khoảng giá"
+                android:textSize="16dp"
+                android:textFontWeight="800"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"/>
+            <RelativeLayout
+                android:background="@drawable/category_boder"
+                android:layout_width="343dp"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/txtKhoanggia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Tất cả"
+                    android:textColor="#8A98A4"
+                    android:textSize = "20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerKhoanggia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/txtKhoanggia"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="343dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diện tích"
+                android:textSize="16dp"
+                android:textFontWeight="800"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"/>
+            <RelativeLayout
+                android:background="@drawable/category_boder"
+                android:layout_width="343dp"
+                android:layout_height="40dp">
+                <TextView
+                    android:id="@+id/txtDientich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="6dp"
+                    android:text="Tất cá"
+                    android:textColor="#8A98A4"
+                    android:textSize = "20dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerDientich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignBottom="@id/txtDientich"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_apDung"
+            android:layout_width="343dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/button_design"
+            android:text="Áp dụng"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+
+</FrameLayout>
