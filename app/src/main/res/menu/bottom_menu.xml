@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/tab_home"
-        android:icon="@drawable/home_vector"
+        android:icon="@drawable/home_menu"
         android:title="Home" />
     <item
         android:id="@+id/tab_notification"
-        android:icon="@drawable/bell_vector"
-        android:title="Notice" />
+        android:icon="@drawable/notification_home"
+        android:title="Thông báo" />
     <item
         android:id="@+id/tab_upload"
         android:icon="@drawable/uppost_vector"
-        android:title="Upload" />
-    <item
-        android:id="@+id/tab_post"
-        android:icon="@drawable/post_vector"
-        android:title="Post" />
+        android:title="Đăng bài" />
     <item
         android:id="@+id/tab_user"
-        android:icon="@drawable/user_vector"
-        android:title="User" />
+        android:icon="@drawable/user_home"
+        android:title="Tôi" />
 </menu>
