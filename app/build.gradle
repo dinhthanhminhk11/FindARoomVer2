@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.4.0"
+    def lifecycle_version = '2.6.1'
     implementation project(path: ':ChoseImage')
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
 
     implementation 'com.github.bumptech.glide:glide:4.15.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
     implementation 'com.airbnb.android:lottie:4.1.0'
 
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
@@ -56,12 +56,12 @@ dependencies {
 
 
     implementation 'nl.joery.animatedbottombar:library:1.1.0'
-    implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+    implementation 'com.akexorcist:round-corner-progress-bar:2.2.0'
 
     //google
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
-    implementation 'com.google.maps.android:android-maps-utils-v3:2.3.0'
+    implementation 'com.google.maps.android:android-maps-utils-v3:2.4.1'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -72,6 +72,6 @@ dependencies {
 
     implementation 'org.greenrobot:eventbus:3.0.0'
 
-    compileOnly "io.coil-kt:coil:0.11.0"
+    compileOnly 'io.coil-kt:coil:2.3.0'
 
 }
