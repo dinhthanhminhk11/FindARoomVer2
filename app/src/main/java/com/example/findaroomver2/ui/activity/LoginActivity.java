@@ -9,13 +9,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.ActivityLoginBinding;
+import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.LoginViewModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.username.setText("minhdtph13562@gmail.com");
+        binding.username.setText("dinhthanhminhk11@gmail.com");
         binding.password.setText("12345678d");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
@@ -64,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     userClient.setPhone(userResponseLogin.getData().getPhone());
                     userClient.setFullName(userResponseLogin.getData().getFullName());
                     userClient.setId(userResponseLogin.getData().getId());
-
+                    EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
                     finish();
                 } else {
                     CustomToast.ct(LoginActivity.this, userResponseLogin.getMessage().getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();

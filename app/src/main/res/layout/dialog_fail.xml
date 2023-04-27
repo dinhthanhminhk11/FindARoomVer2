@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="343dp"
     android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
     android:background="@drawable/border_background"
-    android:layout_width="343dp"
-    android:layout_height="343dp">
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/close_img_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:background="#F5F5F5"
         android:layout_margin="10dp"
-        android:src="@drawable/vector_close"
-        />
+        android:background="#F5F5F5"
+        android:src="@drawable/vector_close" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,10 +47,11 @@
             android:textSize="16dp" />
 
         <Button
-            android:id="@+id/btn_xacNhanfail"
-            android:layout_width="180dp"
+            android:id="@+id/failed"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="#FFCA00"
             android:fontFamily="@font/noto_sans"

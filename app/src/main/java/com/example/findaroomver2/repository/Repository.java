@@ -5,18 +5,18 @@ import android.util.Log;
 
 import com.example.findaroomver2.api.ApiRequest;
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
-import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.retrofit.AndroidUtilities;
 import com.example.findaroomver2.retrofit.RetrofitRequest;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 import retrofit2.Call;
@@ -157,7 +157,7 @@ public class Repository {
         });
     }
 
-    public void getListSupplement(Consumer<DataSupplement> consumer){
+    public void getListSupplement(Consumer<DataSupplement> consumer) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public void run() {
@@ -173,6 +173,29 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<DataSupplement> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void createPost(Post post, Consumer<PostResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.createPost(post).enqueue(new Callback<PostResponse>() {
+                    @Override
+                    public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });

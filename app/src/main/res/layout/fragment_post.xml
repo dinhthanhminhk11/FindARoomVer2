@@ -52,15 +52,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="18dp"
-            android:text="Đăng tin"
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Đăng tin"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:id="@+id/btnCreate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/baseline_done_24"
+                />
+        </FrameLayout>
+
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -84,12 +102,12 @@
 
                 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/contentImage"
                     android:layout_width="match_parent"
                     android:layout_height="280dp"
+                    android:layout_marginTop="16dp"
                     android:background="@color/black"
                     android:elevation="0dp"
-                    android:id="@+id/contentImage"
-                    android:layout_marginTop="16dp"
                     android:visibility="gone"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="0dp">
@@ -149,6 +167,168 @@
                         android:src="@drawable/imagechoseimage" />
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/contentImage1"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/contentImage2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/contentImage2Image1"
+                        android:layout_width="match_parent"
+                        android:layout_height="280dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/noimage" />
+
+                    <ImageView
+                        android:id="@+id/contentImage2Image2"
+                        android:layout_width="match_parent"
+                        android:layout_height="280dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/noimage" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contentImage3"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/contentImage3Image1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/noimage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/contentImage3Image2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/noimage" />
+
+                        <ImageView
+                            android:id="@+id/contentImage3Image3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/noimage" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contentImage4"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/contentImage4Image1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/noimage" />
+
+                        <ImageView
+                            android:id="@+id/contentImage4Image2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/noimage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/contentImage4Image3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="2dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/noimage" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dp"
+                            android:layout_weight="1">
+
+
+                            <ImageView
+                                android:id="@+id/contentImage4Image4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/noimage" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/gradient_bg" />
+
+                            <TextView
+                                android:id="@+id/countImage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="30dp" />
+                        </FrameLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,6 +361,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -212,11 +393,20 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-                <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
-                    android:id="@+id/listCategoryCty"
+                <EditText
+                    android:id="@+id/cty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập tên thành phố"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -226,11 +416,20 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-                <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
-                    android:id="@+id/listCategoryDistrict"
+                <EditText
+                    android:id="@+id/district"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập tên quận huyện"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,11 +439,20 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-                <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
-                    android:id="@+id/listStreet"
+                <EditText
+                    android:id="@+id/street"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập tên đường phố"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -254,11 +462,20 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-                <com.example.findaroomver2.ui.customview.spinner.NiceSpinner
-                    android:id="@+id/listCategoryWard"
+                <EditText
+                    android:id="@+id/wards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/framesearch_homefragment"
+                    android:drawablePadding="@dimen/size_10"
+                    android:hint="Nhập tên phường xã"
+                    android:paddingVertical="@dimen/size_16"
+                    android:paddingLeft="@dimen/size_16"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_858585"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -269,6 +486,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/contentTitleHome"
@@ -309,13 +527,15 @@
                     android:orientation="vertical">
 
                     <EditText
-                        android:id="@+id/editText2"
+                        android:id="@+id/acreage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:background="@null"
                         android:hint="Nhập diện tích"
+                        android:inputType="number"
+                        android:maxLength="2"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -340,20 +560,24 @@
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/framesearch_homefragment"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
                     <EditText
-                        android:layout_width="match_parent"
+                        android:id="@+id/depositMoney"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
+                        android:layout_weight="1"
                         android:background="@null"
                         android:hint="Nhập tiền cọc"
+                        android:inputType="number"
+                        android:maxLength="9"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -363,11 +587,12 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_gravity="center"
                         android:layout_marginRight="10dp"
                         android:text="VND"
                         android:textColor="#808080"
                         android:textSize="15sp" />
-                </RelativeLayout>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -378,6 +603,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/bedroom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/contentTitleHome"
@@ -386,6 +612,8 @@
                     android:background="@drawable/framesearch_homefragment"
                     android:drawablePadding="@dimen/size_10"
                     android:hint="Nhập số phòng ngủ"
+                    android:inputType="number"
+                    android:maxLength="1"
                     android:paddingVertical="@dimen/size_16"
                     android:paddingLeft="@dimen/size_16"
                     android:textColor="@color/black"
@@ -402,6 +630,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/bathroom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/contentTitleHome"
@@ -410,6 +639,8 @@
                     android:background="@drawable/framesearch_homefragment"
                     android:drawablePadding="@dimen/size_10"
                     android:hint="Nhập số phòng tắm"
+                    android:inputType="number"
+                    android:maxLength="1"
                     android:paddingVertical="@dimen/size_16"
                     android:paddingLeft="@dimen/size_16"
                     android:textColor="@color/black"
@@ -426,6 +657,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/countPerson"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/contentTitleHome"
@@ -434,6 +666,8 @@
                     android:background="@drawable/framesearch_homefragment"
                     android:drawablePadding="@dimen/size_10"
                     android:hint="Nhập số lượng người ở"
+                    android:inputType="number"
+                    android:maxLength="1"
                     android:paddingVertical="@dimen/size_16"
                     android:paddingLeft="@dimen/size_16"
                     android:textColor="@color/black"
@@ -450,6 +684,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/startDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -480,12 +715,15 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:background="@null"
                         android:hint="Nhập giá phòng"
+                        android:inputType="number"
+                        android:maxLength="9"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -502,6 +740,7 @@
                 </RelativeLayout>
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -517,12 +756,15 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/electricityPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:background="@null"
                         android:hint="Nhập giá điện"
+                        android:inputType="number"
+                        android:maxLength="5"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -554,12 +796,15 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/waterPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:background="@null"
                         android:hint="Nhập giá nước"
+                        android:maxLength="6"
+                        android:inputType="number"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -591,12 +836,15 @@
                     android:orientation="vertical">
 
                     <EditText
+                        android:id="@+id/wifiPrice"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="center"
                         android:background="@null"
+                        android:maxLength="7"
                         android:hint="Nhập giá Wifi"
+                        android:inputType="number"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -621,6 +869,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/textMore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -658,6 +907,7 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -693,14 +943,26 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listUtilities"
                     android:layout_width="match_parent"
-                    android:padding="10dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="40dp"
                     android:background="@drawable/framesearch_homefragment"
-                    android:overScrollMode="never" />
+                    android:overScrollMode="never"
+                    android:padding="10dp" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 </RelativeLayout>

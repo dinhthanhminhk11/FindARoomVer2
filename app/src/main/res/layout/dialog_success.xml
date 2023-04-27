@@ -1,58 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="343dp"
     android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
     android:background="@drawable/border_background"
-    android:layout_width="343dp"
-    android:layout_height="343dp">
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/close_img_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:background="#F5F5F5"
         android:layout_margin="10dp"
-        android:src="@drawable/vector_close"
-        />
+        android:background="#F5F5F5"
+        android:src="@drawable/vector_close" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/success"
             android:layout_margin="30dp"
-            />
+            android:src="@drawable/success" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:gravity="center"
+            android:text="Đăng tin  thành công"
             android:textFontWeight="400"
-            android:textSize="16dp"
-            android:text="Đăng tin không thành công" />
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
             android:gravity="center"
+            android:text="Bài viết của bạn đang được chúng tôi phê duyệt"
             android:textFontWeight="400"
-            android:textSize="16dp"
-            android:text="Vui lòng xác thực tài khoản để đăng tin" />
+            android:textSize="16dp" />
 
         <Button
-            android:id="@+id/btn_xacNhansuccess"
-            android:layout_width="180dp"
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="40dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"

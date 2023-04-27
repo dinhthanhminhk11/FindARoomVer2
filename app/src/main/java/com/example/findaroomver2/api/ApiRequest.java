@@ -1,11 +1,13 @@
 package com.example.findaroomver2.api;
 
+import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
 
@@ -38,4 +40,7 @@ public interface ApiRequest {
 
     @GET("supplements/getAllSupplements")
     Call<DataSupplement> getListSupplement();
+
+    @POST("post")
+    Call<PostResponse> createPost(@Body Post post);
 }

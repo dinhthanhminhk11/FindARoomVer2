@@ -2,6 +2,7 @@ package com.example.findaroomver2;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,12 +12,18 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.ActivityMainBinding;
+import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.adapter.FragmentViewPagerAdapter;
 import com.example.findaroomver2.viewmodel.MainViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import nl.joery.animatedbottombar.AnimatedBottomBar;
 
@@ -89,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 userClient.setId(userResponseLogin.getData().getId());
             }
         });
+
     }
 
     @Override
@@ -105,6 +113,25 @@ public class MainActivity extends AppCompatActivity {
             }, BACK_PRESS_TIME_INTERVAL);
         } else {
             System.exit(1);
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == NotificationCenter.create_post_success) {
+            activityMainBinding.vpHome.setCurrentItem(3);
         }
     }
 }

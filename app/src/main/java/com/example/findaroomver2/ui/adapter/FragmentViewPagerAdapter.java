@@ -18,7 +18,6 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
 
     HomeFragment homeFragment;
     NotificationFragment notificationFragment;
-    PostFragment postFragment;
     ListPostFragment listPostFragment;
     UserFragment userFragment;
     private Fragment mCurrentFragment;
@@ -27,7 +26,6 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
         super(fm, behavior);
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
-        postFragment = new PostFragment();
         listPostFragment = new ListPostFragment();
         userFragment = new UserFragment();
     }
