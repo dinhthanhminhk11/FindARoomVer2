@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 import static org.greenrobot.eventbus.EventBus.TAG;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -19,9 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -69,6 +70,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,7 +85,7 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private List<Supplement> supplements;
     private List<String> images;
     private String nameCategory = "Phòng trọ/Nhà trọ";
-
+    private DatePickerDialog datePickerDialog;
     private ImageButton closeImgBtn;
     private Button confirm;
     private ActivityResultLauncher<Intent> startForResultCallback = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -189,6 +191,7 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
+    private Calendar myCalendar = Calendar.getInstance();
 
     public PostFragment() {
     }
@@ -424,6 +427,25 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
                 } else {
                     initdialogFailed();
                 }
+            }
+        });
+        binding.startDay.setFocusable(false);
+        binding.startDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int d = calendar.get(Calendar.DAY_OF_MONTH);
+                int m = calendar.get(Calendar.MONTH);
+                int y = calendar.get(Calendar.YEAR);
+                datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        final String day = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        binding.startDay.setText(day);
+                    }
+                }, y, m, d);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             }
         });
     }
