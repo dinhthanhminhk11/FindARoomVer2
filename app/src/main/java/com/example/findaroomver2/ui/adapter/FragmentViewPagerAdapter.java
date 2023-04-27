@@ -43,7 +43,7 @@ public class FragmentViewPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return notificationFragment;
             case 2:
-                return postFragment;
+                return new PostFragment();
             case 3:
                 return listPostFragment;
             case 4:

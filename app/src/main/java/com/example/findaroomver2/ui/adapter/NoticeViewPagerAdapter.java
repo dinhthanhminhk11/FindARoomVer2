@@ -14,18 +14,10 @@ import com.example.findaroomver2.ui.fragment.SystemNoticeFragment;
 
 public class NoticeViewPagerAdapter extends FragmentPagerAdapter {
 
-    AllNoticeFragment allNoticeFragment;
-    SystemNoticeFragment systemNoticeFragment;
-    PostNoticeFragment postNoticeFragment;
-
     private Fragment mNoticeCurrentFragment;
 
     public NoticeViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
-
-        allNoticeFragment = new AllNoticeFragment();
-        systemNoticeFragment = new SystemNoticeFragment();
-        postNoticeFragment = new PostNoticeFragment();
     }
 
     public Fragment getmNoticeCurrentFragment(){
@@ -36,14 +28,12 @@ public class NoticeViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case 0:
-                return allNoticeFragment;
             case 1:
-                return systemNoticeFragment;
+                return new SystemNoticeFragment();
             case 2:
-                return postNoticeFragment;
+                return new PostNoticeFragment();
             default:
-                return allNoticeFragment;
+                return new AllNoticeFragment();
         }
     }
 

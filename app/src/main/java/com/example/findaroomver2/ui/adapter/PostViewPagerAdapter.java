@@ -16,20 +16,10 @@ import com.example.findaroomver2.ui.fragment.WatchedFragment;
 
 public class PostViewPagerAdapter extends FragmentPagerAdapter {
 
-    NewestPostFragment newestPostFragment;
-    NearestPosrFragment nearestPosrFragment;
-    BestPriceFragment bestPriceFragment;
-    WatchedFragment watchedFragment;
-
     private Fragment mPostCurrentFragment;
 
     public PostViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
-
-        newestPostFragment = new NewestPostFragment();
-        nearestPosrFragment = new NearestPosrFragment();
-        bestPriceFragment = new BestPriceFragment();
-        watchedFragment = new WatchedFragment();
     }
 
     public Fragment getmPostCurrentFragment(){
@@ -40,16 +30,14 @@ public class PostViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case 0:
-                return newestPostFragment;
             case 1:
-                return nearestPosrFragment;
+                return new NearestPosrFragment();
             case 2:
-                return bestPriceFragment;
+                return new BestPriceFragment();
             case 3:
-                return watchedFragment;
+                return new WatchedFragment();
             default:
-                return newestPostFragment;
+                return new NewestPostFragment();
         }
     }
 
