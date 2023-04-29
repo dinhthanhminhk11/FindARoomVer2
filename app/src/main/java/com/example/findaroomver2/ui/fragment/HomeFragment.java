@@ -1,44 +1,45 @@
 package com.example.findaroomver2.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.databinding.FragmentHomeBinding;
+import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.response.post.PostHome;
+import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.ui.activity.DetailActivity;
+import com.example.findaroomver2.ui.adapter.homefragment.PostTrendAdapter;
+import com.example.findaroomver2.ui.adapter.postfragment.PostAdapter;
+import com.example.findaroomver2.viewmodel.MainViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class HomeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private FragmentHomeBinding binding;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
+    private MainViewModel mainViewModel;
     private String mParam1;
     private String mParam2;
 
     public HomeFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
@@ -58,9 +59,74 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+        intData();
+    }
+
+    private void initView() {
+        mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
+        mainViewModel.getAllListPostHome();
+
+        binding.listItemTrend.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        binding.rcvPost.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+
+    }
+
+    private void intData() {
+        List<String> imageUrl = new ArrayList<>();
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587330/vfbz9nruf6ht8orbb0up.jpg");
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587331/h8spndixobhxh7xvhfta.jpg");
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587332/pgofa40zbddhdwhkvu0g.jpg");
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587340/shkdz3uwcuvxzpt6tzw7.jpg");
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587349/behj9iqency72px0hcct.jpg");
+        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682589923/a6zppoxqi9ssu8kzmke0.jpg");
+
+        PostTrendAdapter postTrendAdapter = new PostTrendAdapter(imageUrl);
+        binding.listItemTrend.setAdapter(postTrendAdapter);
+
+        mainViewModel.getListMutableLiveDataPost().observe(getActivity(), new Observer<PostHome>() {
+            @Override
+            public void onChanged(PostHome posts) {
+                PostAdapter postAdapter = new PostAdapter(posts.getData());
+                postAdapter.setCallback(new PostAdapter.Callback() {
+                    @Override
+                    public void onClickItem(Post post) {
+                        Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onClickMore(Post post) {
+
+                    }
+
+                    @Override
+                    public void onClickAddHeart(Post post) {
+
+                    }
+
+                    @Override
+                    public void onClickRemoteHeart(Post post) {
+
+                    }
+                });
+                binding.rcvPost.setAdapter(postAdapter);
+            }
+        });
+
+        mainViewModel.getProgress().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
     }
 }

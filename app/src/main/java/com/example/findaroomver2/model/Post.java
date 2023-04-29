@@ -1,11 +1,13 @@
 package com.example.findaroomver2.model;
 
+import android.os.Parcelable;
+
 import com.example.findaroomver2.response.supplement.Supplement;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class Post {
+public class Post implements Serializable  {
     public String idUser;
     public String nameCategory;
     public String title;

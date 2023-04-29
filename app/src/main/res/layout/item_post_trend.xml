@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="110dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="20dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="0dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/noimage" />
+
+        <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
+            android:layout_margin="8dp"
+            android:layout_gravity="top"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/white"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/noavatar" />
+    </FrameLayout>
+
+
+</androidx.cardview.widget.CardView>

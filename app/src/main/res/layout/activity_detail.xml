@@ -7,20 +7,18 @@
     tools:context=".ui.activity.DetailActivity">
 
     <RelativeLayout
+        android:id="@+id/layoutHomeToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layoutHomeToolbar"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_ios"
             android:layout_alignParentStart="true"
             android:contentDescription="TODO"
-            />
+            android:src="@drawable/ic_back_ios" />
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView

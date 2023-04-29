@@ -3,10 +3,12 @@ package com.example.findaroomver2.api;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
+import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
@@ -18,6 +20,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiRequest {
     @POST("auth/login")
@@ -43,4 +46,10 @@ public interface ApiRequest {
 
     @POST("post")
     Call<PostResponse> createPost(@Body Post post);
+
+    @POST("auth/getUserById/{id}")
+    Call<Data> getUserById(@Path("id") String idUser);
+
+    @GET("postHome")
+    Call<PostHome> getListPost();
 }

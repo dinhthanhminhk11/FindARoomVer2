@@ -60,7 +60,7 @@ import com.example.findaroomver2.ui.customview.autoimageslider.SliderView;
 import com.example.findaroomver2.ui.customview.spinner.NiceSpinner;
 import com.example.findaroomver2.ui.customview.spinner.OnSpinnerItemSelectedListener;
 import com.example.findaroomver2.ui.customview.toast.CustomToast;
-import com.example.findaroomver2.viewmodel.PostViewModel;
+import com.example.findaroomver2.viewmodel.MainViewModel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -78,7 +78,7 @@ import java.util.Map;
 
 
 public class PostFragment extends Fragment implements SupplementAdapter.OnItemClickListener {
-    private PostViewModel postViewModel;
+    private MainViewModel postViewModel;
     private SupplementAdapter supplementAdapter;
     private ImageAutoSliderAdapter imageAutoSliderAdapter;
     private String token = "";
@@ -231,7 +231,7 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
         initConfig();
         supplements = new ArrayList<>();
         path = new ArrayList<>();
-        postViewModel = new ViewModelProvider(getActivity()).get(PostViewModel.class);
+        postViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
 
         token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
 

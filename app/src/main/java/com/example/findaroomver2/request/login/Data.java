@@ -15,6 +15,8 @@ public class Data {
     private String tokenDevice;
     @SerializedName("accessToken")
     private String accessToken;
+    @SerializedName("image")
+    private String image;
 
     public String getId() {
         return id;
@@ -38,5 +40,9 @@ public class Data {
 
     public String getTokenDevice() {
         return tokenDevice;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

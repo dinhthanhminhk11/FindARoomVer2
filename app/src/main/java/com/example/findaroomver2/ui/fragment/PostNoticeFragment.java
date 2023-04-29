@@ -12,11 +12,6 @@ import com.example.findaroomver2.R;
 
 
 public class PostNoticeFragment extends Fragment {
-
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

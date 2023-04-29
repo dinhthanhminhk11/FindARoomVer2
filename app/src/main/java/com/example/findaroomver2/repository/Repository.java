@@ -8,15 +8,18 @@ import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
+import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.retrofit.AndroidUtilities;
 import com.example.findaroomver2.retrofit.RetrofitRequest;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import retrofit2.Call;
@@ -196,6 +199,52 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<PostResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getUserById(String idUser, Consumer<Data> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getUserById(idUser).enqueue(new Callback<Data>() {
+                    @Override
+                    public void onResponse(Call<Data> call, Response<Data> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Data> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListPost(Consumer<PostHome> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListPost().enqueue(new Callback<PostHome>() {
+                    @Override
+                    public void onResponse(Call<PostHome> call, Response<PostHome> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostHome> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });
