@@ -52,4 +52,7 @@ public interface ApiRequest {
 
     @GET("postHome")
     Call<PostHome> getListPost();
+
+    @GET("post/{id}")
+    Call<PostResponse> getPostById(@Path("id") String idUser);
 }

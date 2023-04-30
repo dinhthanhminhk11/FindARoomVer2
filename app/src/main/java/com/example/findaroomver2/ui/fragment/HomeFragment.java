@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClickItem(Post post) {
                         Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        intent.putExtra(AppConstant.ID_POST, post.get_id());
                         startActivity(intent);
                     }
 
