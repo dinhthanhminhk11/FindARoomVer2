@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -16,7 +17,9 @@ import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityDetailBinding;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.ui.adapter.homefragment.ConvenientAdapter;
 import com.example.findaroomver2.viewmodel.DetailPostViewModel;
 
 import java.io.Serializable;
@@ -34,6 +37,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private RequestOptions options;
     private String contactPhone;
     private List<String> listImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +68,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 binding.electricityPrice.setText(fm.format(postResponse.getData().getElectricityPrice()) + " VND/Số");
                 binding.waterPrice.setText(fm.format(postResponse.getData().getWaterPrice()) + " VND/Số");
                 binding.wifi.setText(fm.format(postResponse.getData().getWifi()) + " VND/Tháng");
-
+                binding.nameCategory.setText(postResponse.getData().getNameCategory());
                 if (postResponse.getData().isStatusRoom()) {
                     binding.statusRoom.setText("Còn phòng");
                 } else {
@@ -125,14 +129,34 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 });
 
                 listImage = postResponse.getData().getImages();
+                ConvenientAdapter convenientAdapter = new ConvenientAdapter(DetailActivity.this);
+                convenientAdapter.setConvenientTestList(postResponse.getData().getSupplements());
+                binding.listSupperle.setAdapter(convenientAdapter);
+
+                detailPostViewModel.getUserById(postResponse.getData().getIdUser());
+            }
+        });
+        detailPostViewModel.getProgress().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
+
+        detailPostViewModel.getDataUser().observe(this, new Observer<Data>() {
+            @Override
+            public void onChanged(Data data) {
+                binding.nameUser.setText(data.getFullName());
+                RequestOptions optionsUser = new RequestOptions().centerCrop().placeholder(R.drawable.noavatar).error(R.drawable.noavatar);
+                Glide.with(binding.imageUser.getContext()).load(data.getImage()).apply(optionsUser).into(binding.imageUser);
 
             }
         });
 
-
     }
 
     private void initView() {
+        binding.listSupperle.setLayoutManager(new GridLayoutManager(this, 2));
         listImage = new ArrayList<>();
         detailPostViewModel = new ViewModelProvider(this).get(DetailPostViewModel.class);
         options = new RequestOptions().centerCrop().placeholder(R.drawable.noimage).error(R.drawable.noimage);

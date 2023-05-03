@@ -13,17 +13,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.FragmentHomeBinding;
+import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.DetailActivity;
 import com.example.findaroomver2.ui.adapter.homefragment.PostTrendAdapter;
 import com.example.findaroomver2.ui.adapter.postfragment.PostAdapter;
+import com.example.findaroomver2.ui.customview.circleimage.CircleImageView;
 import com.example.findaroomver2.viewmodel.MainViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +47,9 @@ public class HomeFragment extends Fragment {
     private MainViewModel mainViewModel;
     private String mParam1;
     private String mParam2;
+    private PostAdapter postAdapter;
+    private TextView nameUser;
+    private CircleImageView imageUser;
 
     public HomeFragment() {
     }
@@ -95,7 +109,7 @@ public class HomeFragment extends Fragment {
         mainViewModel.getListMutableLiveDataPost().observe(getActivity(), new Observer<PostHome>() {
             @Override
             public void onChanged(PostHome posts) {
-                PostAdapter postAdapter = new PostAdapter(posts.getData());
+                postAdapter = new PostAdapter(posts.getData());
                 postAdapter.setCallback(new PostAdapter.Callback() {
                     @Override
                     public void onClickItem(Post post) {
@@ -129,5 +143,24 @@ public class HomeFragment extends Fragment {
                 binding.progressBar.setVisibility(integer);
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == NotificationCenter.checkLogin) {
+            mainViewModel.getAllListPostHome();
+        }
     }
 }

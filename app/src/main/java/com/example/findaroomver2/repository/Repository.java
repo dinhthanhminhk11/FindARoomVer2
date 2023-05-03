@@ -6,13 +6,21 @@ import android.util.Log;
 import com.example.findaroomver2.api.ApiRequest;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
+import com.example.findaroomver2.request.comment.Comment;
+import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.bookmark.BookmarkResponse;
+import com.example.findaroomver2.response.comment.CommentListResponse;
+import com.example.findaroomver2.response.comment.CommentResponse;
+import com.example.findaroomver2.response.favourite.CountFavourite;
+import com.example.findaroomver2.response.favourite.FavouriteResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
@@ -275,5 +283,232 @@ public class Repository {
         });
     }
 
+    public void addFavourite(Favourite favourite, Consumer<FavouriteResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.addFavourite(favourite).enqueue(new Callback<FavouriteResponse>() {
+                    @Override
+                    public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<FavouriteResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void addBookmark(Bookmark bookmark, Consumer<BookmarkResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.addBookmark(bookmark).enqueue(new Callback<BookmarkResponse>() {
+                    @Override
+                    public void onResponse(Call<BookmarkResponse> call, Response<BookmarkResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BookmarkResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void deleteFavourite(String idUser, String idPost, Consumer<FavouriteResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.deleteFavourite(idUser, idPost).enqueue(new Callback<FavouriteResponse>() {
+                    @Override
+                    public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FavouriteResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void deleteBookmark(String idUser, String idPost, Consumer<BookmarkResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.deleteBookmark(idUser, idPost).enqueue(new Callback<BookmarkResponse>() {
+                    @Override
+                    public void onResponse(Call<BookmarkResponse> call, Response<BookmarkResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BookmarkResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getFavouriteByIdUserAndIdPost(String idUser, String idPost, Consumer<FavouriteResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getFavouriteByIdUserAndIdPost(idUser, idPost).enqueue(new Callback<FavouriteResponse>() {
+                    @Override
+                    public void onResponse(Call<FavouriteResponse> call, Response<FavouriteResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<FavouriteResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getBookmarkByIdUserAndIdPost(String idUser, String idPost, Consumer<BookmarkResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getBookmarkByIdUserAndIdPost(idUser, idPost).enqueue(new Callback<BookmarkResponse>() {
+                    @Override
+                    public void onResponse(Call<BookmarkResponse> call, Response<BookmarkResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BookmarkResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getCountFavouriteByIdPost(String idPost, Consumer<CountFavourite> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getCountFavourite(idPost).enqueue(new Callback<CountFavourite>() {
+                    @Override
+                    public void onResponse(Call<CountFavourite> call, Response<CountFavourite> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CountFavourite> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void addComment(Comment comment, Consumer<CommentResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.addComment(comment).enqueue(new Callback<CommentResponse>() {
+                    @Override
+                    public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CommentResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListCommentParent(String idPost, Consumer<CommentListResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListCommentParent(idPost).enqueue(new Callback<CommentListResponse>() {
+                    @Override
+                    public void onResponse(Call<CommentListResponse> call, Response<CommentListResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CommentListResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListCommentChildren(String idCommentParent, Consumer<CommentListResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListCommentChildren(idCommentParent).enqueue(new Callback<CommentListResponse>() {
+                    @Override
+                    public void onResponse(Call<CommentListResponse> call, Response<CommentListResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<CommentListResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
 }

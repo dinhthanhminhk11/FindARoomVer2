@@ -1,9 +1,14 @@
 package com.example.findaroomver2.ui.adapter.postfragment;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,19 +16,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ItemPostHomeBinding;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.model.UserClient;
+import com.example.findaroomver2.repository.Repository;
+import com.example.findaroomver2.request.favourite.Favourite;
+import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.response.comment.CommentListResponse;
+import com.example.findaroomver2.response.favourite.CountFavourite;
+import com.example.findaroomver2.response.favourite.FavouriteResponse;
+import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.activity.CommentActivity;
+import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.bottomsheet.BottomSheetBookmark;
+import com.example.findaroomver2.ui.bottomsheet.BottomSheetPersonFavourite;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     private List<Post> data;
     private NumberFormat fm = new DecimalFormat("#,###");
+    private Repository repository;
 
     public PostAdapter(List<Post> data) {
         this.data = data;
+        repository = new Repository();
     }
 
     private Callback callback;
@@ -43,8 +64,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Post item = data.get(position);
 
         RequestOptions options = new RequestOptions().centerCrop().placeholder(R.drawable.noimage).error(R.drawable.noimage);
+        RequestOptions optionsUser = new RequestOptions().centerCrop().placeholder(R.drawable.noavatar).error(R.drawable.noavatar);
 
         if (item != null) {
+            repository.getUserById(item.getIdUser(), new Consumer<Data>() {
+                @Override
+                public void accept(Data data) {
+                    holder.binding.nameUser.setText(data.getFullName());
+                    Glide.with(holder.binding.imageUser.getContext()).load(data.getImage()).apply(optionsUser).into(holder.binding.imageUser);
+                }
+            });
+
+            repository.getCountFavouriteByIdPost(item.get_id(), new Consumer<CountFavourite>() {
+                @Override
+                public void accept(CountFavourite countFavourite) {
+                    holder.binding.heart.setText(countFavourite.getData().size() + "");
+                }
+            });
+
+            repository.getListCommentParent(item.get_id(), new Consumer<CommentListResponse>() {
+                @Override
+                public void accept(CommentListResponse commentListResponse) {
+                    holder.binding.commentCount.setText(commentListResponse.getData().size() + "");
+                }
+            });
+
             holder.binding.title.setText(item.getTitle());
             holder.binding.price.setText(fm.format(item.getPrice()) + " VND");
             holder.binding.content.setText(item.getDescribe());
@@ -96,32 +140,51 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
             holder.binding.btnHeart.setImageResource(R.drawable.ic_heart_item_post_animation_no_select);
 
-
-            // đoạn này check xem người dùng đã tim bài viết này chưa
-            int i = 1;
-            if (i == 2) {
-                holder.binding.btnHeart.setSelected(true);
-                int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
-                holder.binding.btnHeart.setImageState(stateSet, true);
-            } else {
-                holder.binding.btnHeart.setSelected(false);
-                int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
-                holder.binding.btnHeart.setImageState(stateSet, true);
-            }
+            String token = MySharedPreferences.getInstance(holder.itemView.getContext()).getString(AppConstant.USER_TOKEN, "");
+            repository.getFavouriteByIdUserAndIdPost(UserClient.getInstance().getId(), item.get_id(), new Consumer<FavouriteResponse>() {
+                @Override
+                public void accept(FavouriteResponse favouriteResponse) {
+                    if (!token.equals("")) {
+                        if (favouriteResponse.getFavourite() != null) {
+                            holder.binding.btnHeart.setSelected(true);
+                            int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
+                            holder.binding.btnHeart.setImageState(stateSet, true);
+                        } else {
+                            holder.binding.btnHeart.setSelected(false);
+                            int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
+                            holder.binding.btnHeart.setImageState(stateSet, true);
+                        }
+                    }
+                }
+            });
 
             holder.binding.btnHeart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    holder.binding.btnHeart.setSelected(!holder.binding.btnHeart.isSelected());
-                    int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
-                    holder.binding.btnHeart.setImageState(stateSet, true);
+                    if (!token.equals("")) {
+                        holder.binding.btnHeart.setSelected(!holder.binding.btnHeart.isSelected());
+                        int[] stateSet = {android.R.attr.state_checked * (holder.binding.btnHeart.isSelected() ? 1 : -1)};
+                        holder.binding.btnHeart.setImageState(stateSet, true);
 
-                    if (!holder.binding.btnHeart.isSelected()) {
-                        // xoá tim
-                        Toast.makeText(holder.binding.btnHeart.getContext(), "Tawts", Toast.LENGTH_SHORT).show();
+                        if (!holder.binding.btnHeart.isSelected()) {
+                            // xoá tim
+                            holder.binding.heart.setText((Integer.parseInt(holder.binding.heart.getText().toString()) - 1) + "");
+                            repository.deleteFavourite(UserClient.getInstance().getId(), item.get_id(), new Consumer<FavouriteResponse>() {
+                                @Override
+                                public void accept(FavouriteResponse favouriteResponse) {
+                                }
+                            });
+                        } else {
+                            // add tim
+                            holder.binding.heart.setText((Integer.parseInt(holder.binding.heart.getText().toString()) + 1) + "");
+                            repository.addFavourite(new Favourite(UserClient.getInstance().getId(), item.get_id()), new Consumer<FavouriteResponse>() {
+                                @Override
+                                public void accept(FavouriteResponse favouriteResponse) {
+                                }
+                            });
+                        }
                     } else {
-                        // add tim
-                        Toast.makeText(holder.binding.btnHeart.getContext(), "bawjt", Toast.LENGTH_SHORT).show();
+                        initDiaLog(holder.itemView.getContext());
                     }
                 }
             });
@@ -130,6 +193,37 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                     callback.onClickItem(item);
+                }
+            });
+
+            holder.binding.btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!token.equals("")) {
+                        BottomSheetBookmark bottomsheetBookmark = new BottomSheetBookmark(view.getContext(), item.getIdUser(), item.get_id(), repository);
+                        bottomsheetBookmark.show();
+                    } else {
+                        initDiaLog(holder.itemView.getContext());
+                    }
+                }
+            });
+
+            holder.binding.heart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (Integer.parseInt(holder.binding.heart.getText().toString()) > 0) {
+                        BottomSheetPersonFavourite bottomSheetPersonFavourite = new BottomSheetPersonFavourite(view.getContext(), item.get_id(), repository);
+                        bottomSheetPersonFavourite.show();
+                    }
+                }
+            });
+
+            holder.binding.comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(holder.binding.comment.getContext(), CommentActivity.class);
+                    intent.putExtra(AppConstant.ID_POST, item.get_id());
+                    holder.binding.comment.getContext().startActivity(intent);
                 }
             });
         }
@@ -157,5 +251,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         void onClickAddHeart(Post post);
 
         void onClickRemoteHeart(Post post);
+    }
+
+    private void initDiaLog(Context context) {
+        final Dialog dialogConfirmLogin = new Dialog(context);
+        dialogConfirmLogin.setContentView(R.layout.dialog_comfirm_no_login);
+        Window window2 = dialogConfirmLogin.getWindow();
+        window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialogConfirmLogin != null && dialogConfirmLogin.getWindow() != null) {
+            dialogConfirmLogin.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialogConfirmLogin.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogConfirmLogin.dismiss();
+                context.startActivity(new Intent(context, LoginActivity.class));
+            }
+        });
+        dialogConfirmLogin.show();
     }
 }

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.activity.CommentActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:background="@color/white"
+        android:elevation="0dp"
+        android:textAlignment="center"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextColor="@color/black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listComment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tool_bar"
+        android:layout_marginHorizontal="16dp"
+        android:layout_above="@+id/contentNotNullLogin"
+        android:background="@color/white"
+        android:overScrollMode="never" />
+
+
+    <LinearLayout
+        android:id="@+id/contentNotNullLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/contentReply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/nameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp" />
+
+            <TextView
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:text="Huỷ"
+                android:textColor="@color/blue" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edContentChat"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="14dp"
+                android:layout_weight="1"
+                android:alpha="0.9"
+                android:background="@drawable/bg_edittext_chat"
+                android:hint="Viết bình luận"
+                android:minHeight="50dp"
+                android:paddingStart="25dp"
+                android:paddingEnd="65dp" />
+
+            <TextView
+                android:id="@+id/btnSent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="16dp"
+                android:gravity="center"
+                android:text="Gửi"
+                android:textColor="@color/blue"
+                android:textSize="18dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

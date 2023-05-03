@@ -9,13 +9,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
-import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 public class MainViewModel extends AndroidViewModel {
@@ -24,15 +22,15 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> progress = new MutableLiveData<>();
     private MutableLiveData<DataSupplement> dataSupplementMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<PostResponse> postResponseMutableLiveData = new MutableLiveData<>();
-   private MutableLiveData<UserResponseLogin> userResponseLoginMutableLiveData = new MutableLiveData<>();
-   private MutableLiveData<PostHome> listMutableLiveDataPost = new MutableLiveData<>();
+    private MutableLiveData<UserResponseLogin> userResponseLoginMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<PostHome> listMutableLiveDataPost = new MutableLiveData<>();
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         repository = new Repository();
     }
 
-    public void loginToken(String token){
+    public void loginToken(String token) {
         repository.loginByToken(token, new Consumer<UserResponseLogin>() {
             @Override
             public void accept(UserResponseLogin userResponseLogin) {
@@ -65,7 +63,7 @@ public class MainViewModel extends AndroidViewModel {
         });
     }
 
-    public void getAllListPostHome(){
+    public void getAllListPostHome() {
         progress.setValue(View.VISIBLE);
         repository.getListPost(new Consumer<PostHome>() {
             @Override
@@ -75,6 +73,7 @@ public class MainViewModel extends AndroidViewModel {
             }
         });
     }
+
 
     public MutableLiveData<PostResponse> getPostResponseMutableLiveData() {
         return postResponseMutableLiveData;

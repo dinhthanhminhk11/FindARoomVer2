@@ -1,13 +1,21 @@
 package com.example.findaroomver2.api;
 
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
+import com.example.findaroomver2.request.comment.Comment;
+import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
+import com.example.findaroomver2.response.bookmark.BookmarkResponse;
+import com.example.findaroomver2.response.comment.CommentListResponse;
+import com.example.findaroomver2.response.comment.CommentResponse;
+import com.example.findaroomver2.response.favourite.CountFavourite;
+import com.example.findaroomver2.response.favourite.FavouriteResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
@@ -17,6 +25,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -47,7 +56,7 @@ public interface ApiRequest {
     @POST("post")
     Call<PostResponse> createPost(@Body Post post);
 
-    @POST("auth/getUserById/{id}")
+    @GET("auth/getUserById/{id}")
     Call<Data> getUserById(@Path("id") String idUser);
 
     @GET("postHome")
@@ -55,4 +64,35 @@ public interface ApiRequest {
 
     @GET("post/{id}")
     Call<PostResponse> getPostById(@Path("id") String idUser);
+
+    @POST("favourite")
+    Call<FavouriteResponse> addFavourite(@Body Favourite favourite);
+
+    @DELETE("favourite/{idUser}/{idPost}")
+    Call<FavouriteResponse> deleteFavourite(@Path("idUser") String idUser, @Path("idPost") String idPost);
+
+    @GET("favourite/{idUser}/{idPost}")
+    Call<FavouriteResponse> getFavouriteByIdUserAndIdPost(@Path("idUser") String idUser, @Path("idPost") String idPost);
+
+    @POST("bookmark")
+    Call<BookmarkResponse> addBookmark(@Body Bookmark bookmark);
+
+    @DELETE("bookmark/{idUser}/{idPost}")
+    Call<BookmarkResponse> deleteBookmark(@Path("idUser") String idUser, @Path("idPost") String idPost);
+
+    @GET("bookmark/{idUser}/{idPost}")
+    Call<BookmarkResponse> getBookmarkByIdUserAndIdPost(@Path("idUser") String idUser, @Path("idPost") String idPost);
+
+    @GET("getCountFavourite/{idPost}")
+    Call<CountFavourite> getCountFavourite(@Path("idPost") String idPost);
+
+    @POST("comment")
+    Call<CommentResponse> addComment(@Body Comment comment);
+
+    @GET("getListCommentParentByIdPost/{idPost}")
+    Call<CommentListResponse> getListCommentParent(@Path("idPost") String idPost);
+
+    @GET("getListCommentChildrenByIdPost/{parentCommentId}")
+    Call<CommentListResponse> getListCommentChildren(@Path("parentCommentId") String parentCommentId);
+
 }

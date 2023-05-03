@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/color_EBEBEB"
     tools:context=".ui.activity.DetailActivity">
 
@@ -211,7 +212,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:maxLines="2"
-                    android:text="Cho thuê phòng trọ giá rẻ ở  Bắc Từ Liêm, Hà Nội"
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:textStyle="bold" />
@@ -222,7 +222,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:maxLines="2"
-                    android:text="4.000.000 VNĐ/Tháng"
                     android:textColor="@color/red"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -253,7 +252,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Địa chỉ"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_15" />
             </LinearLayout>
@@ -278,11 +276,10 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/Category"
+                    android:id="@+id/nameCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Nhượng phòng"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_15" />
             </LinearLayout>
@@ -311,7 +308,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Còn phòng"
                     android:textColor="@color/green"
                     android:textSize="@dimen/text_size_15" />
             </LinearLayout>
@@ -329,7 +325,7 @@
                 android:paddingBottom="20dp">
 
                 <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
-                    android:id="@+id/imgManage"
+                    android:id="@+id/imageUser"
                     android:layout_width="@dimen/size_50"
                     android:layout_height="@dimen/size_50"
                     android:layout_gravity="center"
@@ -344,10 +340,9 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/NameManage"
+                        android:id="@+id/nameUser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="lskdfjlskdfjl"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_16"
                         android:textStyle="bold" />
@@ -402,7 +397,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Cuộc sống hối hả nhiều áp lực khiến chúng ta dễ rơi vào tình trạng mệt mỏi, stress và cảm thấy mất đi niềm vui với mọi thứ xung quanh. Những lúc ấy, ta thèm muốn được trải lòng, được những người xung quanh thấu hiểu. Những dòng status buồn, tâm trạng dưới đây có thể thay bạn giải tỏa những cô đơn, mệt mỏi chất chứa trong lòng và nhận được sự chia sẻ từ những người xung quanh."
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_15" />
             </LinearLayout>
@@ -460,7 +454,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -496,7 +490,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -531,7 +525,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -567,7 +561,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -602,7 +596,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -638,7 +632,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -673,7 +667,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -709,7 +703,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -744,7 +738,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
-                                android:text="Có "
+
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/size_15"
                                 android:textStyle="bold" />
@@ -843,4 +837,16 @@
         </LinearLayout>
     </LinearLayout>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone" />
 </RelativeLayout>

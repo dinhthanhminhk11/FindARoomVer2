@@ -15,9 +15,11 @@
         android:elevation="0dp"
         android:textAlignment="center"
         android:theme="@style/ToolbarTheme"
-        app:titleTextColor="@color/black"/>
+        app:titleTextColor="@color/black" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvImageGallery"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
 </LinearLayout>

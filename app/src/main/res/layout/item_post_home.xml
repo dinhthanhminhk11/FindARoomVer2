@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="10dp"
     android:background="@drawable/gradientbackground_white"
     android:foreground="?attr/selectableItemBackground"
@@ -20,8 +20,7 @@
             android:id="@+id/imageUser"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:src="@drawable/noavatar" />
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -35,7 +34,6 @@
                 android:id="@+id/nameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dinh thanh minh"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -54,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:foreground="?attr/selectableItemBackground"
             android:src="@drawable/baseline_more_horiz_24" />
 
     </LinearLayout>
@@ -288,14 +287,15 @@
             android:id="@+id/btnHeart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackground"
             tools:src="@drawable/ic_heart_item_post_animation_select" />
 
         <TextView
+            android:foreground="?attr/selectableItemBackground"
             android:id="@+id/heart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="54"
             android:textColor="@color/black"
             android:textSize="@dimen/size_16" />
 
@@ -314,7 +314,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-            android:text="54"
             android:textColor="@color/black"
             android:textSize="@dimen/size_16" />
 
