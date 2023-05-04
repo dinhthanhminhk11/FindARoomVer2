@@ -134,7 +134,7 @@ public class NewPasswordActivity extends AppCompatActivity {
                     userClient.setPhone(userResponseLogin.getData().getPhone());
                     userClient.setFullName(userResponseLogin.getData().getFullName());
                     userClient.setId(userResponseLogin.getData().getId());
-
+                    userClient.setRole(userResponseLogin.getData().getRole());
                     startActivity(new Intent(NewPasswordActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
                 } else {
                     Toast.makeText(NewPasswordActivity.this, userResponseLogin.getMessage().getMessage(), Toast.LENGTH_SHORT).show();

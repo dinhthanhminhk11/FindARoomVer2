@@ -1,5 +1,8 @@
 package com.example.findaroomver2.api;
 
+import com.example.findaroomver2.model.DataChat;
+import com.example.findaroomver2.model.DataUser;
+import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changepass.Email;
@@ -94,5 +97,20 @@ public interface ApiRequest {
 
     @GET("getListCommentChildrenByIdPost/{parentCommentId}")
     Call<CommentListResponse> getListCommentChildren(@Path("parentCommentId") String parentCommentId);
+
+    @GET("getmsg/{send}&{sendTo}")
+    Call<DataChat> getDataChat(@Path("send") String sendId, @Path("sendTo") String sendToId);
+
+    @GET("getMessage/{send}")
+    Call<DataChat> getMsgId(@Path("send") String send);
+
+    @GET("getMessageSendTo/{send}")
+    Call<DataChat> getMessageSendTo(@Path("send") String send);
+
+    @GET("getHost/{id}")
+    Call<DataUser> getHost(@Path("id") String id);
+
+    @POST("addmsg/")
+    Call<MessageChat> addMessage(@Body MessageChat message);
 
 }

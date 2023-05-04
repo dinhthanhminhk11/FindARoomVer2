@@ -30,6 +30,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.ChatMessageActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.CommentActivity"
             android:exported="false" />
         <activity

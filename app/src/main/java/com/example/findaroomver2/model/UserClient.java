@@ -6,6 +6,7 @@ public class UserClient {
     private String email;
     private String phone;
     private String tokenDevice;
+    private int role;
     private static UserClient instance = null;
     protected UserClient() {
     }
@@ -55,5 +56,13 @@ public class UserClient {
 
     public void setTokenDevice(String tokenDevice) {
         this.tokenDevice = tokenDevice;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

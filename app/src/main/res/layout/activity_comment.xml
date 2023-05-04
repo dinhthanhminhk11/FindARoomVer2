@@ -23,9 +23,9 @@
         android:id="@+id/listComment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/contentNotNullLogin"
         android:layout_below="@id/tool_bar"
         android:layout_marginHorizontal="16dp"
-        android:layout_above="@+id/contentNotNullLogin"
         android:background="@color/white"
         android:overScrollMode="never" />
 
@@ -96,5 +96,31 @@
         </LinearLayout>
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contentNoComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/nocomment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Hãy là người bình luận đầu tiên"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
     </LinearLayout>
 </RelativeLayout>

@@ -22,6 +22,7 @@ import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.adapter.FragmentViewPagerAdapter;
+import com.example.findaroomver2.ui.fragment.ChatFragment;
 import com.example.findaroomver2.ui.fragment.HomeFragment;
 import com.example.findaroomver2.ui.fragment.ListPostFragment;
 import com.example.findaroomver2.ui.fragment.NotificationFragment;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 userClient.setPhone(userResponseLogin.getData().getPhone());
                 userClient.setFullName(userResponseLogin.getData().getFullName());
                 userClient.setId(userResponseLogin.getData().getId());
+                userClient.setRole(userResponseLogin.getData().getRole());
             }
         });
 
@@ -126,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             return true;
         }  else if (id == R.id.tab_user) {
             loadFragment(new UserFragment());
+            return true;
+        } else if (id == R.id.tab_chat) {
+            loadFragment(new ChatFragment());
             return true;
         }
         return false;

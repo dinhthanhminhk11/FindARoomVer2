@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@drawable/background_boss_chat"
+    android:orientation="horizontal"
+    android:id="@+id/contentBackground"
+    android:layout_marginStart="17dp"
+    android:layout_marginEnd="17dp"
+    android:layout_marginTop="20dp"
+    android:clickable="true"
+    android:focusable="true">
+    <ImageView
+        android:id="@+id/imgHost"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:layout_marginStart="12dp"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="18dp">
+        <TextView
+            android:id="@+id/tvNameHost"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:textSize="17sp"
+            android:alpha="0.8"/>
+        <TextView
+            android:id="@+id/contentText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="Đoạn Chat Của Bạn Ở Đây"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:alpha="0.3"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -51,7 +51,6 @@ public class CommentActivity extends AppCompatActivity implements CommentAdapter
     private void initToolbar() {
         binding.toolBar.setNavigationIcon(R.drawable.ic_back_ios);
         binding.toolBar.setTitle("Bình luận");
-        binding.toolBar.setPadding(30, 0, 0, 0);
         setSupportActionBar(binding.toolBar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         binding.toolBar.setNavigationOnClickListener(v -> finish());
@@ -72,9 +71,14 @@ public class CommentActivity extends AppCompatActivity implements CommentAdapter
         commentViewModel.getCommentListResponseMutableLiveData().observe(this, new Observer<CommentListResponse>() {
             @Override
             public void onChanged(CommentListResponse commentListResponse) {
-                commentAdapter = new CommentAdapter(commentListResponse.getData());
-                binding.listComment.setAdapter(commentAdapter);
-                commentAdapter.setCallback(CommentActivity.this);
+                if (commentListResponse.getData().size() > 0) {
+                    commentAdapter = new CommentAdapter(commentListResponse.getData());
+                    binding.listComment.setAdapter(commentAdapter);
+                    commentAdapter.setCallback(CommentActivity.this);
+                    binding.contentNoComment.setVisibility(View.GONE);
+                } else {
+                    binding.contentNoComment.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -82,20 +86,13 @@ public class CommentActivity extends AppCompatActivity implements CommentAdapter
             @Override
             public void onClick(View view) {
                 if (isReply) {
-                    commentViewModel.addComment(new Comment(
-                            UserClient.getInstance().getId(),
-                            null,
-                            binding.edContentChat.getText().toString(),
-                            idCommentCallback));
+                    commentViewModel.addComment(new Comment(UserClient.getInstance().getId(), null, binding.edContentChat.getText().toString(), idCommentCallback));
                     idCommentCallback = "";
                     nameUserCallback = "";
                     binding.contentReply.setVisibility(View.GONE);
                     isReply = false;
                 } else {
-                    commentViewModel.addComment(new Comment(
-                            UserClient.getInstance().getId(),
-                            idPost,
-                            binding.edContentChat.getText().toString()));
+                    commentViewModel.addComment(new Comment(UserClient.getInstance().getId(), idPost, binding.edContentChat.getText().toString()));
                 }
                 binding.edContentChat.setText("");
             }

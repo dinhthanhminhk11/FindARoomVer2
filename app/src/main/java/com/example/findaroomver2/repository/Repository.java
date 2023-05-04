@@ -3,8 +3,15 @@ package com.example.findaroomver2.repository;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
+
+import com.airbnb.lottie.animation.content.Content;
 import com.example.findaroomver2.api.ApiRequest;
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.model.ContentChat;
+import com.example.findaroomver2.model.DataChat;
+import com.example.findaroomver2.model.DataUser;
+import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changepass.Email;
@@ -508,6 +515,88 @@ public class Repository {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });
+            }
+        });
+    }
+
+    public MutableLiveData<List<ContentChat>> getContentChat(String sendId, String sendToId){
+        final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
+        apiRequest.getDataChat(sendId,sendToId).enqueue(new Callback<DataChat>() {
+            @Override
+            public void onResponse(Call<DataChat> call, Response<DataChat> response) {
+                data.postValue(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<DataChat> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage() );
+            }
+        });
+        return data;
+    }
+
+    public MutableLiveData<List<ContentChat>> getMsgId(String send){
+        final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
+        apiRequest.getMsgId(send).enqueue(new Callback<DataChat>() {
+            @Override
+            public void onResponse(Call<DataChat> call, Response<DataChat> response) {
+                if(response.isSuccessful()){
+                    data.postValue(response.body().getData());
+                }
+            }
+            @Override
+            public void onFailure(Call<DataChat> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+            }
+        });
+        return data;
+    }
+
+    public MutableLiveData<List<ContentChat>> getMsgIdSendTo(String send){
+        final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
+        apiRequest.getMessageSendTo(send).enqueue(new Callback<DataChat>() {
+            @Override
+            public void onResponse(Call<DataChat> call, Response<DataChat> response) {
+                if(response.isSuccessful()){
+                    data.postValue(response.body().getData());
+                }
+            }
+            @Override
+            public void onFailure(Call<DataChat> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+            }
+        });
+        return data;
+    }
+
+    public MutableLiveData<List<Data>> getHost(String id){
+        final MutableLiveData<List<Data>> user = new MutableLiveData<>();
+        apiRequest.getHost(id).enqueue(new Callback<DataUser>() {
+            @Override
+            public void onResponse(Call<DataUser> call, Response<DataUser> response) {
+                if(response.isSuccessful()){
+                    user.postValue(response.body().getData());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataUser> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+            }
+        });
+        return user;
+    }
+
+    public void insertMessage(MessageChat message){
+        apiRequest.addMessage(message).enqueue(new Callback<MessageChat>() {
+            @Override
+            public void onResponse(Call<MessageChat> call, Response<MessageChat> response) {
+                Log.e("zzzzzzzzzzzzzz","da gui" );
+            }
+
+            @Override
+            public void onFailure(Call<MessageChat> call, Throwable t) {
+                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
             }
         });
     }

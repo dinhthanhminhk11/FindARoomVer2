@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.response.comment.CommentListResponse;
+import com.example.findaroomver2.response.comment.CommentResponse;
 import com.example.findaroomver2.response.post.PostResponse;
 
 import java.util.function.Consumer;
@@ -20,6 +22,9 @@ public class DetailPostViewModel extends AndroidViewModel {
     private MutableLiveData<PostResponse> postResponseMutableLiveData = new MutableLiveData<>();
 
     private MutableLiveData<Data> dataUser = new MutableLiveData<>();
+
+    private MutableLiveData<CommentListResponse> commentListResponseMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<CommentResponse> commentResponseMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Data> getDataUser() {
         return dataUser;
@@ -36,6 +41,17 @@ public class DetailPostViewModel extends AndroidViewModel {
             @Override
             public void accept(PostResponse postResponse) {
                 postResponseMutableLiveData.postValue(postResponse);
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void getListCommentByIdPost(String idPost) {
+        progress.setValue(View.VISIBLE);
+        repository.getListCommentParent(idPost, new Consumer<CommentListResponse>() {
+            @Override
+            public void accept(CommentListResponse commentListResponse) {
+                commentListResponseMutableLiveData.postValue(commentListResponse);
                 progress.postValue(View.GONE);
             }
         });
@@ -59,5 +75,13 @@ public class DetailPostViewModel extends AndroidViewModel {
 
     public MutableLiveData<PostResponse> getPostResponseMutableLiveData() {
         return postResponseMutableLiveData;
+    }
+
+    public MutableLiveData<CommentListResponse> getCommentListResponseMutableLiveData() {
+        return commentListResponseMutableLiveData;
+    }
+
+    public MutableLiveData<CommentResponse> getCommentResponseMutableLiveData() {
+        return commentResponseMutableLiveData;
     }
 }

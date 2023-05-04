@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userClient.setPhone(userResponseLogin.getData().getPhone());
                     userClient.setFullName(userResponseLogin.getData().getFullName());
                     userClient.setId(userResponseLogin.getData().getId());
-
+                    userClient.setRole(userResponseLogin.getData().getRole());
                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 } else {
                     Toast.makeText(RegisterActivity.this, userResponseLogin.getMessage().getMessage(), Toast.LENGTH_SHORT).show();

@@ -17,6 +17,16 @@ public class Data {
     private String accessToken;
     @SerializedName("image")
     private String image;
+    @SerializedName("role")
+    private int role;
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 
     public String getId() {
         return id;

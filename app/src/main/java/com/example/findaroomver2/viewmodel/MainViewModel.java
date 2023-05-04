@@ -5,15 +5,20 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.airbnb.lottie.animation.content.Content;
+import com.example.findaroomver2.model.ContentChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
+import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class MainViewModel extends AndroidViewModel {
@@ -74,6 +79,14 @@ public class MainViewModel extends AndroidViewModel {
         });
     }
 
+    public LiveData<List<ContentChat>> getMsgId(String send) {
+        return repository.getMsgId(send);
+    }
+
+    public LiveData<List<ContentChat>> getMsgIdSendTo(String sendTo) {
+        return repository.getMsgIdSendTo(sendTo);
+    }
+
 
     public MutableLiveData<PostResponse> getPostResponseMutableLiveData() {
         return postResponseMutableLiveData;
@@ -93,5 +106,9 @@ public class MainViewModel extends AndroidViewModel {
 
     public MutableLiveData<PostHome> getListMutableLiveDataPost() {
         return listMutableLiveDataPost;
+    }
+
+    public LiveData<List<Data>> getHost(String id) {
+        return repository.getHost(id);
     }
 }

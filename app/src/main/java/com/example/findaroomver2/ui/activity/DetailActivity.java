@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -18,7 +19,9 @@ import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityDetailBinding;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.ui.adapter.homefragment.CommentDetailAdapter;
 import com.example.findaroomver2.ui.adapter.homefragment.ConvenientAdapter;
 import com.example.findaroomver2.viewmodel.DetailPostViewModel;
 
@@ -37,6 +40,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private RequestOptions options;
     private String contactPhone;
     private List<String> listImage;
+    private String nameUser = "";
+    private String idUser = "";
+    private String imageUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void initData() {
         idPost = getIntent().getStringExtra(AppConstant.ID_POST);
         detailPostViewModel.getPostById(idPost);
+        detailPostViewModel.getListCommentByIdPost(idPost);
         detailPostViewModel.getPostResponseMutableLiveData().observe(this, new Observer<PostResponse>() {
             @Override
             public void onChanged(PostResponse postResponse) {
@@ -134,6 +141,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 binding.listSupperle.setAdapter(convenientAdapter);
 
                 detailPostViewModel.getUserById(postResponse.getData().getIdUser());
+
+                binding.time.setText("Giờ tạo " + postResponse.getData().getTime());
+                binding.date.setText("Ngày tạo " + postResponse.getData().getDate());
             }
         });
         detailPostViewModel.getProgress().observe(this, new Observer<Integer>() {
@@ -146,10 +156,47 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         detailPostViewModel.getDataUser().observe(this, new Observer<Data>() {
             @Override
             public void onChanged(Data data) {
+                nameUser = data.getFullName();
+                imageUser = data.getImage();
+                idUser = data.getId();
+
                 binding.nameUser.setText(data.getFullName());
                 RequestOptions optionsUser = new RequestOptions().centerCrop().placeholder(R.drawable.noavatar).error(R.drawable.noavatar);
                 Glide.with(binding.imageUser.getContext()).load(data.getImage()).apply(optionsUser).into(binding.imageUser);
 
+            }
+        });
+
+        detailPostViewModel.getCommentListResponseMutableLiveData().observe(this, new Observer<CommentListResponse>() {
+            @Override
+            public void onChanged(CommentListResponse commentListResponse) {
+                if (commentListResponse.getData().size() > 0) {
+                    CommentDetailAdapter commentDetailAdapter = new CommentDetailAdapter(commentListResponse.getData());
+                    binding.listComment.setAdapter(commentDetailAdapter);
+                    binding.contentNoComment.setVisibility(View.GONE);
+                } else {
+                    binding.contentNoComment.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.txtMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, CommentActivity.class);
+                intent.putExtra(AppConstant.ID_POST, idPost);
+                startActivity(intent);
+            }
+        });
+
+        binding.btnMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, ChatMessageActivity.class);
+                intent.putExtra(AppConstant.ID_USER, idUser);
+                intent.putExtra(AppConstant.IMAGE_USER, imageUser);
+                intent.putExtra(AppConstant.NAME_USER, nameUser);
+                startActivity(intent);
             }
         });
 
@@ -164,6 +211,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         binding.contentImage2.setOnClickListener(this);
         binding.contentImage3.setOnClickListener(this);
         binding.contentImage4.setOnClickListener(this);
+        binding.listComment.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void initToolbar() {

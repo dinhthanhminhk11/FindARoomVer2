@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     userClient.setPhone(userResponseLogin.getData().getPhone());
                     userClient.setFullName(userResponseLogin.getData().getFullName());
                     userClient.setId(userResponseLogin.getData().getId());
+                    userClient.setRole(userResponseLogin.getData().getRole());
                     EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
                     finish();
                 } else {
