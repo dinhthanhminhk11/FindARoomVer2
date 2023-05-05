@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.constant.NotificationCenter;
@@ -24,7 +22,6 @@ import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.adapter.FragmentViewPagerAdapter;
 import com.example.findaroomver2.ui.fragment.ChatFragment;
 import com.example.findaroomver2.ui.fragment.HomeFragment;
-import com.example.findaroomver2.ui.fragment.ListPostFragment;
 import com.example.findaroomver2.ui.fragment.NotificationFragment;
 import com.example.findaroomver2.ui.fragment.PostFragment;
 import com.example.findaroomver2.ui.fragment.UserFragment;
@@ -126,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else if (id == R.id.tab_upload) {
             loadFragment(new PostFragment());
             return true;
-        }  else if (id == R.id.tab_user) {
+        } else if (id == R.id.tab_user) {
             loadFragment(new UserFragment());
             return true;
         } else if (id == R.id.tab_chat) {

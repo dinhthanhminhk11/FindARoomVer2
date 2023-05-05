@@ -1,10 +1,16 @@
 package com.example.findaroomver2.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -17,12 +23,14 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityDetailBinding;
-import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.adapter.homefragment.CommentDetailAdapter;
 import com.example.findaroomver2.ui.adapter.homefragment.ConvenientAdapter;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.DetailPostViewModel;
 
 import java.io.Serializable;
@@ -43,6 +51,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private String nameUser = "";
     private String idUser = "";
     private String imageUser = "";
+    private String token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,11 +201,20 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         binding.btnMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailActivity.this, ChatMessageActivity.class);
-                intent.putExtra(AppConstant.ID_USER, idUser);
-                intent.putExtra(AppConstant.IMAGE_USER, imageUser);
-                intent.putExtra(AppConstant.NAME_USER, nameUser);
-                startActivity(intent);
+                token = MySharedPreferences.getInstance(DetailActivity.this).getString(AppConstant.USER_TOKEN, "");
+                if (!token.equals("")) {
+                    if (idUser.equals(UserClient.getInstance().getId())) {
+                        CustomToast.ct(DetailActivity.this, "Bạn không thể nhắn tin với chính mình", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                    } else {
+                        Intent intent = new Intent(DetailActivity.this, ChatMessageActivity.class);
+                        intent.putExtra(AppConstant.ID_USER, idUser);
+                        intent.putExtra(AppConstant.IMAGE_USER, imageUser);
+                        intent.putExtra(AppConstant.NAME_USER, nameUser);
+                        startActivity(intent);
+                    }
+                } else {
+                    initDiaLog(DetailActivity.this);
+                }
             }
         });
 
@@ -234,5 +252,23 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             intent.putExtras(bundle);
             startActivity(intent);
         }
+    }
+
+    private void initDiaLog(Context context) {
+        final Dialog dialogConfirmLogin = new Dialog(context);
+        dialogConfirmLogin.setContentView(R.layout.dialog_comfirm_no_login);
+        Window window2 = dialogConfirmLogin.getWindow();
+        window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialogConfirmLogin != null && dialogConfirmLogin.getWindow() != null) {
+            dialogConfirmLogin.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        dialogConfirmLogin.findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogConfirmLogin.dismiss();
+                startActivity(new Intent(context, LoginActivity.class));
+            }
+        });
+        dialogConfirmLogin.show();
     }
 }

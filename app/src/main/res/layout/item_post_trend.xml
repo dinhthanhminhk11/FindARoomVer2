@@ -9,8 +9,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/image"
@@ -20,13 +19,13 @@
             android:src="@drawable/noimage" />
 
         <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
-            android:layout_margin="8dp"
-            android:layout_gravity="top"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/white"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/noavatar" />
+            android:layout_gravity="top"
+            android:layout_margin="8dp"
+            android:src="@drawable/noavatar"
+            app:civ_border_color="@color/white"
+            app:civ_border_width="1dp" />
     </FrameLayout>
 
 

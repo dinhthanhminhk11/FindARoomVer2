@@ -20,14 +20,23 @@ import android.widget.Toast;
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.constant.CallbackClick;
+import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.FragmentChatBinding;
+import com.example.findaroomver2.event.KeyEvent;
+import com.example.findaroomver2.model.ContentChat;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.ChatMessageActivity;
 import com.example.findaroomver2.ui.activity.DetailActivity;
+import com.example.findaroomver2.ui.activity.LoginActivity;
 import com.example.findaroomver2.ui.adapter.HostAdapter;
 import com.example.findaroomver2.viewmodel.ChatViewModel;
 import com.example.findaroomver2.viewmodel.MainViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,6 +55,8 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
     private CallbackClick callbackClick;
     private FragmentChatBinding binding;
     private HostAdapter hostAdapter;
+    private String token = "";
+    private List<String> listHost   ;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -102,17 +113,46 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
     }
 
     private void initView() {
+        listHost = new ArrayList<>();
         chatViewModel = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
         hostAdapter = new HostAdapter();
 
-        binding.progressBar.setVisibility(View.VISIBLE);
         binding.rcvListHost.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.btnSearch.setOnClickListener(v -> callbackClick.clickHome());
 
+        token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
+
+        if (!token.equals("")) {
+            binding.contentNullLogin.setVisibility(View.GONE);
+            binding.rcvListHost.setVisibility(View.VISIBLE);
+            initData();
+        } else {
+            binding.contentNullLogin.setVisibility(View.VISIBLE);
+            binding.rcvListHost.setVisibility(View.GONE);
+        }
+
+        binding.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
+    }
+
+    @Override
+    public void onClick(Data user) {
+        listHost.clear();
+        Intent intent = new Intent(getActivity(), ChatMessageActivity.class);
+        intent.putExtra(AppConstant.ID_USER, user.getId());
+        intent.putExtra(AppConstant.IMAGE_USER, user.getImage());
+        intent.putExtra(AppConstant.NAME_USER, user.getFullName());
+        startActivity(intent);
+    }
+
+    private void initData() {
+        binding.progressBar.setVisibility(View.VISIBLE);
         int role = UserClient.getInstance().getRole();
         if (role == 0) {
-             List<String> mList = new ArrayList<>();
-
             chatViewModel.getMsgId(UserClient.getInstance().getId()).observe(requireActivity(), it -> {
                 if (it.size() == 0) {
                     binding.rcvListHost.setVisibility(View.GONE);
@@ -120,10 +160,11 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
                     binding.progressBar.setVisibility(View.GONE);
                 } else {
                     binding.contentNullList.setVisibility(View.GONE);
-                    for (int i = 0; i < it.size(); i++) {
-                        mList.add(it.get(i).getSendTo());
+                    for (ContentChat contentChat :
+                            it) {
+                        listHost.add(contentChat.getSendTo());
                     }
-                    Set<String> set = new HashSet<String>(mList);
+                    Set<String> set = new HashSet<String>(listHost);
                     List<String> listIdHost = new ArrayList<String>(set);
                     for (int i = 0; i < listIdHost.size(); i++) {
                         chatViewModel.getHost(listIdHost.get(i)).observe(requireActivity(), item -> {
@@ -137,7 +178,6 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
                 }
             });
         } else if (role == 2) {
-            List<String> mList = new ArrayList<>();
             chatViewModel.getMsgIdSendTo(UserClient.getInstance().getId()).observe(requireActivity(), it -> {
                 if (it.size() == 0) {
                     binding.rcvListHost.setVisibility(View.GONE);
@@ -146,9 +186,9 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
                 } else {
                     binding.contentNullList.setVisibility(View.GONE);
                     for (int i = 0; i < it.size(); i++) {
-                        mList.add(it.get(i).getSend());
+                        listHost.add(it.get(i).getSend());
                     }
-                    Set<String> set = new HashSet<String>(mList);
+                    Set<String> set = new HashSet<String>(listHost);
                     List<String> listIdHost = new ArrayList<String>(set);
                     for (int i = 0; i < listIdHost.size(); i++) {
                         chatViewModel.getHost(listIdHost.get(i)).observe(requireActivity(), item -> {
@@ -162,15 +202,34 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
                 }
             });
         }
-
     }
 
     @Override
-    public void onClick(Data user) {
-        Intent intent = new Intent(getActivity(), ChatMessageActivity.class);
-        intent.putExtra(AppConstant.ID_USER, user.getId());
-        intent.putExtra(AppConstant.IMAGE_USER, user.getImage());
-        intent.putExtra(AppConstant.NAME_USER, user.getFullName());
-        startActivity(intent);
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(KeyEvent event) {
+        if (event.getIdEven() == NotificationCenter.checkLogin) {
+            token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
+            if (!token.equals("")) {
+                binding.contentNullLogin.setVisibility(View.GONE);
+                binding.rcvListHost.setVisibility(View.VISIBLE);
+                initData();
+            } else {
+                binding.contentNullLogin.setVisibility(View.VISIBLE);
+                binding.rcvListHost.setVisibility(View.GONE);
+            }
+            KeyEvent locationReceivedStickyEvent = EventBus.getDefault().getStickyEvent(KeyEvent.class);
+            EventBus.getDefault().removeStickyEvent(locationReceivedStickyEvent);
+        }
     }
 }
