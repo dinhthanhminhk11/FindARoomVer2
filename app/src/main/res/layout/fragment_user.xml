@@ -1,395 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.fragment.UserFragment">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/contentNullLogin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textAlien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:text="Đăng nhập để sử dụng chức năng này"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/bg_buttom"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="10dp"
+            android:text="Đăng nhập"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/size_18"
+        android:text="Tôi"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textTop"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/contentProfile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_bg1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_marginLeft="170dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_gravity="bottom|center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/user_avatar"
-                        android:src="@drawable/ic_user_image"
-                        />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/background_setting_user"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="15dp">
 
-                </LinearLayout>
+            <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
+                android:id="@+id/imageUser"
+                android:layout_width="@dimen/size_40"
+                android:layout_height="@dimen/size_40"
+                android:layout_gravity="center"
+                android:src="@drawable/noavatar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_margin="5dp"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bùi Hải Anh"
-                    android:textFontWeight="700"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="17dp"
-                    android:textColor="@color/black"
-                    />
-
-            </LinearLayout>
-            <View
-                android:background="#CC4C4444"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="103dp"
-                    android:layout_height="57dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp">
-                    <LinearLayout
-                        android:gravity="center"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/txtrate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0.0"
-                            android:textFontWeight="500"
-                            android:textSize="15dp"
-                            tools:ignore="TextSizeCheck" />
-                        <ImageView
-                            android:layout_marginLeft="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_star_1"
-                            />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_marginTop="8dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="23dp"
-                        android:text="XXX lượt đánh giá"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="160px"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5.5dp"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="260dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:layout_width="210dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/post_btn"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/btn_up_post" />
-
-                        <TextView
-                            android:layout_width="138dp"
-                            android:layout_height="17dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/inter"
-                            android:text="Đăng tin"
-                            android:textFontWeight="700"
-                            android:textSize="10dp"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_gravity="center"
-                        android:layout_margin="5dp"
-                        android:layout_width="210dp"
-                        android:layout_height="28dp"
-                        android:background="@drawable/updateprofile_btn"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/btn_update_profile"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="5dp"
-                            />
-
-                        <TextView
-                            android:layout_width="138dp"
-                            android:layout_height="17dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="6dp"
-                            android:fontFamily="@font/inter"
-                            android:text="Chỉnh sửa thông tin cá nhân "
-                            android:textFontWeight="700"
-                            android:textSize="10dp"
-                            tools:ignore="TextSizeCheck" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="344dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical"
-                android:background="@drawable/border_2"
-                android:layout_gravity="center">
-
-                <LinearLayout
+                    android:id="@+id/nameUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="6dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="131sp"
-                            android:layout_height="23dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="8dp"
-                            android:textSize="12sp"
-                            android:text="Xếp hạng và đánh giá" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/txtrate_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="4.9"
-                                android:textFontWeight="500"
-                                android:textSize="30dp"
-                                tools:ignore="TextSizeCheck" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <ImageView
-                                    android:layout_width="14sp"
-                                    android:layout_height="14sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_star_1" />
-
-                                <ImageView
-                                    android:layout_width="14sp"
-                                    android:layout_height="14sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_star_1" />
-
-                                <ImageView
-                                    android:layout_width="14sp"
-                                    android:layout_height="14sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_star_1" />
-
-                                <ImageView
-                                    android:layout_width="14sp"
-                                    android:layout_height="14sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_star_1" />
-
-                                <ImageView
-                                    android:layout_width="14sp"
-                                    android:layout_height="14sp"
-                                    android:layout_marginLeft="10dp"
-                                    android:src="@drawable/ic_star_1" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                    <View
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="5.5dp"
-                        android:background="#CC4C4444"
-                        android:layout_width="1px"
-                        android:layout_height="210px"
-                        />
-                    <View
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginTop="5.5dp"
-                        android:background="#CC4C4444"
-                        android:layout_width="1px"
-                        android:layout_height="210px"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        >
-                        <RelativeLayout
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/inter"
-                                android:text="5"
-                                android:textFontWeight="700"
-                                android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_rectangle_rate"
-                                android:layout_alignParentEnd="true"/>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/inter"
-                                android:text="4"
-                                android:textFontWeight="700"
-                                android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_rectangle_rate"
-                                android:layout_alignParentEnd="true"/>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/inter"
-                                android:text="3"
-                                android:textFontWeight="700"
-                                android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_rectangle_rate"
-                                android:layout_alignParentEnd="true"/>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/inter"
-                                android:text="2"
-                                android:textFontWeight="700"
-                                android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_rectangle_rate"
-                                android:layout_alignParentEnd="true"/>
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:fontFamily="@font/inter"
-                                android:text="1"
-                                android:textFontWeight="700"
-                                android:textSize="12dp"
-                                tools:ignore="TextSizeCheck" />
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_rectangle_rate"
-                                android:layout_alignParentEnd="true"/>
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp">
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/listCmt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:overScrollMode="never"
-                        android:padding="8dp" />
-                </LinearLayout>
-
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/editProfile"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
-                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listItemPost"
+                android:layout_marginRight="5dp"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/baseline_mode_24" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_setting_item"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_newspaper_24" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:overScrollMode="never"
-                    android:padding="8dp" />
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Quản lí bài đăng"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Bài đăng của bạn sẽ ở đây"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_button_infor_setting" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentChangePass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_setting_item"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/icon_changepass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_icon_change_pass_setting" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_change_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Đổi mật khẩu"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/content_change_pass_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Thay đổi mật khẩu của bạn"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/icon_changePass_last"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_button_infor_setting" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutContentPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_setting_item"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:id="@+id/icon_payment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_payment_svgrepo_com" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_Payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Ví của bạn"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/content_payment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Sử dụng ngay"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/icon_change_payment"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_button_infor_setting" />
 
         </LinearLayout>
-    </ScrollView>
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/contentUpdateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_setting_item"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_person_24_setting" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Nâng cấp tài khoản"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Hãy nâng cấp tài khoản để tìm kiếm người thuê"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_button_infor_setting" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentBySeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_setting_item"
+            android:foreground="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingLeft="10dp">
+
+            <ImageView
+                android:layout_width="@dimen/size_24"
+                android:layout_height="@dimen/size_24"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_logo_user" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="Về chúng tôi"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Nhưng thông tin về chúng tôi"
+                    android:textColor="@color/black"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_button_infor_setting" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

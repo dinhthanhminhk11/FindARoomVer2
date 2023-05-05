@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Nhập số điện thoại hoặc email"
+                android:hint="Nhập email"
                 app:boxStrokeColor="@color/black"
                 app:errorEnabled="true"
                 app:hintTextColor="@color/black">

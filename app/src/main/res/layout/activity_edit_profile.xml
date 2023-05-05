@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.EditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F9F9F9"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:elevation="8dp"
+            android:textAlignment="center"
+            android:theme="@style/ToolbarTheme"
+            app:titleTextColor="@color/black" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
+                        android:id="@+id/avtEditProfile"
+                        android:layout_width="78dp"
+                        android:layout_height="78dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/noavatar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/cameraEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_camera_edit_profile"
+                        app:layout_constraintBottom_toBottomOf="@+id/avtEditProfile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.551"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/titleNameEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/titleEmailEditProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:textColor="#ABABAB"
+                    android:textSize="13dp"
+                    android:textStyle="normal" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="Tên"
+                        app:boxStrokeColor="@color/hint_color"
+                        app:hintTextColor="@color/hint_color">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/white"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:hint="Số điện thoại"
+                        app:boxStrokeColor="#171717"
+                        app:hintTextColor="@color/hint_color">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phoneEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/white"
+                            android:inputType="phone"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:hint="Chứng minh nhân dân"
+                        app:boxStrokeColor="@color/hint_color"
+                        app:counterMaxLength="12"
+                        app:hintTextColor="@color/hint_color">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/cccdEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/white"
+                            android:inputType="number"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/white"
+                        android:hint="Địa chỉ"
+                        app:boxStrokeColor="#171717"
+                        app:hintTextColor="@color/hint_color"
+                        app:startIconDrawable="@drawable/baseline_place_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/locationEditProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="54dp"
+                            android:background="@color/white"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="13dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginTop="-49dp"
+                        android:src="@drawable/ic_line_edit_profile" />
+
+                    <ImageView
+                        android:id="@+id/iconLocalEditProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="-32dp"
+                        android:src="@drawable/baseline_place_24" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/saveEditProfile"
+                        android:layout_width="260dp"
+                        android:layout_height="55dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="108dp"
+                        android:background="@drawable/background_blue_edit_profile"
+                        android:elevation="3dp"
+                        android:gravity="center"
+                        android:text="Thay đổi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>
