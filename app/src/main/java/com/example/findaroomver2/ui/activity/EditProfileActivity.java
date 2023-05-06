@@ -15,5 +15,24 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEditProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        initToolBar();
+        intView();
+        initData();
+    }
+
+    private void initToolBar() {
+        binding.toolBar.setTitle("Chỉnh sửa thông tin");
+        binding.toolBar.setNavigationIcon(R.drawable.ic_back_ios);
+        setSupportActionBar(binding.toolBar);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        binding.toolBar.setNavigationOnClickListener(v -> onBackPressed());
+    }
+
+    private void intView() {
+
+    }
+
+    private void initData() {
+
     }
 }
