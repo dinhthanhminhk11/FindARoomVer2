@@ -23,7 +23,11 @@ import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ActivityAddMoneyBinding;
 import com.example.findaroomver2.model.UserClient;
+import com.example.findaroomver2.request.money.CashFlowRequest;
+import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.ui.bottomsheet.BottomSheetPayment;
+import com.example.findaroomver2.ui.customview.toast.CustomToast;
+import com.example.findaroomver2.viewmodel.AddCashViewModel;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -32,7 +36,7 @@ public class AddMoneyActivity extends AppCompatActivity {
     private ActivityAddMoneyBinding binding;
     private String gia;
     private BottomSheetPayment bottomSheetPayment;
-//    private AddCashViewModel addCashViewModel;
+    private AddCashViewModel addCashViewModel;
 
 
     @Override
@@ -79,28 +83,28 @@ public class AddMoneyActivity extends AppCompatActivity {
             }
         });
 
-//        addCashViewModel = new ViewModelProvider(this).get(AddCashViewModel.class);
-//        addCashViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
-//            @Override
-//            public void onChanged(Integer integer) {
-//                binding.progressBar.setVisibility(integer);
-//            }
-//        });
-//
-//        addCashViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TestResponse>() {
-//            @Override
-//            public void onChanged(TestResponse testResponse) {
-//                if (testResponse.isStatus()) {
-//                    Intent intent = new Intent(AddMoneyActivity.this, PayCashYourActivity.class);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.putExtra(AppConstant.CheckSuccess, AppConstant.CHECK_SUCCESS_ADD_MONEY);
-//                    startActivity(intent);
-//                } else {
-//                    CookieBar.build(AddMoneyActivity.this).setTitle(AddMoneyActivity.this.getString(R.string.Notify)).setMessage(AddMoneyActivity.this.getString(R.string.textErrorAddMoney)).setIcon(R.drawable.ic_warning_icon_check).setTitleColor(R.color.black).setMessageColor(R.color.black).setDuration(3000).setSwipeToDismiss(false).setBackgroundRes(R.drawable.background_toast).setCookiePosition(CookieBar.BOTTOM).show();
-//                }
-//            }
-//        });
+        addCashViewModel = new ViewModelProvider(this).get(AddCashViewModel.class);
+        addCashViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                binding.progressBar.setVisibility(integer);
+            }
+        });
+
+        addCashViewModel.getTestResponseMutableLiveData().observe(this, new Observer<TextResponse>() {
+            @Override
+            public void onChanged(TextResponse textResponse) {
+                if (textResponse.isStatus()) {
+                    Intent intent = new Intent(AddMoneyActivity.this, PayCashYourActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(AppConstant.CHECK_SUCCESS, AppConstant.CHECK_SUCCESS_ADD_MONEY);
+                    startActivity(intent);
+                } else {
+                    CustomToast.ct(AddMoneyActivity.this, textResponse.getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                }
+            }
+        });
         checkBtnClick();
     }
 
@@ -118,8 +122,8 @@ public class AddMoneyActivity extends AppCompatActivity {
         binding.btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String textString = binding.editInputMoney.getText().toString().replace(".", "");
-//                addCashViewModel.createCash(new CashFolwRequest(UserClient.getInstance().getId(), true, "Thông báo biến động số dư", "Nạp tiền vào tài khoản (VISA)", textString));
+                String textString = binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "");
+                addCashViewModel.createCashByUser(new CashFlowRequest(UserClient.getInstance().getId(), true, "Thông báo biến động số dư", "Nạp tiền vào tài khoản (VISA)", Integer.parseInt(textString)));
             }
         });
         binding.number1.setOnClickListener(new View.OnClickListener() {
@@ -224,16 +228,16 @@ public class AddMoneyActivity extends AppCompatActivity {
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));
             } else if (binding.editInputMoney.getText().toString().length() == 4) {
-                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 10;
-                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 100;
-                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 1000;
+                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 10;
+                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 100;
+                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 1000;
                 binding.number1.setText(String.valueOf(dfnd.format(sum1)));
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));
             } else if (binding.editInputMoney.getText().toString().length() == 6) {
-                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 1;
-                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 10;
-                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(".", "").trim()) * 100;
+                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 1;
+                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 10;
+                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 100;
                 binding.number1.setText(String.valueOf(dfnd.format(sum1)));
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));

@@ -11,6 +11,7 @@ import com.example.findaroomver2.request.comment.Comment;
 import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.money.CashFlowRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
@@ -19,6 +20,7 @@ import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.comment.CommentResponse;
 import com.example.findaroomver2.response.favourite.CountFavourite;
 import com.example.findaroomver2.response.favourite.FavouriteResponse;
+import com.example.findaroomver2.response.money.CashFlowResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
@@ -112,5 +114,14 @@ public interface ApiRequest {
 
     @POST("addmsg/")
     Call<MessageChat> addMessage(@Body MessageChat message);
+
+    @GET("getCash/{id}")
+    Call<Integer> getPriceCash(@Path("id") String id);
+
+    @GET("listCashFlow/{id}")
+    Call<List<CashFlowResponse>> getListCashFlow(@Path("id") String id);
+
+    @POST("createCashFlow")
+    Call<TextResponse> createCashFlow(@Body CashFlowRequest cashFlowRequest);
 
 }

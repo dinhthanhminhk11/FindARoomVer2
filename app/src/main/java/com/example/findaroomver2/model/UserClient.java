@@ -7,6 +7,7 @@ public class UserClient {
     private String phone;
     private String tokenDevice;
     private int role;
+    private String image;
     private static UserClient instance = null;
     protected UserClient() {
     }
@@ -64,5 +65,17 @@ public class UserClient {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public static void setInstance(UserClient instance) {
+        UserClient.instance = instance;
     }
 }

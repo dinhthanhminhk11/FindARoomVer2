@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 userClient.setFullName(userResponseLogin.getData().getFullName());
                 userClient.setId(userResponseLogin.getData().getId());
                 userClient.setRole(userResponseLogin.getData().getRole());
+                userClient.setImage(userResponseLogin.getData().getImage());
             }
         });
 

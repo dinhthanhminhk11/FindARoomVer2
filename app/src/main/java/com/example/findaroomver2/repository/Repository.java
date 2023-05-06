@@ -20,6 +20,7 @@ import com.example.findaroomver2.request.comment.Comment;
 import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.money.CashFlowRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
@@ -28,6 +29,7 @@ import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.comment.CommentResponse;
 import com.example.findaroomver2.response.favourite.CountFavourite;
 import com.example.findaroomver2.response.favourite.FavouriteResponse;
+import com.example.findaroomver2.response.money.CashFlowResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
@@ -510,6 +512,7 @@ public class Repository {
                             Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
                         }
                     }
+
                     @Override
                     public void onFailure(Call<CommentListResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
@@ -519,9 +522,9 @@ public class Repository {
         });
     }
 
-    public MutableLiveData<List<ContentChat>> getContentChat(String sendId, String sendToId){
+    public MutableLiveData<List<ContentChat>> getContentChat(String sendId, String sendToId) {
         final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
-        apiRequest.getDataChat(sendId,sendToId).enqueue(new Callback<DataChat>() {
+        apiRequest.getDataChat(sendId, sendToId).enqueue(new Callback<DataChat>() {
             @Override
             public void onResponse(Call<DataChat> call, Response<DataChat> response) {
                 data.postValue(response.body().getData());
@@ -529,74 +532,145 @@ public class Repository {
 
             @Override
             public void onFailure(Call<DataChat> call, Throwable t) {
-                Log.e("zzzzzzzzzzzzzz", t.getMessage() );
+                Log.e(AppConstant.CALL_ERROR, t.getMessage());
             }
         });
         return data;
     }
 
-    public MutableLiveData<List<ContentChat>> getMsgId(String send){
+    public MutableLiveData<List<ContentChat>> getMsgId(String send) {
         final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
         apiRequest.getMsgId(send).enqueue(new Callback<DataChat>() {
             @Override
             public void onResponse(Call<DataChat> call, Response<DataChat> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     data.postValue(response.body().getData());
                 }
             }
+
             @Override
             public void onFailure(Call<DataChat> call, Throwable t) {
-                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+                Log.e(AppConstant.CALL_ERROR, t.getMessage());
             }
         });
         return data;
     }
 
-    public MutableLiveData<List<ContentChat>> getMsgIdSendTo(String send){
+    public MutableLiveData<List<ContentChat>> getMsgIdSendTo(String send) {
         final MutableLiveData<List<ContentChat>> data = new MutableLiveData<>();
         apiRequest.getMessageSendTo(send).enqueue(new Callback<DataChat>() {
             @Override
             public void onResponse(Call<DataChat> call, Response<DataChat> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     data.postValue(response.body().getData());
                 }
             }
+
             @Override
             public void onFailure(Call<DataChat> call, Throwable t) {
-                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+                Log.e(AppConstant.CALL_ERROR, t.getMessage());
             }
         });
         return data;
     }
 
-    public MutableLiveData<List<Data>> getHost(String id){
+    public MutableLiveData<List<Data>> getHost(String id) {
         final MutableLiveData<List<Data>> user = new MutableLiveData<>();
         apiRequest.getHost(id).enqueue(new Callback<DataUser>() {
             @Override
             public void onResponse(Call<DataUser> call, Response<DataUser> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     user.postValue(response.body().getData());
                 }
             }
 
             @Override
             public void onFailure(Call<DataUser> call, Throwable t) {
-                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+                Log.e(AppConstant.CALL_ERROR, t.getMessage());
             }
         });
         return user;
     }
 
-    public void insertMessage(MessageChat message){
+    public void insertMessage(MessageChat message) {
         apiRequest.addMessage(message).enqueue(new Callback<MessageChat>() {
             @Override
             public void onResponse(Call<MessageChat> call, Response<MessageChat> response) {
-                Log.e("zzzzzzzzzzzzzz","da gui" );
+                Log.e(AppConstant.CALL_ERROR, "da gui");
             }
 
             @Override
             public void onFailure(Call<MessageChat> call, Throwable t) {
-                Log.e("zzzzzzzzzzzzzz", t.getMessage()+"error" );
+                Log.e(AppConstant.CALL_ERROR, t.getMessage());
+            }
+        });
+    }
+
+    public void getPriceCashPay(String id, Consumer<Integer> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getPriceCash(id).enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListPayCashFlow(String id, Consumer<List<CashFlowResponse>> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListCashFlow(id).enqueue(new Callback<List<CashFlowResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<CashFlowResponse>> call, Response<List<CashFlowResponse>> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<CashFlowResponse>> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void createCashByUser(CashFlowRequest cashFlowRequest, Consumer<TextResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.createCashFlow(cashFlowRequest).enqueue(new Callback<TextResponse>() {
+                    @Override
+                    public void onResponse(Call<TextResponse> call, Response<TextResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TextResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
             }
         });
     }

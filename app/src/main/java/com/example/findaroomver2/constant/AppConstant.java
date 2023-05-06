@@ -15,4 +15,7 @@ public interface AppConstant {
     String ID_USER = "ID_USER";
     String IMAGE_USER = "IMAGE_USER";
     String NAME_USER = "NAME_USER";
+    String DOT = ",";
+    String CHECK_SUCCESS = "CHECK_SUCCESS";
+    String CHECK_SUCCESS_ADD_MONEY = "CHECK_SUCCESS_ADD_MONEY";
 }
