@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -52,6 +54,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        SpannableString content = new SpannableString("Chính sách của chúng tôi");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        binding.policy.setText(content);
+
+        binding.policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, PolicyActivity.class));
+            }
+        });
+
         binding.btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                     CustomToast.ct(RegisterActivity.this, "Bạn chưa nhập lại nhập mật khẩu", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 } else if (!binding.password02.getText().toString().equals(binding.password.getText().toString())) {
                     CustomToast.ct(RegisterActivity.this, "Mật khẩu không trùng nhau", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                }else {
+                } else {
                     registerViewModel.register(new UserRegisterRequest(binding.sodienthoai.getText().toString(), binding.diachiemai.getText().toString(), binding.password02.getText().toString(), binding.username.getText().toString(), role, "token"));
                 }
             }

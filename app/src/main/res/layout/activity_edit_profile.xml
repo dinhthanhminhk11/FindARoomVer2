@@ -138,7 +138,6 @@
                         android:background="@color/white"
                         android:hint="Chứng minh nhân dân"
                         app:boxStrokeColor="@color/hint_color"
-                        app:counterMaxLength="12"
                         app:hintTextColor="@color/hint_color">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -147,6 +146,7 @@
                             android:layout_height="54dp"
                             android:background="@color/white"
                             android:inputType="number"
+                            android:maxLength="12"
                             android:textColor="@color/black"
                             android:textSize="13dp" />
 
@@ -179,13 +179,6 @@
                         android:layout_marginTop="-49dp"
                         android:src="@drawable/ic_line_edit_profile" />
 
-                    <ImageView
-                        android:id="@+id/iconLocalEditProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="-32dp"
-                        android:src="@drawable/baseline_place_24" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/saveEditProfile"
@@ -206,5 +199,18 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:background="@null"
+        android:backgroundTint="@null"
+        android:backgroundTintMode="@null"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true" />
 
 </RelativeLayout>

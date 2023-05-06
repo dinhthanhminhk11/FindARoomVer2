@@ -250,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -268,7 +268,15 @@
                         android:textColor="#FFCA00"
                         android:textSize="15dp" />
                 </LinearLayout>
-
+                <TextView
+                    android:id="@+id/policy"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/yellowEFC900"
+                    android:textSize="15dp"
+                    tools:ignore="TextSizeCheck" />
             </LinearLayout>
 
         </FrameLayout>

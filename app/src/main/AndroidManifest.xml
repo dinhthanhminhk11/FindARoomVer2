@@ -30,6 +30,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.PolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.UpdateAccountHostActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.EditProfileActivity"
             android:exported="false" />
         <activity

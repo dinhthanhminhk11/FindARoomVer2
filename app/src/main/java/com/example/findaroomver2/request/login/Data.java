@@ -17,6 +17,10 @@ public class Data {
     private String accessToken;
     @SerializedName("image")
     private String image;
+    @SerializedName("address")
+    private String address;
+    @SerializedName("personId")
+    private String personId;
     @SerializedName("role")
     private int role;
 
@@ -54,5 +58,13 @@ public class Data {
 
     public String getImage() {
         return image;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPersonId() {
+        return personId;
     }
 }

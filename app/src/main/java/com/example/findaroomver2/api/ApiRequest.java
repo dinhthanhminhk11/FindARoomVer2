@@ -5,6 +5,7 @@ import com.example.findaroomver2.model.DataUser;
 import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
+import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.comment.Comment;
@@ -25,6 +26,7 @@ import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
+import com.example.findaroomver2.response.updateUser.UserUpdateResponse;
 
 import java.util.List;
 
@@ -124,4 +126,9 @@ public interface ApiRequest {
     @POST("createCashFlow")
     Call<TextResponse> createCashFlow(@Body CashFlowRequest cashFlowRequest);
 
+    @POST("changeInFo")
+    Call<UserUpdateResponse> updateUserInFo(@Body UserEditProfileRequest userEditProfileRequest);
+
+    @POST("updateAccount/{id}")
+    Call<UserUpdateResponse> updateAccount(@Path("id") String id);
 }

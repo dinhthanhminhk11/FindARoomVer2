@@ -14,6 +14,7 @@ import com.example.findaroomver2.model.DataUser;
 import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
+import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.comment.Comment;
@@ -33,6 +34,7 @@ import com.example.findaroomver2.response.money.CashFlowResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
+import com.example.findaroomver2.response.updateUser.UserUpdateResponse;
 import com.example.findaroomver2.retrofit.AndroidUtilities;
 import com.example.findaroomver2.retrofit.RetrofitRequest;
 
@@ -668,6 +670,52 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<TextResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateUserInFo(UserEditProfileRequest userEditProfileRequest, Consumer<UserUpdateResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateUserInFo(userEditProfileRequest).enqueue(new Callback<UserUpdateResponse>() {
+                    @Override
+                    public void onResponse(Call<UserUpdateResponse> call, Response<UserUpdateResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserUpdateResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateAccount(String id, Consumer<UserUpdateResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateAccount(id).enqueue(new Callback<UserUpdateResponse>() {
+                    @Override
+                    public void onResponse(Call<UserUpdateResponse> call, Response<UserUpdateResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserUpdateResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });
