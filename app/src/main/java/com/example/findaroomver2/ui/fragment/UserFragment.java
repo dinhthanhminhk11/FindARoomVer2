@@ -25,6 +25,7 @@ import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.FragmentUserBinding;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.activity.ChangePasswordActivity;
 import com.example.findaroomver2.ui.activity.EditProfileActivity;
 import com.example.findaroomver2.ui.activity.LoginActivity;
 import com.example.findaroomver2.ui.activity.PayCashYourActivity;
@@ -121,6 +122,13 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), UpdateAccountHostActivity.class));
+            }
+        });
+
+        binding.contentChangePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
             }
         });
     }

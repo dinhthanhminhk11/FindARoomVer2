@@ -6,6 +6,7 @@ import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
+import com.example.findaroomver2.request.changepass.ChangePasswordRequest;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.comment.Comment;
@@ -35,6 +36,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -131,4 +133,7 @@ public interface ApiRequest {
 
     @POST("updateAccount/{id}")
     Call<UserUpdateResponse> updateAccount(@Path("id") String id);
+
+    @PATCH("updatePassword")
+    Call<TextResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
 }

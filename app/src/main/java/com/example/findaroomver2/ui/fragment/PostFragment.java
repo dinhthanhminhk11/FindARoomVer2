@@ -52,6 +52,7 @@ import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.activity.UpdateAccountHostActivity;
 import com.example.findaroomver2.ui.adapter.SupplementAdapter;
 import com.example.findaroomver2.ui.adapter.autoimage.ImageAutoSliderAdapter;
 import com.example.findaroomver2.ui.customview.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -232,16 +233,6 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
         supplements = new ArrayList<>();
         path = new ArrayList<>();
         postViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-
-        token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
-
-        if (!token.equals("")) {
-            binding.contentNullLogin.setVisibility(View.GONE);
-            binding.conentNotNull.setVisibility(View.VISIBLE);
-        } else {
-            binding.contentNullLogin.setVisibility(View.VISIBLE);
-            binding.conentNotNull.setVisibility(View.GONE);
-        }
 
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -448,6 +439,13 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
                 datePickerDialog.show();
             }
         });
+
+        binding.updateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), UpdateAccountHostActivity.class));
+            }
+        });
     }
 
     @Override
@@ -561,14 +559,31 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(KeyEvent event) {
         if (event.getIdEven() == NotificationCenter.checkLogin) {
-            token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
-            if (!token.equals("")) {
-                binding.contentNullLogin.setVisibility(View.GONE);
+            checkLogin();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkLogin();
+    }
+
+    private void checkLogin() {
+        token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
+        if (!token.equals("")) {
+            binding.contentNullLogin.setVisibility(View.GONE);
+            if (UserClient.getInstance().getRole() == 2) {
                 binding.conentNotNull.setVisibility(View.VISIBLE);
+                binding.contentCheckAccount.setVisibility(View.GONE);
             } else {
-                binding.contentNullLogin.setVisibility(View.VISIBLE);
                 binding.conentNotNull.setVisibility(View.GONE);
+                binding.contentCheckAccount.setVisibility(View.VISIBLE);
             }
+        } else {
+            binding.contentNullLogin.setVisibility(View.VISIBLE);
+            binding.conentNotNull.setVisibility(View.GONE);
+            binding.contentCheckAccount.setVisibility(View.GONE);
         }
     }
 

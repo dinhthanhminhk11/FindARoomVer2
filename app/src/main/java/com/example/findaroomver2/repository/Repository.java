@@ -15,6 +15,7 @@ import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
+import com.example.findaroomver2.request.changepass.ChangePasswordRequest;
 import com.example.findaroomver2.request.changepass.Email;
 import com.example.findaroomver2.request.changepass.Verify;
 import com.example.findaroomver2.request.comment.Comment;
@@ -716,6 +717,29 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<UserUpdateResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void changePassword(ChangePasswordRequest changePasswordRequest, Consumer<TextResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.changePassword(changePasswordRequest).enqueue(new Callback<TextResponse>() {
+                    @Override
+                    public void onResponse(Call<TextResponse> call, Response<TextResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TextResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });
