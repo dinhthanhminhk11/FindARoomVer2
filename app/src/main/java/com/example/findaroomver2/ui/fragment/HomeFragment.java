@@ -87,7 +87,6 @@ public class HomeFragment extends Fragment {
 
     private void initView() {
         mainViewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
-        mainViewModel.getAllListPostHome();
 
         binding.listItemTrend.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.rcvPost.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -146,6 +145,12 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mainViewModel.getAllListPostHome();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
@@ -160,7 +165,7 @@ public class HomeFragment extends Fragment {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(KeyEvent event) {
         if (event.getIdEven() == NotificationCenter.checkLogin) {
-            mainViewModel.getAllListPostHome();
+//            mainViewModel.getAllListPostHome();
         }
     }
 }

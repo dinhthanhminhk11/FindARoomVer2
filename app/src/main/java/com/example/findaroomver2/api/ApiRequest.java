@@ -143,4 +143,10 @@ public interface ApiRequest {
 
     @GET("bookmark/getListBookmarkByUserId/{id}")
     Call<ListBookmarkResponse> getListBookmarkByIdUser(@Path("id") String id);
+
+    @GET("postByIdUser/{id}")
+    Call<PostHome> getListPostByMyself(@Path("id") String id);
+
+    @DELETE("post/{id}")
+    Call<PostResponse> deletePost(@Path("id") String idUser);
 }

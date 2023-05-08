@@ -153,6 +153,58 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
                 binding.time.setText("Giờ tạo " + postResponse.getData().getTime());
                 binding.date.setText("Ngày tạo " + postResponse.getData().getDate());
+
+                binding.timeEdit.setText("Giờ chỉnh sửa " + postResponse.getData().getTimeEdit());
+                binding.dateEdit.setText("Ngày chỉnh sửa " + postResponse.getData().getDateEdit());
+                if (postResponse.getData().isStatusEdit()) {
+                    binding.contentEdit.setVisibility(View.VISIBLE);
+                } else {
+                    binding.contentEdit.setVisibility(View.GONE);
+                }
+
+                // check truownfg hopwj nguoi dunfg vao chinh bai viet cua ho
+                if (UserClient.getInstance().getId().equals(postResponse.getData().getIdUser())) {
+                    binding.dateAds.setText(postResponse.getData().getTimeAdvertisement() + " ngày");
+
+                    if (postResponse.getData().isAdvertisement()) {
+                        binding.contentAds.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.contentAds.setVisibility(View.GONE);
+                    }
+
+                    binding.contentPriceAds.setVisibility(View.VISIBLE);
+                    int sum = postResponse.getData().getPriceAll();
+                    int pricePostAds = 50000 * postResponse.getData().getTimeAdvertisement();
+
+                    if (sum == 0) {
+                        binding.contentPriceAds.setVisibility(View.GONE);
+                    }
+
+                    if (pricePostAds == 0) {
+                        binding.priceAdsDay.setVisibility(View.GONE);
+                    }
+
+                    if (sum - pricePostAds == 0) {
+                        binding.pricePostAds.setVisibility(View.GONE);
+                    }
+
+                    binding.pricePostAds.setText(fm.format(sum - pricePostAds) + " VND/bài");
+                    binding.priceAdsDay.setText(fm.format(pricePostAds) + " VND/" + postResponse.getData().getTimeAdvertisement() + " ngày");
+
+                    binding.contentStatusAdmin.setVisibility(View.VISIBLE);
+                    binding.textStatusAdmin.setText(postResponse.getData().getMessageConfirm());
+
+                    if (postResponse.getData().getTextConfirm() == null || postResponse.getData().getTextConfirm().equals("")) {
+                        binding.textConfirmAdmin.setVisibility(View.GONE);
+                    } else {
+                        binding.textConfirmAdmin.setVisibility(View.VISIBLE);
+                        binding.textConfirmAdmin.setText(postResponse.getData().getTextConfirm());
+                    }
+                } else {
+                    binding.contentAds.setVisibility(View.GONE);
+                    binding.contentPriceAds.setVisibility(View.GONE);
+                    binding.contentStatusAdmin.setVisibility(View.GONE);
+                }
             }
         });
         detailPostViewModel.getProgress().observe(this, new Observer<Integer>() {

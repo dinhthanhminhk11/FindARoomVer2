@@ -29,6 +29,7 @@ import com.example.findaroomver2.ui.activity.BookmarkActivity;
 import com.example.findaroomver2.ui.activity.ChangePasswordActivity;
 import com.example.findaroomver2.ui.activity.EditProfileActivity;
 import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.activity.ManagerPostActivity;
 import com.example.findaroomver2.ui.activity.PayCashYourActivity;
 import com.example.findaroomver2.ui.activity.UpdateAccountHostActivity;
 
@@ -137,6 +138,13 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), BookmarkActivity.class));
+            }
+        });
+
+        binding.contentPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ManagerPostActivity.class));
             }
         });
     }

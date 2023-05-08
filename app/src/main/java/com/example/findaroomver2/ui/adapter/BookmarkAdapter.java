@@ -1,6 +1,7 @@
 package com.example.findaroomver2.ui.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ItemBookmarkBinding;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.response.post.PostResponse;
+import com.example.findaroomver2.ui.activity.DetailActivity;
 import com.example.findaroomver2.ui.bottomsheet.BottomSheetBookmark;
 
 import java.text.DecimalFormat;
@@ -66,6 +69,14 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.ViewHo
                         }
                     });
                     bottomsheetBookmark.show();
+                }
+            });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(holder.itemView.getContext(), DetailActivity.class);
+                    intent.putExtra(AppConstant.ID_POST, bookmark.getIdPost());
+                    holder.itemView.getContext().startActivity(intent);
                 }
             });
         }
