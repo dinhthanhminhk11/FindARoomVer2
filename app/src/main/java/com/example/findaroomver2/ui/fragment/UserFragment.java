@@ -189,6 +189,7 @@ public class UserFragment extends Fragment {
             binding.contentBySeft.setVisibility(View.VISIBLE);
             binding.contentBookmark.setVisibility(View.VISIBLE);
             binding.contentLogout.setVisibility(View.VISIBLE);
+            binding.contentNotNullLogin.setVisibility(View.VISIBLE);
             initData();
         } else {
             // chưa đăng nhập
@@ -203,6 +204,7 @@ public class UserFragment extends Fragment {
             binding.contentBySeft.setVisibility(View.GONE);
             binding.contentBookmark.setVisibility(View.GONE);
             binding.contentLogout.setVisibility(View.GONE);
+            binding.contentNotNullLogin.setVisibility(View.GONE);
         }
     }
 

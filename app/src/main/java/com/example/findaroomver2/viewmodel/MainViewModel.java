@@ -25,6 +25,8 @@ public class MainViewModel extends AndroidViewModel {
 
     private Repository repository;
     private MutableLiveData<Integer> progress = new MutableLiveData<>();
+    private MutableLiveData<Integer> countPostUser = new MutableLiveData<>();
+    private MutableLiveData<Integer> priceCash = new MutableLiveData<>();
     private MutableLiveData<DataSupplement> dataSupplementMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<PostResponse> postResponseMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<UserResponseLogin> userResponseLoginMutableLiveData = new MutableLiveData<>();
@@ -79,6 +81,28 @@ public class MainViewModel extends AndroidViewModel {
         });
     }
 
+    public void getCountPost(String id) {
+        progress.setValue(View.VISIBLE);
+        repository.getCountPost(id, new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                countPostUser.postValue(integer);
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void getPriceCashFlow(String id) {
+        progress.setValue(View.VISIBLE);
+        repository.getPriceCashPay(id, new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                priceCash.postValue(integer);
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
     public LiveData<List<ContentChat>> getMsgId(String send) {
         return repository.getMsgId(send);
     }
@@ -110,5 +134,13 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<Data>> getHost(String id) {
         return repository.getHost(id);
+    }
+
+    public MutableLiveData<Integer> getCountPostUser() {
+        return countPostUser;
+    }
+
+    public MutableLiveData<Integer> getPriceCash() {
+        return priceCash;
     }
 }

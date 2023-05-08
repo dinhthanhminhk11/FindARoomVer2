@@ -56,7 +56,7 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
     private FragmentChatBinding binding;
     private HostAdapter hostAdapter;
     private String token = "";
-    private List<String> listHost   ;
+    private List<String> listHost;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -118,7 +118,12 @@ public class ChatFragment extends Fragment implements HostAdapter.EventClick {
         hostAdapter = new HostAdapter();
 
         binding.rcvListHost.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.btnSearch.setOnClickListener(v -> callbackClick.clickHome());
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkSearch));
+            }
+        });
 
         token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
 

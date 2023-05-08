@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.constant.TimeUtils;
 import com.example.findaroomver2.databinding.ItemPostHomeBinding;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.model.UserClient;
@@ -92,7 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.binding.title.setText(item.getTitle());
             holder.binding.price.setText(fm.format(item.getPrice()) + " VND");
             holder.binding.content.setText(item.getDescribe());
-            holder.binding.time.setText(item.getTime() + " " + item.getDate());
+            holder.binding.time.setText(TimeUtils.getTimeAgo(item.getTimeLong()));
             if (item.getImages().size() == 1) {
 
                 Glide.with(holder.binding.contentImage1Imag1.getContext()).load(item.getImages().get(0)).apply(options).into(holder.binding.contentImage1Imag1);

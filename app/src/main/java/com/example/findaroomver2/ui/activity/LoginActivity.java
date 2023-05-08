@@ -32,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.username.setText("dinhthanhminhk11@gmail.com");
-        binding.password.setText("12345678d");
+        binding.username.setText("abc123@gmail.com");
+        binding.password.setText("abc123");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding.btnLogin.setOnClickListener(v -> {

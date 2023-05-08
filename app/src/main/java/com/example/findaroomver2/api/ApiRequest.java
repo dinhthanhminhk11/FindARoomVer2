@@ -123,6 +123,9 @@ public interface ApiRequest {
     @GET("getCash/{id}")
     Call<Integer> getPriceCash(@Path("id") String id);
 
+    @GET("getCountPost/{id}")
+    Call<Integer> getCountPost(@Path("id") String id);
+
     @GET("listCashFlow/{id}")
     Call<List<CashFlowResponse>> getListCashFlow(@Path("id") String id);
 

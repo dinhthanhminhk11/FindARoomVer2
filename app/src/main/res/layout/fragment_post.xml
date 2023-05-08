@@ -61,8 +61,8 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="5dp"
             android:maxLines="2"
-            android:textAlignment="center"
             android:text="Chức năng này chỉ dành cho tài khoản chủ nhà hãy nâng cấp để sử dụng"
+            android:textAlignment="center"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -987,6 +987,56 @@
                     android:overScrollMode="never"
                     android:padding="10dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="Quảng cáo bài viết"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_2767A5"
+                    android:textSize="16dp" />
+
+                <CheckBox
+                    android:id="@+id/checkBoxAds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans"
+                    android:text="Đăng lên tin nổi bật" />
+
+                <LinearLayout
+                    android:id="@+id/contentAds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thời gian quảng cáo(ngày)"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/timeAds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/framesearch_homefragment"
+                        android:drawablePadding="@dimen/size_10"
+                        android:hint="50 nghìn/ngày"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:paddingVertical="@dimen/size_16"
+                        android:paddingLeft="@dimen/size_16"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/color_858585"
+                        android:textSize="15sp"
+                        tools:ignore="Autofill,ObsoleteLayoutParam,RtlHardcoded,RtlSymmetry,VisualLintTextFieldSize,TextContrastCheck" />
+
+                </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

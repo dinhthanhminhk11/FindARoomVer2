@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.findaroomver2.constant.AppConstant;
+import com.example.findaroomver2.constant.CallbackClick;
 import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.ActivityMainBinding;
 import com.example.findaroomver2.event.KeyEvent;
@@ -32,7 +33,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
     private int backPressedCount = 0;
     private final int MAX_BACK_PRESS_COUNT = 2;
     private final int BACK_PRESS_TIME_INTERVAL = 2000;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 userClient.setImage(userResponseLogin.getData().getImage());
             }
         });
-
     }
 
     @Override
@@ -106,8 +106,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onMessageEvent(KeyEvent event) {
-        if (event.getIdEven() == NotificationCenter.create_post_success) {
-
+        if (event.getIdEven() == NotificationCenter.checkSearch) {
+            activityMainBinding.bottomBar.setSelectedItemId(R.id.tab_home);
+            loadFragment(new HomeFragment());
+            KeyEvent locationReceivedStickyEvent = EventBus.getDefault().getStickyEvent(KeyEvent.class);
+            EventBus.getDefault().removeStickyEvent(locationReceivedStickyEvent);
         }
     }
 

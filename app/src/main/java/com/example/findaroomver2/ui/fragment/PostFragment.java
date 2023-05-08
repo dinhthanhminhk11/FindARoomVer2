@@ -47,6 +47,7 @@ import com.example.findaroomver2.databinding.FragmentPostBinding;
 import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.model.UserClient;
+import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
@@ -76,6 +77,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 
 public class PostFragment extends Fragment implements SupplementAdapter.OnItemClickListener {
@@ -89,6 +91,14 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private DatePickerDialog datePickerDialog;
     private ImageButton closeImgBtn;
     private Button confirm;
+    private Repository repository;
+    private int pricePost = 0;
+    private int priceAdvertisement = 50000;
+    private boolean isAds = false;
+
+    private int countPostUser = 0;
+    private int priceCashUser = 0;
+
     private ActivityResultLauncher<Intent> startForResultCallback = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -229,6 +239,7 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     }
 
     private void initView() {
+        repository = new Repository();
         initConfig();
         supplements = new ArrayList<>();
         path = new ArrayList<>();
@@ -294,7 +305,6 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
         binding.imageItem.setScrollTimeInSec(4); //set scroll delay in seconds :
         binding.imageItem.startAutoCycle();
 
-        postViewModel.getListSupplement();
         postViewModel.getDataSupplementMutableLiveData().observe(getActivity(), new Observer<DataSupplement>() {
             @Override
             public void onChanged(DataSupplement dataSupplement) {
@@ -395,8 +405,55 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onClick(View view) {
+
                 if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && binding.countImage.getText().toString().length() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
-                    postViewModel.createPost(new Post(UserClient.getInstance().getId(), nameCategory, binding.title.getText().toString(), images, binding.cty.getText().toString(), binding.district.getText().toString(), binding.wards.getText().toString(), binding.street.getText().toString(), binding.address.getText().toString(), Integer.parseInt(binding.acreage.getText().toString()), Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.bedroom.getText().toString()), Integer.parseInt(binding.bathroom.getText().toString()), Integer.parseInt(binding.countPerson.getText().toString()), binding.startDay.getText().toString(), Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")), binding.textMore.getText().toString(), binding.phone.getText().toString(), supplements));
+                    int sum;
+                    if (isAds) {
+                        sum = pricePost + (priceAdvertisement * Integer.parseInt(binding.timeAds.getText().toString()));
+                    } else {
+                        sum = pricePost;
+                    }
+                    if (priceCashUser < pricePost) {
+                        CustomToast.ct(getActivity(), "Số dư tài khoản không đủ xin hay nạp thêm", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                    } else {
+                        binding.progressBar.setVisibility(View.VISIBLE);
+                        repository.createPost(new Post(
+                                UserClient.getInstance().getId(),
+                                nameCategory,
+                                binding.title.getText().toString(),
+                                images,
+                                binding.cty.getText().toString(),
+                                binding.district.getText().toString(),
+                                binding.wards.getText().toString(),
+                                binding.street.getText().toString(),
+                                binding.address.getText().toString(),
+                                Integer.parseInt(binding.acreage.getText().toString()),
+                                Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")),
+                                Integer.parseInt(binding.bedroom.getText().toString()),
+                                Integer.parseInt(binding.bathroom.getText().toString()),
+                                Integer.parseInt(binding.countPerson.getText().toString()),
+                                binding.startDay.getText().toString(),
+                                Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")),
+                                Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                binding.textMore.getText().toString(),
+                                binding.phone.getText().toString(),
+                                supplements,
+                                isAds,
+                                binding.timeAds.getText().toString().isEmpty() ? 0 : Integer.parseInt(binding.timeAds.getText().toString()),
+                                sum), new Consumer<PostResponse>() {
+                            @Override
+                            public void accept(PostResponse postResponse) {
+                                binding.progressBar.setVisibility(View.GONE);
+                                if (postResponse.getMessage().isStatus()) {
+                                    initdialogSuccess();
+                                } else {
+                                    initdialogFailed();
+                                }
+                            }
+                        });
+                    }
                 } else {
                     CustomToast.ct(getActivity(), "Các trường không được để trống", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 }
@@ -410,16 +467,6 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
             }
         });
 
-        postViewModel.getPostResponseMutableLiveData().observe(getActivity(), new Observer<PostResponse>() {
-            @Override
-            public void onChanged(PostResponse postResponse) {
-                if (postResponse.getMessage().isStatus()) {
-                    initdialogSuccess();
-                } else {
-                    initdialogFailed();
-                }
-            }
-        });
         binding.startDay.setFocusable(false);
         binding.startDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -446,6 +493,40 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
                 startActivity(new Intent(getActivity(), UpdateAccountHostActivity.class));
             }
         });
+
+        binding.checkBoxAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (binding.checkBoxAds.isChecked()) {
+                    binding.contentAds.setVisibility(View.VISIBLE);
+                    isAds = true;
+                } else {
+                    binding.contentAds.setVisibility(View.GONE);
+                    isAds = false;
+                    priceAdvertisement = 0;
+                }
+            }
+        });
+
+        postViewModel.getCountPostUser().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                countPostUser = integer;
+                if (integer > 5) {
+                    pricePost = 20000;
+                } else {
+                    pricePost = 0;
+                }
+            }
+        });
+
+        postViewModel.getPriceCash().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                priceCashUser = integer;
+            }
+        });
+
     }
 
     @Override
@@ -572,6 +653,9 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private void checkLogin() {
         token = MySharedPreferences.getInstance(getActivity()).getString(AppConstant.USER_TOKEN, "");
         if (!token.equals("")) {
+            postViewModel.getListSupplement();
+            postViewModel.getCountPost(UserClient.getInstance().getId());
+            postViewModel.getPriceCashFlow(UserClient.getInstance().getId());
             binding.contentNullLogin.setVisibility(View.GONE);
             if (UserClient.getInstance().getRole() == 2) {
                 binding.conentNotNull.setVisibility(View.VISIBLE);
@@ -719,5 +803,4 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
 
         dialogFailed.show();
     }
-
 }
