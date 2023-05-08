@@ -18,6 +18,7 @@ import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.bookmark.BookmarkResponse;
+import com.example.findaroomver2.response.bookmark.ListBookmarkResponse;
 import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.comment.CommentResponse;
 import com.example.findaroomver2.response.favourite.CountFavourite;
@@ -136,4 +137,7 @@ public interface ApiRequest {
 
     @PATCH("updatePassword")
     Call<TextResponse> changePassword(@Body ChangePasswordRequest changePasswordRequest);
+
+    @GET("bookmark/getListBookmarkByUserId/{id}")
+    Call<ListBookmarkResponse> getListBookmarkByIdUser(@Path("id") String id);
 }

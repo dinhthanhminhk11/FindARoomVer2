@@ -31,6 +31,10 @@ public class BottomSheetBookmark extends BottomSheetDialog {
     private boolean isClickSpeed = true;
     private Repository repository;
 
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
     public BottomSheetBookmark(@NonNull Context context, String idUser, String idPost, Repository repository) {
         super(context);
         this.idPost = idPost;
@@ -82,7 +86,6 @@ public class BottomSheetBookmark extends BottomSheetDialog {
                             Toast.makeText(btnSave.getContext(), bookmarkResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-//                    btnSave.setText("Bỏ lưu bài viết");
                     isClickSpeed = false;
                     cancel();
                 } else {
@@ -90,9 +93,11 @@ public class BottomSheetBookmark extends BottomSheetDialog {
                         @Override
                         public void accept(BookmarkResponse bookmarkResponse) {
                             Toast.makeText(btnSave.getContext(), bookmarkResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                            if (callback != null) {
+                                callback.onClick();
+                            }
                         }
                     });
-//                    btnSave.setText("Lưu bài viết");
                     isClickSpeed = true;
                     cancel();
                 }
@@ -101,6 +106,6 @@ public class BottomSheetBookmark extends BottomSheetDialog {
     }
 
     public interface Callback {
-        void onClick(AppCompatButton btnSave);
+        void onClick();
     }
 }

@@ -27,6 +27,7 @@ import com.example.findaroomver2.request.register.UserRegisterRequest;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.bookmark.BookmarkResponse;
+import com.example.findaroomver2.response.bookmark.ListBookmarkResponse;
 import com.example.findaroomver2.response.comment.CommentListResponse;
 import com.example.findaroomver2.response.comment.CommentResponse;
 import com.example.findaroomver2.response.favourite.CountFavourite;
@@ -740,6 +741,29 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<TextResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListBookmarkByIdUser(String id, Consumer<ListBookmarkResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListBookmarkByIdUser(id).enqueue(new Callback<ListBookmarkResponse>() {
+                    @Override
+                    public void onResponse(Call<ListBookmarkResponse> call, Response<ListBookmarkResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ListBookmarkResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });

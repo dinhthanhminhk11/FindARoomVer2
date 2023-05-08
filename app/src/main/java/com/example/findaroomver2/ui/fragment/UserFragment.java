@@ -25,6 +25,7 @@ import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.FragmentUserBinding;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.activity.BookmarkActivity;
 import com.example.findaroomver2.ui.activity.ChangePasswordActivity;
 import com.example.findaroomver2.ui.activity.EditProfileActivity;
 import com.example.findaroomver2.ui.activity.LoginActivity;
@@ -131,6 +132,13 @@ public class UserFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
             }
         });
+
+        binding.contentBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), BookmarkActivity.class));
+            }
+        });
     }
 
     private void showDialog() {
@@ -179,6 +187,7 @@ public class UserFragment extends Fragment {
             binding.layoutContentPayment.setVisibility(View.VISIBLE);
             binding.contentUpdateAccount.setVisibility(View.VISIBLE);
             binding.contentBySeft.setVisibility(View.VISIBLE);
+            binding.contentBookmark.setVisibility(View.VISIBLE);
             binding.contentLogout.setVisibility(View.VISIBLE);
             initData();
         } else {
@@ -192,6 +201,7 @@ public class UserFragment extends Fragment {
             binding.layoutContentPayment.setVisibility(View.GONE);
             binding.contentUpdateAccount.setVisibility(View.GONE);
             binding.contentBySeft.setVisibility(View.GONE);
+            binding.contentBookmark.setVisibility(View.GONE);
             binding.contentLogout.setVisibility(View.GONE);
         }
     }

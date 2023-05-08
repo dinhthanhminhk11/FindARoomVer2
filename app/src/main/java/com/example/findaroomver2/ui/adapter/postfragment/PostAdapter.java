@@ -200,7 +200,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                     if (!token.equals("")) {
-                        BottomSheetBookmark bottomsheetBookmark = new BottomSheetBookmark(view.getContext(), item.getIdUser(), item.get_id(), repository);
+                        BottomSheetBookmark bottomsheetBookmark = new BottomSheetBookmark(view.getContext(), UserClient.getInstance().getId(), item.get_id(), repository);
                         bottomsheetBookmark.show();
                     } else {
                         initDiaLog(holder.itemView.getContext());
