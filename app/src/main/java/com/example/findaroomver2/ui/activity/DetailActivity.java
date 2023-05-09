@@ -162,8 +162,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     binding.contentEdit.setVisibility(View.GONE);
                 }
 
-                // check truownfg hopwj nguoi dunfg vao chinh bai viet cua ho
-                if (UserClient.getInstance().getId().equals(postResponse.getData().getIdUser())) {
+                if (postResponse.getData().getIdUser().equals(UserClient.getInstance().getId())) {
                     binding.dateAds.setText(postResponse.getData().getTimeAdvertisement() + " ngày");
 
                     if (postResponse.getData().isAdvertisement()) {

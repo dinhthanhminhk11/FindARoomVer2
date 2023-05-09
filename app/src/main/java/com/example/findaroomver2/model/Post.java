@@ -48,6 +48,20 @@ public class Post implements Serializable {
     private int priceAll;
     private long timeLong;
 
+    public Post(String idUser, String _id, boolean advertisement, int timeAdvertisement, int priceAll) {
+        this.idUser = idUser;
+        this._id = _id;
+        this.advertisement = advertisement;
+        this.timeAdvertisement = timeAdvertisement;
+        this.priceAll = priceAll;
+    }
+
+    public Post(boolean statusRoom, String messageRoom, String _id) {
+        this.statusRoom = statusRoom;
+        this.messageRoom = messageRoom;
+        this._id = _id;
+    }
+
     public Post(String idUser, String nameCategory, String title, List<String> images, String cty, String district, String wards, String street, String address, int acreage, int deposit, int bedroom, int bathroom, int countPerson, String startDate, int price, int electricityPrice, int waterPrice, int wifi, String describe, String phone, List<Supplement> supplements, String time, String date, boolean statusConfirm, String messageConfirm, String textConfirm, boolean statusRoom, String messageRoom, boolean statusEdit, String timeEdit, String dateEdit, String _id, int __v) {
         this.idUser = idUser;
         this.nameCategory = nameCategory;
@@ -86,6 +100,32 @@ public class Post implements Serializable {
     }
 
     public Post(String idUser, String nameCategory, String title, List<String> images, String cty, String district, String wards, String street, String address, int acreage, int deposit, int bedroom, int bathroom, int countPerson, String startDate, int price, int electricityPrice, int waterPrice, int wifi, String describe, String phone, List<Supplement> supplements) {
+        this.idUser = idUser;
+        this.nameCategory = nameCategory;
+        this.title = title;
+        this.images = images;
+        this.cty = cty;
+        this.district = district;
+        this.wards = wards;
+        this.street = street;
+        this.address = address;
+        this.acreage = acreage;
+        this.deposit = deposit;
+        this.bedroom = bedroom;
+        this.bathroom = bathroom;
+        this.countPerson = countPerson;
+        this.startDate = startDate;
+        this.price = price;
+        this.electricityPrice = electricityPrice;
+        this.waterPrice = waterPrice;
+        this.wifi = wifi;
+        this.describe = describe;
+        this.phone = phone;
+        this.supplements = supplements;
+    }
+
+    public Post(String _id, String idUser, String nameCategory, String title, List<String> images, String cty, String district, String wards, String street, String address, int acreage, int deposit, int bedroom, int bathroom, int countPerson, String startDate, int price, int electricityPrice, int waterPrice, int wifi, String describe, String phone, List<Supplement> supplements) {
+        this._id = _id;
         this.idUser = idUser;
         this.nameCategory = nameCategory;
         this.title = title;

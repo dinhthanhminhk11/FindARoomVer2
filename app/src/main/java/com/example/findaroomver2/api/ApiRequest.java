@@ -149,4 +149,13 @@ public interface ApiRequest {
 
     @DELETE("post/{id}")
     Call<PostResponse> deletePost(@Path("id") String idUser);
+
+    @PATCH("post/{id}")
+    Call<PostResponse> editPost(@Body Post post, @Path("id") String idUser);
+
+    @POST("post/postUpdateStatusRoom")
+    Call<PostResponse> updateStatusRoom(@Body Post post);
+
+    @POST("ads/updatePostAds")
+    Call<PostResponse> adsPost(@Body Post post);
 }

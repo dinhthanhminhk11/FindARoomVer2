@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.PostSuccessActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="210dp"
+            android:layout_centerInParent="true"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:backgroundTintMode="@null"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="success.json" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Đăng bài thành công"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="18dp"
+            android:text="Đóng góp của bạn sẽ giúp chúng tôi hoàn thiện hơn"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/sumit"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_below="@+id/btnStart"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_ui_green"
+            android:text="Quay về trang chủ"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:backgroundTint="@null" />
+    </LinearLayout>
+
+</RelativeLayout>

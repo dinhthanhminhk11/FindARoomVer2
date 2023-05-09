@@ -840,4 +840,73 @@ public class Repository {
             }
         });
     }
+
+    public void editPost(Post post, String id, Consumer<PostResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.editPost(post, id).enqueue(new Callback<PostResponse>() {
+                    @Override
+                    public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void adsPost(Post post, Consumer<PostResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.adsPost(post).enqueue(new Callback<PostResponse>() {
+                    @Override
+                    public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateStatusRoom(Post post, Consumer<PostResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateStatusRoom(post).enqueue(new Callback<PostResponse>() {
+                    @Override
+                    public void onResponse(Call<PostResponse> call, Response<PostResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
 }

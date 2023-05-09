@@ -20,12 +20,21 @@ public class SupplementAdapter extends RecyclerView.Adapter<SupplementAdapter.Vi
 
     private OnItemClickListener onItemClickListener;
 
+    private List<Supplement> dataChecker;
+
+    public void setDataChecker(List<Supplement> dataChecker) {
+        this.dataChecker = dataChecker;
+    }
+
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public SupplementAdapter(List<Supplement> data) {
+    public void setData(List<Supplement> data) {
         this.data = data;
+    }
+
+    public SupplementAdapter() {
     }
 
     @NonNull
@@ -54,22 +63,16 @@ public class SupplementAdapter extends RecyclerView.Adapter<SupplementAdapter.Vi
                     }
                 }
             });
-
-//            holder.binding.checkboxRent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                    if (b) {
-//                        holder.binding.checkboxRent.setChecked(b);
-//                        selectedItemsSupplement.add(supplement);
-//                    } else {
-//                        selectedItemsSupplement.remove(supplement);
-//                    }
-//                    if (onItemClickListener != null) {
-//                        onItemClickListener.onItemSelected(selectedItemsSupplement);
-//                    }
-//                    notifyDataSetChanged();
-//                }
-//            });
+            if (dataChecker != null) {
+                for (int i = 0; i < data.size(); i++) {
+                    for (int j = 0; j < dataChecker.size(); j++) {
+                        if (data.get(i).getId().equals(dataChecker.get(j).getId())) {
+                            selectedItemsSupplement.add(supplement);
+                            holder.binding.checkboxRent.setChecked(true);
+                        }
+                    }
+                }
+            }
         }
     }
 

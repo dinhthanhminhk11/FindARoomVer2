@@ -1,7 +1,7 @@
 package com.example.findaroomver2.model;
 
 public class UserClient {
-    private String id;
+    private static String id;
     private String fullName;
     private String email;
     private String phone;
@@ -19,7 +19,7 @@ public class UserClient {
         return instance;
     }
 
-    public String getId() {
+    public static  String getId() {
         return id;
     }
 

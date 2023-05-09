@@ -8,13 +8,18 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
+import com.example.findaroomver2.response.post.PostResponse;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.function.Consumer;
 
 public class BottomSheetManagerPost extends BottomSheetDialog {
     private Callback callback;
@@ -22,9 +27,16 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
     private ImageView close;
     private AppCompatButton btnEdit;
     private AppCompatButton btnDelete;
+    private AppCompatButton btnAds;
+    private AppCompatButton btnStatus;
+    private boolean statusRoom = false;
+    private String idPost;
 
-    public BottomSheetManagerPost(@NonNull Context context) {
+    public BottomSheetManagerPost(@NonNull Context context, Repository repository, boolean statusRoom, String idPost) {
         super(context);
+        this.repository = repository;
+        this.statusRoom = statusRoom;
+        this.idPost = idPost;
     }
 
     public void setCallback(Callback callback) {
@@ -45,6 +57,8 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
         close = (ImageView) findViewById(R.id.close);
         btnEdit = (AppCompatButton) findViewById(R.id.btnEdit);
         btnDelete = (AppCompatButton) findViewById(R.id.btnDelete);
+        btnAds = (AppCompatButton) findViewById(R.id.btnAds);
+        btnStatus = (AppCompatButton) findViewById(R.id.btnStatus);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +80,35 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
             public void onClick(View view) {
                 callback.onClickEdit();
                 dismiss();
+            }
+        });
+
+        if (statusRoom) {
+            btnStatus.setText("Cập nhật trạng thái: hết phòng");
+        } else {
+            btnStatus.setText("Cập nhật trạng thái: còn phòng");
+        }
+
+        btnStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (statusRoom) {
+                    repository.updateStatusRoom(new Post(false, "Hết phòng", idPost), new Consumer<PostResponse>() {
+                        @Override
+                        public void accept(PostResponse postResponse) {
+                            dismiss();
+                            Toast.makeText(btnAds.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    repository.updateStatusRoom(new Post(true, "Còn phòng", idPost), new Consumer<PostResponse>() {
+                        @Override
+                        public void accept(PostResponse postResponse) {
+                            dismiss();
+                            Toast.makeText(btnAds.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
     }

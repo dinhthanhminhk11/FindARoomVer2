@@ -20,6 +20,7 @@ import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.ui.activity.DetailActivity;
+import com.example.findaroomver2.ui.activity.EditPostActivity;
 import com.example.findaroomver2.ui.bottomsheet.BottomSheetManagerPost;
 
 import java.text.DecimalFormat;
@@ -70,7 +71,7 @@ public class ManagerPostAdapter extends RecyclerView.Adapter<ManagerPostAdapter.
             holder.binding.btnMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    BottomSheetManagerPost bottomSheetManagerPost = new BottomSheetManagerPost(holder.itemView.getContext());
+                    BottomSheetManagerPost bottomSheetManagerPost = new BottomSheetManagerPost(holder.itemView.getContext(), repository, post.isStatusRoom(), post.get_id());
                     bottomSheetManagerPost.setCallback(new BottomSheetManagerPost.Callback() {
                         @Override
                         public void onClickDelete() {
@@ -88,7 +89,9 @@ public class ManagerPostAdapter extends RecyclerView.Adapter<ManagerPostAdapter.
 
                         @Override
                         public void onClickEdit() {
-
+                            Intent intent = new Intent(holder.itemView.getContext(), EditPostActivity.class);
+                            intent.putExtra(AppConstant.ID_POST, post.get_id());
+                            holder.itemView.getContext().startActivity(intent);
                         }
                     });
                     bottomSheetManagerPost.show();

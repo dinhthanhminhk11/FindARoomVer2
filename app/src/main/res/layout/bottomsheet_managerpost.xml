@@ -44,6 +44,32 @@
         android:textColor="@color/white" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_buttom_yellow"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="10dp"
+        android:text="Thêm quảng cáo"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_buttom_green"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="10dp"
+        android:text="Cập nhật trạng thái: Còn Phòng"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

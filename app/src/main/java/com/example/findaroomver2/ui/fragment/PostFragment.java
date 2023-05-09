@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -53,9 +54,11 @@ import com.example.findaroomver2.response.supplement.DataSupplement;
 import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.activity.PostSuccessActivity;
 import com.example.findaroomver2.ui.activity.UpdateAccountHostActivity;
 import com.example.findaroomver2.ui.adapter.SupplementAdapter;
 import com.example.findaroomver2.ui.adapter.autoimage.ImageAutoSliderAdapter;
+import com.example.findaroomver2.ui.bottomsheet.BottomSheetBill;
 import com.example.findaroomver2.ui.customview.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.example.findaroomver2.ui.customview.autoimageslider.SliderAnimations;
 import com.example.findaroomver2.ui.customview.autoimageslider.SliderView;
@@ -98,7 +101,8 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
 
     private int countPostUser = 0;
     private int priceCashUser = 0;
-
+    private boolean checkMoneyUser = false;
+    private int dateAds = 0;
     private ActivityResultLauncher<Intent> startForResultCallback = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
@@ -239,6 +243,16 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     }
 
     private void initView() {
+
+        binding.title.setText("Cho thuê phòng Hà Nội");
+        binding.cty.setText("Hà Nội");
+        binding.district.setText("Thanh Xuân");
+        binding.street.setText("Vũ Trọng Phụng");
+        binding.wards.setText("Thanh Xuân Trung");
+        binding.address.setText("Số 85");
+        binding.textMore.setText("Mình cần nhượng lại phòng ngõ 75 hồ tùng mậu 3tr3 dh nl vskk");
+        binding.phone.setText("0375784487");
+
         repository = new Repository();
         initConfig();
         supplements = new ArrayList<>();
@@ -308,7 +322,8 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
         postViewModel.getDataSupplementMutableLiveData().observe(getActivity(), new Observer<DataSupplement>() {
             @Override
             public void onChanged(DataSupplement dataSupplement) {
-                supplementAdapter = new SupplementAdapter(dataSupplement.getData());
+                supplementAdapter = new SupplementAdapter();
+                supplementAdapter.setData(dataSupplement.getData());
                 binding.listUtilities.setLayoutManager(new GridLayoutManager(getActivity(), 2));
                 binding.listUtilities.setAdapter(supplementAdapter);
                 supplementAdapter.setOnItemClickListener(PostFragment.this);
@@ -405,55 +420,72 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onClick(View view) {
-
-                if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && binding.countImage.getText().toString().length() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
+                if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && images.size() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
                     int sum;
                     if (isAds) {
-                        sum = pricePost + (priceAdvertisement * Integer.parseInt(binding.timeAds.getText().toString()));
+                        dateAds = Integer.parseInt(binding.timeAds.getText().toString());
+                        sum = pricePost + (priceAdvertisement * dateAds);
                     } else {
+                        dateAds = 0;
                         sum = pricePost;
                     }
-                    if (priceCashUser < pricePost) {
-                        CustomToast.ct(getActivity(), "Số dư tài khoản không đủ xin hay nạp thêm", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+
+                    if (priceCashUser < sum) {
+                        checkMoneyUser = true;
+//                        CustomToast.ct(getActivity(), "Số dư tài khoản không đủ xin hay nạp thêm", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                     } else {
-                        binding.progressBar.setVisibility(View.VISIBLE);
-                        repository.createPost(new Post(
-                                UserClient.getInstance().getId(),
-                                nameCategory,
-                                binding.title.getText().toString(),
-                                images,
-                                binding.cty.getText().toString(),
-                                binding.district.getText().toString(),
-                                binding.wards.getText().toString(),
-                                binding.street.getText().toString(),
-                                binding.address.getText().toString(),
-                                Integer.parseInt(binding.acreage.getText().toString()),
-                                Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")),
-                                Integer.parseInt(binding.bedroom.getText().toString()),
-                                Integer.parseInt(binding.bathroom.getText().toString()),
-                                Integer.parseInt(binding.countPerson.getText().toString()),
-                                binding.startDay.getText().toString(),
-                                Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")),
-                                Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")),
-                                Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")),
-                                Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")),
-                                binding.textMore.getText().toString(),
-                                binding.phone.getText().toString(),
-                                supplements,
-                                isAds,
-                                binding.timeAds.getText().toString().isEmpty() ? 0 : Integer.parseInt(binding.timeAds.getText().toString()),
-                                sum), new Consumer<PostResponse>() {
-                            @Override
-                            public void accept(PostResponse postResponse) {
-                                binding.progressBar.setVisibility(View.GONE);
-                                if (postResponse.getMessage().isStatus()) {
-                                    initdialogSuccess();
-                                } else {
-                                    initdialogFailed();
-                                }
-                            }
-                        });
+                        checkMoneyUser = false;
                     }
+
+                    BottomSheetBill bottomSheetBill = new BottomSheetBill(getActivity(),
+                            dateAds,
+                            sum,
+                            isAds,
+                            checkMoneyUser
+                    );
+                    bottomSheetBill.setCallback(new BottomSheetBill.Callback() {
+                        @Override
+                        public void onClick() {
+                            binding.progressBar.setVisibility(View.VISIBLE);
+                            repository.createPost(new Post(
+                                    UserClient.getInstance().getId(),
+                                    nameCategory,
+                                    binding.title.getText().toString(),
+                                    images,
+                                    binding.cty.getText().toString(),
+                                    binding.district.getText().toString(),
+                                    binding.wards.getText().toString(),
+                                    binding.street.getText().toString(),
+                                    binding.address.getText().toString(),
+                                    Integer.parseInt(binding.acreage.getText().toString()),
+                                    Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.bedroom.getText().toString()),
+                                    Integer.parseInt(binding.bathroom.getText().toString()),
+                                    Integer.parseInt(binding.countPerson.getText().toString()),
+                                    binding.startDay.getText().toString(),
+                                    Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")),
+                                    binding.textMore.getText().toString(),
+                                    binding.phone.getText().toString(),
+                                    supplements,
+                                    isAds,
+                                    dateAds,
+                                    sum), new Consumer<PostResponse>() {
+                                @Override
+                                public void accept(PostResponse postResponse) {
+                                    binding.progressBar.setVisibility(View.GONE);
+                                    if (postResponse.getMessage().isStatus()) {
+                                        startActivity(new Intent(getActivity(), PostSuccessActivity.class));
+                                    } else {
+                                        initdialogFailed();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    bottomSheetBill.show();
                 } else {
                     CustomToast.ct(getActivity(), "Các trường không được để trống", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 }
@@ -500,10 +532,12 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
                 if (binding.checkBoxAds.isChecked()) {
                     binding.contentAds.setVisibility(View.VISIBLE);
                     isAds = true;
+                    priceAdvertisement = 50000;
                 } else {
                     binding.contentAds.setVisibility(View.GONE);
                     isAds = false;
                     priceAdvertisement = 0;
+                    dateAds = 0;
                 }
             }
         });

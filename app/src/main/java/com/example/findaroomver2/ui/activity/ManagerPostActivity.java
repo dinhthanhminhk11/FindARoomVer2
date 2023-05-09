@@ -1,11 +1,11 @@
 package com.example.findaroomver2.ui.activity;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
 
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.databinding.ActivityManagerPostBinding;
