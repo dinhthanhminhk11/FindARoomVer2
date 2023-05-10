@@ -158,4 +158,10 @@ public interface ApiRequest {
 
     @POST("ads/updatePostAds")
     Call<PostResponse> adsPost(@Body Post post);
+
+    @GET("post/getStatusPost/{id}")
+    Call<Boolean> getStatusPost(@Path("id") String idPost);
+
+    @GET("post/getStatusAds/{id}")
+    Call<Boolean> getStatusAds(@Path("id") String idPost);
 }

@@ -30,12 +30,12 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
     private AppCompatButton btnAds;
     private AppCompatButton btnStatus;
     private boolean statusRoom = false;
+    private boolean idAds = false;
     private String idPost;
 
     public BottomSheetManagerPost(@NonNull Context context, Repository repository, boolean statusRoom, String idPost) {
         super(context);
         this.repository = repository;
-        this.statusRoom = statusRoom;
         this.idPost = idPost;
     }
 
@@ -57,7 +57,6 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
         close = (ImageView) findViewById(R.id.close);
         btnEdit = (AppCompatButton) findViewById(R.id.btnEdit);
         btnDelete = (AppCompatButton) findViewById(R.id.btnDelete);
-        btnAds = (AppCompatButton) findViewById(R.id.btnAds);
         btnStatus = (AppCompatButton) findViewById(R.id.btnStatus);
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -83,12 +82,17 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
             }
         });
 
-        if (statusRoom) {
-            btnStatus.setText("Cập nhật trạng thái: hết phòng");
-        } else {
-            btnStatus.setText("Cập nhật trạng thái: còn phòng");
-        }
-
+        repository.getStatusPost(idPost, new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) {
+                statusRoom = aBoolean;
+                if (statusRoom) {
+                    btnStatus.setText("Cập nhật trạng thái: Hết phòng");
+                } else {
+                    btnStatus.setText("Cập nhật trạng thái: Còn phòng");
+                }
+            }
+        });
         btnStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

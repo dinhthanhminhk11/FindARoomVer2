@@ -909,4 +909,50 @@ public class Repository {
             }
         });
     }
+
+    public void getStatusPost(String idPost, Consumer<Boolean> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getStatusPost(idPost).enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getStatusAds(String idPost, Consumer<Boolean> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getStatusPost(idPost).enqueue(new Callback<Boolean>() {
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
 }

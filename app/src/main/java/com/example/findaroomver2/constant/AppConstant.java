@@ -2,7 +2,7 @@ package com.example.findaroomver2.constant;
 
 public interface AppConstant {
     //    String BASE = "https://37b2-222-255-27-220.ngrok-free.app";
-    String BASE = " https://decc-222-255-27-220.ngrok-free.app";
+    String BASE = " http://192.168.28.184:8081";
     String BASE_URL = BASE + "/api/";
     String CALL_ERROR = "CALL_ERROR";
     String USER_TOKEN = "USERTOKEN";
