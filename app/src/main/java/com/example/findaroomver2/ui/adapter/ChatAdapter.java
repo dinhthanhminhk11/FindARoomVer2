@@ -31,7 +31,6 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         } else {
             return new chatBossViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_boss, parent, false));
         }
-
     }
 
     @Override

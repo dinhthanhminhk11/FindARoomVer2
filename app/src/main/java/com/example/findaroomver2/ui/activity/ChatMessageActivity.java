@@ -70,7 +70,9 @@ public class ChatMessageActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        mSocket.disconnect();
+        if (mSocket != null) {
+            mSocket.disconnect();
+        }
         super.onPause();
     }
 
@@ -93,10 +95,12 @@ public class ChatMessageActivity extends AppCompatActivity {
             binding.rcvChatMessage.setLayoutManager(new LinearLayoutManager(ChatMessageActivity.this));
             binding.rcvChatMessage.smoothScrollToPosition(listChat.size());
         });
+        if (mSocket != null) {
+            mSocket.on("new message", onNewMessage);
+            mSocket.emit("join", UserClient.getInstance().getId());
+            mSocket.on("join", checkOnline);
+        }
 
-        mSocket.on("new message", onNewMessage);
-        mSocket.emit("join", UserClient.getInstance().getId());
-        mSocket.on("join", checkOnline);
         binding.btnSent.setOnClickListener(v -> {
             sendChat();
         });
@@ -140,7 +144,9 @@ public class ChatMessageActivity extends AppCompatActivity {
                 finish();
             }
         });
-        mSocket.connect();
+        if (mSocket != null) {
+            mSocket.connect();
+        }
     }
 
     private final Emitter.Listener checkOnline = new Emitter.Listener() {
@@ -171,7 +177,9 @@ public class ChatMessageActivity extends AppCompatActivity {
         MessageSocket ms = new MessageSocket(UserClient.getInstance().getId(), idUser, UserClient.getInstance().getId(), binding.edContentChat.getText().toString(), date);
         try {
             JSONObject jObject = new JSONObject(gson.toJson(ms));
-            mSocket.emit("message", jObject);
+            if (mSocket != null) {
+                mSocket.emit("message", jObject);
+            }
             MessageChat message = new MessageChat(idUser, UserClient.getInstance().getId(), binding.edContentChat.getText().toString());
             chatViewModel.insertChat(message);
         } catch (JSONException e) {

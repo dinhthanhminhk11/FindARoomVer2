@@ -4,6 +4,7 @@
     android:layout_width="110dp"
     android:layout_height="wrap_content"
     android:layout_marginRight="20dp"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
     app:cardCornerRadius="10dp"
     app:cardElevation="0dp">
 
@@ -19,6 +20,7 @@
             android:src="@drawable/noimage" />
 
         <com.example.findaroomver2.ui.customview.circleimage.CircleImageView
+            android:id="@+id/imageUser"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="top"

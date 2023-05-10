@@ -47,6 +47,11 @@ public class Post implements Serializable {
     private int timeAdvertisement;
     private int priceAll;
     private long timeLong;
+    private int viewsCount;
+
+    public int getViewsCount() {
+        return viewsCount;
+    }
 
     public Post(String idUser, String _id, boolean advertisement, int timeAdvertisement, int priceAll) {
         this.idUser = idUser;

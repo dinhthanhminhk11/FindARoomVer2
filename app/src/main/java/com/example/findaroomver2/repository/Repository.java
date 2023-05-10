@@ -13,6 +13,8 @@ import com.example.findaroomver2.model.DataChat;
 import com.example.findaroomver2.model.DataUser;
 import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.model.SearchModel;
+import com.example.findaroomver2.request.ViewUpdatePost;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
 import com.example.findaroomver2.request.changepass.ChangePasswordRequest;
@@ -255,6 +257,98 @@ public class Repository {
             @Override
             public void run() {
                 apiRequest.getListPost().enqueue(new Callback<PostHome>() {
+                    @Override
+                    public void onResponse(Call<PostHome> call, Response<PostHome> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostHome> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListPostHomeAds(Consumer<PostHome> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListPostHomeAds().enqueue(new Callback<PostHome>() {
+                    @Override
+                    public void onResponse(Call<PostHome> call, Response<PostHome> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostHome> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListPostByLocationCty(String textSearch, Consumer<PostHome> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListSearchByLocation(textSearch).enqueue(new Callback<PostHome>() {
+                    @Override
+                    public void onResponse(Call<PostHome> call, Response<PostHome> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostHome> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListSearchLocationCtyAndPrice(String textSearch, String startPrice, String endPrice, Consumer<PostHome> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListSearchLocationCtyAndPrice(textSearch, startPrice, endPrice).enqueue(new Callback<PostHome>() {
+                    @Override
+                    public void onResponse(Call<PostHome> call, Response<PostHome> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostHome> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListSearchPrice(String startPrice, String endPrice, Consumer<PostHome> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListSearchPrice(startPrice, endPrice).enqueue(new Callback<PostHome>() {
                     @Override
                     public void onResponse(Call<PostHome> call, Response<PostHome> response) {
                         if (response.isSuccessful()) {
@@ -949,6 +1043,48 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<Boolean> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateView(ViewUpdatePost viewUpdatePost) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateView(viewUpdatePost).enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListSearchLocationPost(String textLocation, Consumer consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListSearchLocationPost(textLocation).enqueue(new Callback<List<SearchModel>>() {
+                    @Override
+                    public void onResponse(Call<List<SearchModel>> call, Response<List<SearchModel>> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<SearchModel>> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });

@@ -31,6 +31,7 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<PostResponse> postResponseMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<UserResponseLogin> userResponseLoginMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<PostHome> listMutableLiveDataPost = new MutableLiveData<>();
+    private MutableLiveData<PostHome> liveDataHomeAds = new MutableLiveData<>();
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -76,6 +77,17 @@ public class MainViewModel extends AndroidViewModel {
             @Override
             public void accept(PostHome posts) {
                 listMutableLiveDataPost.postValue(posts);
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void getListHomeAds(){
+        progress.setValue(View.VISIBLE);
+        repository.getListPostHomeAds(new Consumer<PostHome>() {
+            @Override
+            public void accept(PostHome postHome) {
+                liveDataHomeAds.postValue(postHome);
                 progress.postValue(View.GONE);
             }
         });
@@ -142,5 +154,9 @@ public class MainViewModel extends AndroidViewModel {
 
     public MutableLiveData<Integer> getPriceCash() {
         return priceCash;
+    }
+
+    public MutableLiveData<PostHome> getLiveDataHomeAds() {
+        return liveDataHomeAds;
     }
 }

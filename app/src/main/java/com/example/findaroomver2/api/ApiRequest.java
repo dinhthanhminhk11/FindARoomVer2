@@ -4,6 +4,8 @@ import com.example.findaroomver2.model.DataChat;
 import com.example.findaroomver2.model.DataUser;
 import com.example.findaroomver2.model.MessageChat;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.model.SearchModel;
+import com.example.findaroomver2.request.ViewUpdatePost;
 import com.example.findaroomver2.request.bookmark.Bookmark;
 import com.example.findaroomver2.request.changeInfo.UserEditProfileRequest;
 import com.example.findaroomver2.request.changepass.ChangePasswordRequest;
@@ -27,7 +29,6 @@ import com.example.findaroomver2.response.money.CashFlowResponse;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.response.supplement.DataSupplement;
-import com.example.findaroomver2.response.supplement.Supplement;
 import com.example.findaroomver2.response.updateUser.UserUpdateResponse;
 
 import java.util.List;
@@ -71,6 +72,18 @@ public interface ApiRequest {
 
     @GET("postHome")
     Call<PostHome> getListPost();
+
+    @GET("postHomeAds")
+    Call<PostHome> getListPostHomeAds();
+
+    @GET("searchLocationCty/{textLocation}")
+    Call<PostHome> getListSearchByLocation(@Path("textLocation") String textLocation);
+
+    @GET("searchLocationCtyAndPrice/:textLocation&startPrice={startPrice}&endPrice={endPrice}")
+    Call<PostHome> getListSearchLocationCtyAndPrice(@Path("textLocation") String textLocation, @Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
+
+    @GET("searchPrice/startPrice={startPrice}&endPrice={endPrice}")
+    Call<PostHome> getListSearchPrice( @Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
 
     @GET("post/{id}")
     Call<PostResponse> getPostById(@Path("id") String idUser);
@@ -164,4 +177,11 @@ public interface ApiRequest {
 
     @GET("post/getStatusAds/{id}")
     Call<Boolean> getStatusAds(@Path("id") String idPost);
+
+    @POST("post/updateView")
+    Call<String> updateView(@Body ViewUpdatePost viewUpdatePost);
+
+    @GET("searchLocationAndPost/{textLocation}")
+    Call<List<SearchModel>> getListSearchLocationPost(@Path("textLocation") String textLocation);
+
 }

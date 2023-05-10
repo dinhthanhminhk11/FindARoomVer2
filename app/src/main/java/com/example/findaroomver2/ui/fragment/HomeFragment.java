@@ -1,5 +1,6 @@
 package com.example.findaroomver2.ui.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.DetailActivity;
+import com.example.findaroomver2.ui.activity.SearchRoomActivity;
 import com.example.findaroomver2.ui.adapter.homefragment.PostTrendAdapter;
 import com.example.findaroomver2.ui.adapter.postfragment.PostAdapter;
 import com.example.findaroomver2.ui.customview.circleimage.CircleImageView;
@@ -91,20 +93,15 @@ public class HomeFragment extends Fragment {
         binding.listItemTrend.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.rcvPost.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchRoomActivity.class), ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            }
+        });
     }
 
     private void intData() {
-        List<String> imageUrl = new ArrayList<>();
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587330/vfbz9nruf6ht8orbb0up.jpg");
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587331/h8spndixobhxh7xvhfta.jpg");
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587332/pgofa40zbddhdwhkvu0g.jpg");
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587340/shkdz3uwcuvxzpt6tzw7.jpg");
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682587349/behj9iqency72px0hcct.jpg");
-        imageUrl.add("http://res.cloudinary.com/dl4lo9r1y/image/upload/v1682589923/a6zppoxqi9ssu8kzmke0.jpg");
-
-        PostTrendAdapter postTrendAdapter = new PostTrendAdapter(imageUrl);
-        binding.listItemTrend.setAdapter(postTrendAdapter);
-
         mainViewModel.getListMutableLiveDataPost().observe(getActivity(), new Observer<PostHome>() {
             @Override
             public void onChanged(PostHome posts) {
@@ -142,12 +139,21 @@ public class HomeFragment extends Fragment {
                 binding.progressBar.setVisibility(integer);
             }
         });
+
+        mainViewModel.getLiveDataHomeAds().observe(getActivity(), new Observer<PostHome>() {
+            @Override
+            public void onChanged(PostHome postHome) {
+                PostTrendAdapter postTrendAdapter = new PostTrendAdapter(postHome.getData());
+                binding.listItemTrend.setAdapter(postTrendAdapter);
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mainViewModel.getAllListPostHome();
+        mainViewModel.getListHomeAds();
     }
 
     @Override

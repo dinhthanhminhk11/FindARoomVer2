@@ -163,7 +163,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 if (postResponse.getData().getIdUser().equals(UserClient.getInstance().getId())) {
-                    binding.dateAds.setText(postResponse.getData().getTimeAdvertisement() + " ngày");
+                    binding.dateAds.setText("Quảng cáo trong " + postResponse.getData().getTimeAdvertisement() + " ngày");
+                    binding.viewSreen.setText("Số người tiếp cận được: " + postResponse.getData().getViewsCount() + " người");
 
                     if (postResponse.getData().isAdvertisement()) {
                         binding.contentAds.setVisibility(View.VISIBLE);
@@ -199,6 +200,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         binding.textConfirmAdmin.setVisibility(View.VISIBLE);
                         binding.textConfirmAdmin.setText(postResponse.getData().getTextConfirm());
                     }
+
+
                 } else {
                     binding.contentAds.setVisibility(View.GONE);
                     binding.contentPriceAds.setVisibility(View.GONE);
