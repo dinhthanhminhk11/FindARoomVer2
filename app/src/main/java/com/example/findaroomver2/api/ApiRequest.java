@@ -79,7 +79,7 @@ public interface ApiRequest {
     @GET("searchLocationCty/{textLocation}")
     Call<PostHome> getListSearchByLocation(@Path("textLocation") String textLocation);
 
-    @GET("searchLocationCtyAndPrice/:textLocation&startPrice={startPrice}&endPrice={endPrice}")
+    @GET("searchLocationCtyAndPrice/{textLocation}&startPrice={startPrice}&endPrice={endPrice}")
     Call<PostHome> getListSearchLocationCtyAndPrice(@Path("textLocation") String textLocation, @Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
 
     @GET("searchPrice/startPrice={startPrice}&endPrice={endPrice}")
