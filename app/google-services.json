@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "189698896193",
+    "project_id": "findaroomver2",
+    "storage_bucket": "findaroomver2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189698896193:android:5869f213cece6c0ca1b1c0",
+        "android_client_info": {
+          "package_name": "com.example.findaroomver2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189698896193-ejmr9cgbpvkl39bsktr8umcpl9m5o2al.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNB5X0fcmkI8sWK9iRi3nxTShA9P6Uq4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189698896193-ejmr9cgbpvkl39bsktr8umcpl9m5o2al.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
