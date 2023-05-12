@@ -243,16 +243,6 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     }
 
     private void initView() {
-
-        binding.title.setText("Cho thuê phòng Hà Nội");
-        binding.cty.setText("Hà Nội");
-        binding.district.setText("Thanh Xuân");
-        binding.street.setText("Vũ Trọng Phụng");
-        binding.wards.setText("Thanh Xuân Trung");
-        binding.address.setText("Số 85");
-        binding.textMore.setText("Mình cần nhượng lại phòng ngõ 75 hồ tùng mậu 3tr3 dh nl vskk");
-        binding.phone.setText("0375784487");
-
         repository = new Repository();
         initConfig();
         supplements = new ArrayList<>();

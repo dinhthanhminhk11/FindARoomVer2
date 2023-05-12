@@ -62,8 +62,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        binding.username.setText("abc123@gmail.com");
-        binding.password.setText("abc123");
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
 
         binding.btnLogin.setOnClickListener(v -> {
