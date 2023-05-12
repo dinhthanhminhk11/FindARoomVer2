@@ -9,6 +9,7 @@ public class UserClient {
     private int role;
     private String image;
     private static UserClient instance = null;
+
     protected UserClient() {
     }
 
@@ -19,7 +20,7 @@ public class UserClient {
         return instance;
     }
 
-    public static  String getId() {
+    public String getId() {
         return id;
     }
 

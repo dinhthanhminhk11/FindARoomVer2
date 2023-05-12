@@ -15,8 +15,10 @@ import com.example.findaroomver2.request.comment.Comment;
 import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.request.money.CashFlowRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
+import com.example.findaroomver2.response.ListNotificationResponse;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.bookmark.BookmarkResponse;
@@ -83,7 +85,7 @@ public interface ApiRequest {
     Call<PostHome> getListSearchLocationCtyAndPrice(@Path("textLocation") String textLocation, @Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
 
     @GET("searchPrice/startPrice={startPrice}&endPrice={endPrice}")
-    Call<PostHome> getListSearchPrice( @Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
+    Call<PostHome> getListSearchPrice(@Path("startPrice") String startPrice, @Path("endPrice") String endPrice);
 
     @GET("post/{id}")
     Call<PostResponse> getPostById(@Path("id") String idUser);
@@ -183,5 +185,14 @@ public interface ApiRequest {
 
     @GET("searchLocationAndPost/{textLocation}")
     Call<List<SearchModel>> getListSearchLocationPost(@Path("textLocation") String textLocation);
+
+    @POST("auth/updateCheckTokenDevice")
+    Call<TextResponse> updateTokenDevice(@Body UserRequestTokenDevice userRequestTokenDevice);
+
+    @GET("getListNotificationByIdUser/{id}")
+    Call<ListNotificationResponse> getListNotificationByIdUser(@Path("id") String id);
+
+    @PATCH("updateNotificationSeen/{id}")
+    Call<TextResponse> updateNotiSeen(@Path("id") String id);
 
 }

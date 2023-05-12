@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.FragmentHomeBinding;
 import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.Post;
+import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
@@ -97,6 +99,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), SearchRoomActivity.class), ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+            }
+        });
+
+        binding.reLoad.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mainViewModel.getAllListPostHome();
+                binding.reLoad.setRefreshing(false);
             }
         });
     }

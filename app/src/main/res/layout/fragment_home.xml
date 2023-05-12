@@ -66,55 +66,62 @@
 
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/reLoad"
         android:layout_below="@+id/toolbar"
-        android:overScrollMode="never">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:overScrollMode="never">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradientbackground_white"
-                android:foreground="?attr/selectableItemBackground"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="20dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/titleTrend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_home_trend"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_16"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/gradientbackground_white"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp">
+
+                    <TextView
+                        android:id="@+id/titleTrend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_home_trend"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/listItemTrend"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:overScrollMode="never" />
+
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listItemTrend"
+                    android:id="@+id/rcvPost"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent"
                     android:overScrollMode="never" />
-
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcvPost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:overScrollMode="never" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"

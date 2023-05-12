@@ -52,11 +52,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             repository.getUserById(comment.getIdUser(), new Consumer<Data>() {
                 @Override
                 public void accept(Data data) {
-                    name = data.getFullName();
                     holder.itemCommentParentBinding.nameUser.setText(data.getFullName());
                     Glide.with(holder.itemCommentParentBinding.imageUser.getContext()).load(data.getImage()).apply(optionsUser).into(holder.itemCommentParentBinding.imageUser);
-
-
+                    holder.itemCommentParentBinding.reply.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            callback.onCLickReply(comment.get_id(), data.getFullName());
+                        }
+                    });
                 }
             });
             holder.itemCommentParentBinding.listChildrenComment.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false));
@@ -73,12 +76,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
             holder.itemCommentParentBinding.content.setText(comment.getContent());
 
-            holder.itemCommentParentBinding.reply.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    callback.onCLickReply(comment.get_id(), name);
-                }
-            });
+
 
             holder.itemCommentParentBinding.time.setText(TimeUtils.getTimeAgo(Long.parseLong(comment.getTimeLong())));
         }

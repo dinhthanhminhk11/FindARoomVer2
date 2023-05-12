@@ -65,6 +65,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initData() {
+
+        if (UserClient.getInstance().getRole() == 2) {
+            binding.btnCall.setVisibility(View.GONE);
+            binding.btnMessage.setVisibility(View.GONE);
+        }
+
         idPost = getIntent().getStringExtra(AppConstant.ID_POST);
         detailPostViewModel.getPostById(idPost);
         detailPostViewModel.getListCommentByIdPost(idPost);

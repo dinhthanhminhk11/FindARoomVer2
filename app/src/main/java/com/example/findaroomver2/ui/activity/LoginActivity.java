@@ -2,8 +2,10 @@ package com.example.findaroomver2.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,10 +16,14 @@ import com.example.findaroomver2.databinding.ActivityLoginBinding;
 import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.LoginViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -25,12 +31,26 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
     private LoginViewModel loginViewModel;
+    private String tokenDevice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // lấy token máy để bắn thông báo
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (!task.isSuccessful()) {
+                    return;
+                }
+                String token = task.getResult();
+                tokenDevice = token;
+                Log.d("tokenFirebase", token);
+            }
+        });
 
         binding.username.setText("abc123@gmail.com");
         binding.password.setText("abc123");
@@ -60,9 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
                 if (userResponseLogin.getMessage().isStatus()) {
-
+                    if (!userResponseLogin.getData().getTokenDevice().equals(tokenDevice)) {
+                        loginViewModel.updateTokenDevice(new UserRequestTokenDevice(userResponseLogin.getData().getId(), tokenDevice));
+                    }
                     MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
-
                     UserClient userClient = UserClient.getInstance();
                     userClient.setEmail(userResponseLogin.getData().getEmail());
                     userClient.setPhone(userResponseLogin.getData().getPhone());

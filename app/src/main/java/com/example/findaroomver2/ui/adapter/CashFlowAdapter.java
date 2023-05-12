@@ -2,6 +2,7 @@ package com.example.findaroomver2.ui.adapter;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -42,8 +43,13 @@ public class CashFlowAdapter extends RecyclerView.Adapter<CashFlowAdapter.ViewHo
                 holder.binding.price.setTextColor(Color.GREEN);
                 holder.binding.price.setText("+" + fm.format(Integer.parseInt(CashFlowResponse.getPrice())));
             } else {
-                holder.binding.price.setText("-" + fm.format(Integer.parseInt(CashFlowResponse.getPrice())));
-                holder.binding.price.setTextColor(Color.RED);
+                if(Integer.parseInt(CashFlowResponse.getPrice())==0){
+                    holder.binding.price.setVisibility(View.GONE);
+                }else {
+                    holder.binding.price.setVisibility(View.VISIBLE);
+                    holder.binding.price.setText("-" + fm.format(Integer.parseInt(CashFlowResponse.getPrice())));
+                    holder.binding.price.setTextColor(Color.RED);
+                }
             }
         }
     }

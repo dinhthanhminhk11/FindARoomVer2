@@ -13,6 +13,8 @@ import com.example.findaroomver2.model.ContentChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.response.ListNotificationResponse;
+import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.post.PostHome;
 import com.example.findaroomver2.response.post.PostResponse;
@@ -32,6 +34,8 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<UserResponseLogin> userResponseLoginMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<PostHome> listMutableLiveDataPost = new MutableLiveData<>();
     private MutableLiveData<PostHome> liveDataHomeAds = new MutableLiveData<>();
+    private MutableLiveData<ListNotificationResponse> listNotificationResponseMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<TextResponse> textResponseMutableLiveData = new MutableLiveData<>();
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -82,7 +86,7 @@ public class MainViewModel extends AndroidViewModel {
         });
     }
 
-    public void getListHomeAds(){
+    public void getListHomeAds() {
         progress.setValue(View.VISIBLE);
         repository.getListPostHomeAds(new Consumer<PostHome>() {
             @Override
@@ -111,6 +115,26 @@ public class MainViewModel extends AndroidViewModel {
             public void accept(Integer integer) {
                 priceCash.postValue(integer);
                 progress.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void getListNotificationByIdUser(String id) {
+        progress.postValue(View.VISIBLE);
+        repository.getListNotificationByIdUser(id, new Consumer<ListNotificationResponse>() {
+            @Override
+            public void accept(ListNotificationResponse listNotificationResponse) {
+                listNotificationResponseMutableLiveData.postValue(listNotificationResponse);
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
+    public void updateNotiSeen(String id) {
+        repository.updateNotiSeen(id, new Consumer<TextResponse>() {
+            @Override
+            public void accept(TextResponse textResponse) {
+                textResponseMutableLiveData.postValue(textResponse);
             }
         });
     }
@@ -158,5 +182,13 @@ public class MainViewModel extends AndroidViewModel {
 
     public MutableLiveData<PostHome> getLiveDataHomeAds() {
         return liveDataHomeAds;
+    }
+
+    public MutableLiveData<ListNotificationResponse> getListNotificationResponseMutableLiveData() {
+        return listNotificationResponseMutableLiveData;
+    }
+
+    public MutableLiveData<TextResponse> getTextResponseMutableLiveData() {
+        return textResponseMutableLiveData;
     }
 }

@@ -101,7 +101,7 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
                         @Override
                         public void accept(PostResponse postResponse) {
                             dismiss();
-                            Toast.makeText(btnAds.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
@@ -109,7 +109,7 @@ public class BottomSheetManagerPost extends BottomSheetDialog {
                         @Override
                         public void accept(PostResponse postResponse) {
                             dismiss();
-                            Toast.makeText(btnAds.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(view.getContext(), postResponse.getMessage().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

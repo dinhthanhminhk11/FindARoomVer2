@@ -24,8 +24,10 @@ import com.example.findaroomver2.request.comment.Comment;
 import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.request.money.CashFlowRequest;
 import com.example.findaroomver2.request.register.UserRegisterRequest;
+import com.example.findaroomver2.response.ListNotificationResponse;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.response.bookmark.BookmarkResponse;
@@ -1085,6 +1087,75 @@ public class Repository {
 
                     @Override
                     public void onFailure(Call<List<SearchModel>> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice, Consumer<TextResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateTokenDevice(userRequestTokenDevice).enqueue(new Callback<TextResponse>() {
+                    @Override
+                    public void onResponse(Call<TextResponse> call, Response<TextResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TextResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void getListNotificationByIdUser(String id, Consumer<ListNotificationResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.getListNotificationByIdUser(id).enqueue(new Callback<ListNotificationResponse>() {
+                    @Override
+                    public void onResponse(Call<ListNotificationResponse> call, Response<ListNotificationResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ListNotificationResponse> call, Throwable t) {
+                        Log.e(AppConstant.CALL_ERROR, t.getMessage());
+                    }
+                });
+            }
+        });
+    }
+
+    public void updateNotiSeen(String id, Consumer<TextResponse> consumer) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public void run() {
+                apiRequest.updateNotiSeen(id).enqueue(new Callback<TextResponse>() {
+                    @Override
+                    public void onResponse(Call<TextResponse> call, Response<TextResponse> response) {
+                        if (response.isSuccessful()) {
+                            consumer.accept(response.body());
+                        } else {
+                            Log.e(AppConstant.CALL_ERROR, AppConstant.CALL_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TextResponse> call, Throwable t) {
                         Log.e(AppConstant.CALL_ERROR, t.getMessage());
                     }
                 });

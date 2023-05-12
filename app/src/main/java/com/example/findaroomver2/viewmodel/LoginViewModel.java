@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.login.UserLoginRequest;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
+import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
 
 import java.util.function.Consumer;
@@ -37,6 +39,17 @@ public class LoginViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice) {
+        progress.postValue(View.VISIBLE);
+        repository.updateTokenDevice(userRequestTokenDevice, new Consumer<TextResponse>() {
+            @Override
+            public void accept(TextResponse textResponse) {
+                progress.postValue(View.GONE);
+            }
+        });
+    }
+
 
     public MutableLiveData<Integer> getProgress() {
         return progress;

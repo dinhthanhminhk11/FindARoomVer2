@@ -5,5 +5,6 @@ public class NotificationCenter {
     public static final int checkLogin = totalEvents++;
     public static final int create_post_success = totalEvents++;
     public static final int checkSearch = totalEvents++;
+    public static final int checkNotification = totalEvents++;
 
 }

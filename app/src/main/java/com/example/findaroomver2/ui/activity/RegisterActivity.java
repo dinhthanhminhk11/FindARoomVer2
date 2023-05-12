@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -31,6 +33,9 @@ import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.customview.toast.CustomToast;
 import com.example.findaroomver2.viewmodel.RegisterViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class RegisterActivity extends AppCompatActivity {
     private ImageView close;
@@ -40,12 +45,25 @@ public class RegisterActivity extends AppCompatActivity {
     private RegisterViewModel registerViewModel;
     private ActivityRegisterBinding binding;
     private int role = 0;
-
+    private String tokenDevice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+                        String token = task.getResult();
+                        tokenDevice = token;
+                    }
+                });
+
         registerViewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         binding.tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else if (!binding.password02.getText().toString().equals(binding.password.getText().toString())) {
                     CustomToast.ct(RegisterActivity.this, "Mật khẩu không trùng nhau", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 } else {
-                    registerViewModel.register(new UserRegisterRequest(binding.sodienthoai.getText().toString(), binding.diachiemai.getText().toString(), binding.password02.getText().toString(), binding.username.getText().toString(), role, "token"));
+                    registerViewModel.register(new UserRegisterRequest(binding.sodienthoai.getText().toString(), binding.diachiemai.getText().toString(), binding.password02.getText().toString(), binding.username.getText().toString(), role, tokenDevice));
                 }
             }
         });
