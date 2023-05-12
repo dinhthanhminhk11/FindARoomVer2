@@ -35,4 +35,13 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading.json"
         app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/listNull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Chưa có bài viết nào được lưu"
+        android:textColor="@color/black"
+        android:textSize="18dp" />
 </RelativeLayout>

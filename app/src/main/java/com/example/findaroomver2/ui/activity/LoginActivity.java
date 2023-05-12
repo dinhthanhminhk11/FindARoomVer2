@@ -1,15 +1,24 @@
 package com.example.findaroomver2.ui.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.ActivityLoginBinding;
@@ -32,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private LoginViewModel loginViewModel;
     private String tokenDevice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,19 +90,23 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
                 if (userResponseLogin.getMessage().isStatus()) {
-                    if (!userResponseLogin.getData().getTokenDevice().equals(tokenDevice)) {
-                        loginViewModel.updateTokenDevice(new UserRequestTokenDevice(userResponseLogin.getData().getId(), tokenDevice));
+                    if (userResponseLogin.getData().isVerified()) {
+                        if (!userResponseLogin.getData().getTokenDevice().equals(tokenDevice)) {
+                            loginViewModel.updateTokenDevice(new UserRequestTokenDevice(userResponseLogin.getData().getId(), tokenDevice));
+                        }
+                        MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
+                        UserClient userClient = UserClient.getInstance();
+                        userClient.setEmail(userResponseLogin.getData().getEmail());
+                        userClient.setPhone(userResponseLogin.getData().getPhone());
+                        userClient.setFullName(userResponseLogin.getData().getFullName());
+                        userClient.setId(userResponseLogin.getData().getId());
+                        userClient.setRole(userResponseLogin.getData().getRole());
+                        userClient.setImage(userResponseLogin.getData().getImage());
+                        EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
+                        finish();
+                    } else {
+                        initdialogFailed(userResponseLogin.getData().getTextReport());
                     }
-                    MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
-                    UserClient userClient = UserClient.getInstance();
-                    userClient.setEmail(userResponseLogin.getData().getEmail());
-                    userClient.setPhone(userResponseLogin.getData().getPhone());
-                    userClient.setFullName(userResponseLogin.getData().getFullName());
-                    userClient.setId(userResponseLogin.getData().getId());
-                    userClient.setRole(userResponseLogin.getData().getRole());
-                    userClient.setImage(userResponseLogin.getData().getImage());
-                    EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
-                    finish();
                 } else {
                     CustomToast.ct(LoginActivity.this, userResponseLogin.getMessage().getMessage(), CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                 }
@@ -112,5 +126,38 @@ public class LoginActivity extends AppCompatActivity {
         String gmailRegex = "^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$";
 
         return input.matches(phoneRegex) || input.matches(gmailRegex);
+    }
+
+    private void initdialogFailed(String contentData) {
+        final Dialog dialogFailed = new Dialog(this);
+        dialogFailed.setCancelable(false);
+        dialogFailed.setContentView(R.layout.dialog_fail);
+        Window window2 = dialogFailed.getWindow();
+        window2.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (dialogFailed != null && dialogFailed.getWindow() != null) {
+            dialogFailed.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        ImageButton closeImgBtnFailed = (ImageButton) dialogFailed.findViewById(R.id.close_img_btn);
+        Button failed = (Button) dialogFailed.findViewById(R.id.failed);
+
+        TextView title = (TextView) dialogFailed.findViewById(R.id.title);
+        TextView content = (TextView) dialogFailed.findViewById(R.id.content);
+        title.setText("Thông báo");
+        content.setText(contentData);
+        failed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogFailed.dismiss();
+            }
+        });
+
+        closeImgBtnFailed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogFailed.dismiss();
+            }
+        });
+
+        dialogFailed.show();
     }
 }

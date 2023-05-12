@@ -23,6 +23,10 @@ public class Data {
     private String personId;
     @SerializedName("role")
     private int role;
+    @SerializedName("textReport")
+    private String textReport;
+    @SerializedName("verified")
+    private boolean verified;
 
     public int getRole() {
         return role;
@@ -66,5 +70,13 @@ public class Data {
 
     public String getPersonId() {
         return personId;
+    }
+
+    public String getTextReport() {
+        return textReport;
+    }
+
+    public boolean isVerified() {
+        return verified;
     }
 }

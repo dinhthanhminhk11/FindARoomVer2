@@ -164,7 +164,8 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onChanged(Data data) {
                 RequestOptions optionsUser = new RequestOptions().centerCrop().placeholder(R.drawable.noavatar).error(R.drawable.noavatar);
-                Glide.with(EditProfileActivity.this).load(UserClient.getInstance().getImage()).apply(optionsUser).into(binding.avtEditProfile);
+                Glide.with(EditProfileActivity.this).load(data.getImage()).apply(optionsUser).into(binding.avtEditProfile);
+                linkImageAvt = data.getImage();
                 binding.nameEditProfile.setText(UserClient.getInstance().getFullName());
                 binding.titleEmailEditProfile.setText(UserClient.getInstance().getEmail());
                 binding.locationEditProfile.setText(data.getAddress());
@@ -327,7 +328,7 @@ public class EditProfileActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocation();
             } else {
-                CustomToast.ct(EditProfileActivity.this,"Bạn không cho phép truy cập vị trí" , CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
+                CustomToast.ct(EditProfileActivity.this, "Bạn không cho phép truy cập vị trí", CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
             }
         }
 
@@ -339,7 +340,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
                         boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, permission);
                         if (showRationale) {
-                            CustomToast.ct(EditProfileActivity.this,"Bạn đã từ chối cấp quyền Camera" , CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
+                            CustomToast.ct(EditProfileActivity.this, "Bạn đã từ chối cấp quyền Camera", CustomToast.LENGTH_SHORT, CustomToast.INFO, false).show();
                         } else {
                             showSettingsAlert();
                         }

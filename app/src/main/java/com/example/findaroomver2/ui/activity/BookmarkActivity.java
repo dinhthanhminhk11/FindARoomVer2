@@ -1,11 +1,12 @@
 package com.example.findaroomver2.ui.activity;
 
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.os.Bundle;
 
 import com.example.findaroomver2.R;
 import com.example.findaroomver2.databinding.ActivityBookmarkBinding;
@@ -39,8 +40,16 @@ public class BookmarkActivity extends AppCompatActivity {
         bookmarkViewModel.getBookmarkResponseMutableLiveData().observe(this, new Observer<ListBookmarkResponse>() {
             @Override
             public void onChanged(ListBookmarkResponse listBookmarkResponse) {
-                BookmarkAdapter bookmarkAdapter = new BookmarkAdapter(listBookmarkResponse.getBookmark());
-                binding.listBookmark.setAdapter(bookmarkAdapter);
+                if (listBookmarkResponse.getBookmark().size() > 0) {
+                    binding.listNull.setVisibility(View.GONE);
+                    binding.listBookmark.setVisibility(View.VISIBLE);
+                    BookmarkAdapter bookmarkAdapter = new BookmarkAdapter(listBookmarkResponse.getBookmark());
+                    binding.listBookmark.setAdapter(bookmarkAdapter);
+                } else {
+                    binding.listNull.setVisibility(View.VISIBLE);
+                    binding.listBookmark.setVisibility(View.GONE);
+                }
+
             }
         });
         bookmarkViewModel.getmProgressMutableData().observe(this, new Observer<Integer>() {

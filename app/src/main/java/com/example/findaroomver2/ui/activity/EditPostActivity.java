@@ -2,11 +2,13 @@ package com.example.findaroomver2.ui.activity;
 
 import static org.greenrobot.eventbus.EventBus.TAG;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -42,6 +44,7 @@ import com.example.findaroomver2.viewmodel.EditPostViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -349,10 +352,30 @@ public class EditPostActivity extends AppCompatActivity implements SupplementAda
                         binding.phone.getText().toString().length() > 0 &&
                         binding.phone.getText().toString().length() > 0 &&
                         supplementList.size() > 0) {
-                    editPostViewModel.editPost(new Post( UserClient.getInstance().getId(), nameCategory, binding.title.getText().toString(), listImages, binding.cty.getText().toString(), binding.district.getText().toString(), binding.wards.getText().toString(), binding.street.getText().toString(), binding.address.getText().toString(), Integer.parseInt(binding.acreage.getText().toString()), Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.bedroom.getText().toString()), Integer.parseInt(binding.bathroom.getText().toString()), Integer.parseInt(binding.countPerson.getText().toString()), binding.startDay.getText().toString(), Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")), binding.textMore.getText().toString(), binding.phone.getText().toString(), supplementList), idPost);
+                    editPostViewModel.editPost(new Post(UserClient.getInstance().getId(), nameCategory, binding.title.getText().toString(), listImages, binding.cty.getText().toString(), binding.district.getText().toString(), binding.wards.getText().toString(), binding.street.getText().toString(), binding.address.getText().toString(), Integer.parseInt(binding.acreage.getText().toString()), Integer.parseInt(binding.depositMoney.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.bedroom.getText().toString()), Integer.parseInt(binding.bathroom.getText().toString()), Integer.parseInt(binding.countPerson.getText().toString()), binding.startDay.getText().toString(), Integer.parseInt(binding.price.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.electricityPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.waterPrice.getText().toString().replace(AppConstant.DOT, "")), Integer.parseInt(binding.wifiPrice.getText().toString().replace(AppConstant.DOT, "")), binding.textMore.getText().toString(), binding.phone.getText().toString(), supplementList), idPost);
                 } else {
                     CustomToast.ct(EditPostActivity.this, "Các trường không được để trống", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
                 }
+            }
+        });
+
+        binding.startDay.setFocusable(false);
+        binding.startDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int d = calendar.get(Calendar.DAY_OF_MONTH);
+                int m = calendar.get(Calendar.MONTH);
+                int y = calendar.get(Calendar.YEAR);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(EditPostActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        final String day = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        binding.startDay.setText(day);
+                    }
+                }, y, m, d);
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                datePickerDialog.show();
             }
         });
     }

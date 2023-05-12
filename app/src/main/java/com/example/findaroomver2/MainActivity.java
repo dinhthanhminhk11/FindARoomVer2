@@ -1,6 +1,7 @@
 package com.example.findaroomver2;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
@@ -20,6 +21,7 @@ import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.UserClient;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
+import com.example.findaroomver2.ui.activity.LoginActivity;
 import com.example.findaroomver2.ui.adapter.FragmentViewPagerAdapter;
 import com.example.findaroomver2.ui.fragment.ChatFragment;
 import com.example.findaroomver2.ui.fragment.HomeFragment;
@@ -33,7 +35,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private int backPressedCount = 0;
     private final int MAX_BACK_PRESS_COUNT = 2;
     private final int BACK_PRESS_TIME_INTERVAL = 2000;
@@ -64,13 +66,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         mainViewModel.getUserResponseLoginMutableLiveData().observe(this, new Observer<UserResponseLogin>() {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
-                UserClient userClient = UserClient.getInstance();
-                userClient.setEmail(userResponseLogin.getData().getEmail());
-                userClient.setPhone(userResponseLogin.getData().getPhone());
-                userClient.setFullName(userResponseLogin.getData().getFullName());
-                userClient.setId(userResponseLogin.getData().getId());
-                userClient.setRole(userResponseLogin.getData().getRole());
-                userClient.setImage(userResponseLogin.getData().getImage());
+                if (userResponseLogin.getData().isVerified()) {
+                    UserClient userClient = UserClient.getInstance();
+                    userClient.setEmail(userResponseLogin.getData().getEmail());
+                    userClient.setPhone(userResponseLogin.getData().getPhone());
+                    userClient.setFullName(userResponseLogin.getData().getFullName());
+                    userClient.setId(userResponseLogin.getData().getId());
+                    userClient.setRole(userResponseLogin.getData().getRole());
+                    userClient.setImage(userResponseLogin.getData().getImage());
+                } else {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
             }
         });
     }

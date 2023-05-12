@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.activity.EditPostActivity">
 
     <LinearLayout
@@ -590,7 +591,7 @@
                         android:background="@null"
                         android:hint="Nhập tiền cọc"
                         android:inputType="number"
-                        android:maxLength="9"
+                        android:maxLength="7"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -736,7 +737,7 @@
                         android:background="@null"
                         android:hint="Nhập giá phòng"
                         android:inputType="number"
-                        android:maxLength="9"
+                        android:maxLength="7"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -777,7 +778,7 @@
                         android:background="@null"
                         android:hint="Nhập giá điện"
                         android:inputType="number"
-                        android:maxLength="5"
+                        android:maxLength="4"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -817,7 +818,7 @@
                         android:background="@null"
                         android:hint="Nhập giá nước"
                         android:inputType="number"
-                        android:maxLength="6"
+                        android:maxLength="5"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -857,7 +858,7 @@
                         android:background="@null"
                         android:hint="Nhập giá Wifi"
                         android:inputType="number"
-                        android:maxLength="7"
+                        android:maxLength="6"
                         android:paddingVertical="@dimen/size_16"
                         android:paddingLeft="@dimen/size_16"
                         android:textSize="15sp" />
@@ -929,6 +930,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:hint="Nhập số điện thoại"
                     android:inputType="number"
+                    android:maxLines="10"
                     android:paddingVertical="@dimen/size_16"
                     android:paddingLeft="@dimen/size_16"
                     android:textColor="@color/black"
