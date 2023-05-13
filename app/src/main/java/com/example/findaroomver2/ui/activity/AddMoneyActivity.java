@@ -122,7 +122,7 @@ public class AddMoneyActivity extends AppCompatActivity {
         binding.btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String textString = binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "");
+                String textString = binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "");
                 addCashViewModel.createCashByUser(new CashFlowRequest(UserClient.getInstance().getId(), true, "Thông báo biến động số dư", "Nạp tiền vào tài khoản (VISA)", Integer.parseInt(textString)));
             }
         });
@@ -228,16 +228,16 @@ public class AddMoneyActivity extends AppCompatActivity {
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));
             } else if (binding.editInputMoney.getText().toString().length() == 4) {
-                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 10;
-                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 100;
-                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 1000;
+                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 10;
+                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 100;
+                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 1000;
                 binding.number1.setText(String.valueOf(dfnd.format(sum1)));
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));
             } else if (binding.editInputMoney.getText().toString().length() == 6) {
-                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 1;
-                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 10;
-                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replace(AppConstant.DOT, "").trim()) * 100;
+                int sum1 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 1;
+                int sum2 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 10;
+                int sum3 = Integer.parseInt(binding.editInputMoney.getText().toString().replaceAll(AppConstant.DOT, "").trim()) * 100;
                 binding.number1.setText(String.valueOf(dfnd.format(sum1)));
                 binding.number2.setText(String.valueOf(dfnd.format(sum2)));
                 binding.number3.setText(String.valueOf(dfnd.format(sum3)));
