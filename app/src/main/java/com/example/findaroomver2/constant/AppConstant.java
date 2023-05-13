@@ -1,7 +1,7 @@
 package com.example.findaroomver2.constant;
 
 public interface AppConstant {
-    String BASE = "http://192.168.28.184:8081";
+    String BASE = "https://findaroom.fly.dev";
     //    String BASE = " http://192.168.28.184:8081";
     String BASE_URL = BASE + "/api/";
     String CALL_ERROR = "CALL_ERROR";
