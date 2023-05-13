@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -24,6 +25,7 @@ import com.example.findaroomver2.R;
 import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.FragmentUserBinding;
 import com.example.findaroomver2.model.UserClient;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.BookmarkActivity;
 import com.example.findaroomver2.ui.activity.ChangePasswordActivity;
@@ -33,6 +35,7 @@ import com.example.findaroomver2.ui.activity.LoginActivity;
 import com.example.findaroomver2.ui.activity.ManagerPostActivity;
 import com.example.findaroomver2.ui.activity.PayCashYourActivity;
 import com.example.findaroomver2.ui.activity.UpdateAccountHostActivity;
+import com.example.findaroomver2.viewmodel.MainViewModel;
 
 
 public class UserFragment extends Fragment {
@@ -43,6 +46,7 @@ public class UserFragment extends Fragment {
     private TextView btnCancel;
     private Button login;
 
+    private MainViewModel viewModel;
 
     public UserFragment() {
         // Required empty public constructor
@@ -93,6 +97,7 @@ public class UserFragment extends Fragment {
     }
 
     private void initView() {
+        viewModel = new ViewModelProvider(getActivity()).get(MainViewModel.class);
         binding.layoutContentPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,5 +231,6 @@ public class UserFragment extends Fragment {
 
     private void resetDataUser() {
         MySharedPreferences.getInstance(getActivity()).putString(AppConstant.USER_TOKEN, "");
+        viewModel.updateTokenDevice(new UserRequestTokenDevice(UserClient.getInstance().getId(), ""));
     }
 }

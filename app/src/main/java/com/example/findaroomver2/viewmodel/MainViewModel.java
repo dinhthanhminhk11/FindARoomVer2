@@ -13,6 +13,7 @@ import com.example.findaroomver2.model.ContentChat;
 import com.example.findaroomver2.model.Post;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.response.ListNotificationResponse;
 import com.example.findaroomver2.response.TextResponse;
 import com.example.findaroomver2.response.UserResponseLogin;
@@ -135,6 +136,14 @@ public class MainViewModel extends AndroidViewModel {
             @Override
             public void accept(TextResponse textResponse) {
                 textResponseMutableLiveData.postValue(textResponse);
+            }
+        });
+    }
+
+    public void updateTokenDevice(UserRequestTokenDevice userRequestTokenDevice) {
+        repository.updateTokenDevice(userRequestTokenDevice, new Consumer<TextResponse>() {
+            @Override
+            public void accept(TextResponse textResponse) {
             }
         });
     }

@@ -89,19 +89,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(UserResponseLogin userResponseLogin) {
                 if (userResponseLogin.getMessage().isStatus()) {
                     if (userResponseLogin.getData().isVerified()) {
-                        if (!userResponseLogin.getData().getTokenDevice().equals(tokenDevice)) {
-                            loginViewModel.updateTokenDevice(new UserRequestTokenDevice(userResponseLogin.getData().getId(), tokenDevice));
+                        if (userResponseLogin.getData().getRole() == 2 || userResponseLogin.getData().getRole() == 0) {
+                            if (!userResponseLogin.getData().getTokenDevice().equals(tokenDevice)) {
+                                loginViewModel.updateTokenDevice(new UserRequestTokenDevice(userResponseLogin.getData().getId(), tokenDevice));
+                            }
+                            MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
+                            UserClient userClient = UserClient.getInstance();
+                            userClient.setEmail(userResponseLogin.getData().getEmail());
+                            userClient.setPhone(userResponseLogin.getData().getPhone());
+                            userClient.setFullName(userResponseLogin.getData().getFullName());
+                            userClient.setId(userResponseLogin.getData().getId());
+                            userClient.setRole(userResponseLogin.getData().getRole());
+                            userClient.setImage(userResponseLogin.getData().getImage());
+                            EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
+                            finish();
+                        } else {
+                            initdialogFailed("Hành động không được phép chỉ cho tài khoản chủ nhà hoặc người đi thuê, hãy đăng nhập tài khoản khác");
                         }
-                        MySharedPreferences.getInstance(LoginActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
-                        UserClient userClient = UserClient.getInstance();
-                        userClient.setEmail(userResponseLogin.getData().getEmail());
-                        userClient.setPhone(userResponseLogin.getData().getPhone());
-                        userClient.setFullName(userResponseLogin.getData().getFullName());
-                        userClient.setId(userResponseLogin.getData().getId());
-                        userClient.setRole(userResponseLogin.getData().getRole());
-                        userClient.setImage(userResponseLogin.getData().getImage());
-                        EventBus.getDefault().postSticky(new KeyEvent(NotificationCenter.checkLogin));
-                        finish();
                     } else {
                         initdialogFailed(userResponseLogin.getData().getTextReport());
                     }
@@ -146,6 +150,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialogFailed.dismiss();
+                binding.password.setText("");
+                binding.username.setText("");
             }
         });
 

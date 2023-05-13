@@ -19,6 +19,7 @@ import com.example.findaroomver2.constant.NotificationCenter;
 import com.example.findaroomver2.databinding.ActivityMainBinding;
 import com.example.findaroomver2.event.KeyEvent;
 import com.example.findaroomver2.model.UserClient;
+import com.example.findaroomver2.request.login.UserRequestTokenDevice;
 import com.example.findaroomver2.response.UserResponseLogin;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.LoginActivity;
@@ -75,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     userClient.setRole(userResponseLogin.getData().getRole());
                     userClient.setImage(userResponseLogin.getData().getImage());
                 } else {
+                    // trường hợp mà người dùng bị ban thì sẽ tự động đăng xuất
+                    MySharedPreferences.getInstance(MainActivity.this).putString(AppConstant.USER_TOKEN, "");
+                    mainViewModel.updateTokenDevice(new UserRequestTokenDevice(UserClient.getInstance().getId(), ""));
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             }
