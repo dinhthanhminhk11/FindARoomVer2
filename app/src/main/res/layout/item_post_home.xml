@@ -12,6 +12,8 @@
     android:paddingVertical="10dp">
 
     <LinearLayout
+        android:foreground="?attr/selectableItemBackground"
+        android:id="@+id/profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -42,7 +44,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="1=:30"
                 android:textColor="@color/color_858585"
                 android:textSize="12sp" />
         </LinearLayout>

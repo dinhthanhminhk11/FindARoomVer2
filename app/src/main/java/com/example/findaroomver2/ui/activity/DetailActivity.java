@@ -278,6 +278,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+        binding.contentHost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivity.this, ProfileActivity.class);
+                intent.putExtra(AppConstant.ID_USER, idUser);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initView() {

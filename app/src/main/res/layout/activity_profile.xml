@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layoutDescription="@xml/activity_main_scene"
+    tools:context=".ui.activity.ProfileActivity"
+    tools:ignore="MotionLayoutInvalidSceneFileReference">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layoutDescription="@xml/activity_profile_xml_app_bar_container_scene"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/profile_pic"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/noavatar"
+        app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+        app:layout_constraintEnd_toEndOf="@id/app_bar_container"
+        app:layout_constraintStart_toStartOf="@id/app_bar_container"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_back"
+        style="@style/appBarIconsStyle"
+        android:contentDescription="@null"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back_ios"
+        app:layout_constraintStart_toStartOf="@id/app_bar_container"
+        app:layout_constraintTop_toTopOf="@id/app_bar_container" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginStart="@dimen/size_16"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_28"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/profile_status"
+        app:layout_constraintStart_toStartOf="@id/app_bar_container" />
+
+    <TextView
+        android:id="@+id/profile_status"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/size_0"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="@dimen/size_16"
+        android:textColor="@color/black"
+        android:textSize="@dimen/size_16"
+        app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+        app:layout_constraintStart_toStartOf="@id/nameUser" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_16"
+        android:contentDescription="phone"
+        android:src="@drawable/ic_phone_call"
+        app:backgroundTint="@color/yellowEFC900"
+        app:layout_constraintBottom_toBottomOf="@id/app_bar_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_container"
+        app:shapeAppearanceOverlay="@style/floatingActionButtonStyle" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_0"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_container">
+
+        <LinearLayout
+            android:id="@+id/body_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_container">
+
+            <LinearLayout style="@style/generalLinearLayoutStyle">
+
+                <TextView
+                    style="@style/generalTextTitleStyle"
+                    android:text="Tài khoản" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/phone"
+                        style="@style/generalTextSubtitleStyle"
+                        />
+
+                    <TextView
+                        android:text="Số điện thoại"
+                        style="@style/generalTextHintStyle"
+                        />
+
+                    <com.google.android.material.divider.MaterialDivider style="@style/dividerStyle" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/email"
+                            style="@style/generalTextSubtitleStyle"
+                             />
+
+                        <TextView
+                            style="@style/generalTextHintStyle"
+                            android:text="email" />
+
+                        <com.google.android.material.divider.MaterialDivider style="@style/dividerStyle" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/address"
+                                style="@style/generalTextSubtitleStyle"
+                                />
+
+                            <TextView
+                                style="@style/generalTextHintStyle"
+                                android:text="Địa chỉ" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/titlePost"
+                style="@style/generalTextTitleStyle"
+                android:layout_marginLeft="@dimen/size_16"
+                android:text="Danh Sách Bài Đăng" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvPost"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_EBEBEB"
+                android:overScrollMode="never" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.motion.widget.MotionLayout>

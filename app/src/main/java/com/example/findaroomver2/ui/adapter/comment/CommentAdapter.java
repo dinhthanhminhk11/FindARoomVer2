@@ -1,5 +1,6 @@
 package com.example.findaroomver2.ui.adapter.comment;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.constant.TimeUtils;
 import com.example.findaroomver2.databinding.ItemCommentParentBinding;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.comment.Comment;
 import com.example.findaroomver2.request.login.Data;
 import com.example.findaroomver2.response.comment.CommentListResponse;
+import com.example.findaroomver2.ui.activity.ProfileActivity;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -75,10 +78,16 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             }
 
             holder.itemCommentParentBinding.content.setText(comment.getContent());
-
-
-
             holder.itemCommentParentBinding.time.setText(TimeUtils.getTimeAgo(Long.parseLong(comment.getTimeLong())));
+
+            holder.itemCommentParentBinding.imageUser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+                    intent.putExtra(AppConstant.ID_USER, comment.getIdUser());
+                    view.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

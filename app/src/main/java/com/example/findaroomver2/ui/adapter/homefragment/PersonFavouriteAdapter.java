@@ -1,5 +1,6 @@
 package com.example.findaroomver2.ui.adapter.homefragment;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.findaroomver2.R;
+import com.example.findaroomver2.constant.AppConstant;
 import com.example.findaroomver2.databinding.ItemPersonFavouriteBinding;
 import com.example.findaroomver2.repository.Repository;
 import com.example.findaroomver2.request.favourite.Favourite;
 import com.example.findaroomver2.request.login.Data;
+import com.example.findaroomver2.ui.activity.DetailActivity;
+import com.example.findaroomver2.ui.activity.ProfileActivity;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -43,6 +47,14 @@ public class PersonFavouriteAdapter extends RecyclerView.Adapter<PersonFavourite
                 public void accept(Data data) {
                     holder.binding.nameUser.setText(data.getFullName());
                     Glide.with(holder.binding.imageUser.getContext()).load(data.getImage()).apply(optionsUser).into(holder.binding.imageUser);
+                }
+            });
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+                    intent.putExtra(AppConstant.ID_USER, favourite.getIdUser());
+                    view.getContext().startActivity(intent);
                 }
             });
         }

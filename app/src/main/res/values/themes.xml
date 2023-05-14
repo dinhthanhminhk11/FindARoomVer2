@@ -22,4 +22,54 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowIsFloating">false</item>
     </style>
+
+    <style name="floatingActionButtonStyle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">52dp</item>
+    </style>
+
+    <style name="appBarIconsStyle" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/size_16</item>
+        <item name="android:layout_marginTop">@dimen/size_16</item>
+        <item name="android:tint">@color/black</item>
+    </style>
+
+
+    <style name="generalLinearLayoutStyle" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/size_16</item>
+    </style>
+
+    <style name="generalTextTitleStyle" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_16</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="generalTextSubtitleStyle" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/size_16</item>
+    </style>
+
+    <style name="generalTextHintStyle" parent="generalTextSubtitleStyle">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">@dimen/size_14</item>
+    </style>
+
+    <style name="dividerStyle" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/size_1</item>
+        <item name="android:layout_marginBottom">@dimen/size_12</item>
+        <item name="android:layout_marginTop">@dimen/size_12</item>
+        <item name="dividerColor">@color/gray</item>
+    </style>
 </resources>

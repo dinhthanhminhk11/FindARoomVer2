@@ -148,6 +148,15 @@ public class MainViewModel extends AndroidViewModel {
         });
     }
 
+    public void updateAds(String id, String day) {
+        repository.updateAds(id, day, new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+
+            }
+        });
+    }
+
     public LiveData<List<ContentChat>> getMsgId(String send) {
         return repository.getMsgId(send);
     }

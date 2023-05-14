@@ -195,4 +195,7 @@ public interface ApiRequest {
     @PATCH("updateNotificationSeen/{id}")
     Call<TextResponse> updateNotiSeen(@Path("id") String id);
 
+    @POST("updateAds/idPost={id}&dayAds={day}")
+    Call<String> updateAds(@Path("id") String id, @Path("day") String day);
+
 }

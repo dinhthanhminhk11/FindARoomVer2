@@ -29,7 +29,9 @@ import com.example.findaroomver2.response.favourite.CountFavourite;
 import com.example.findaroomver2.response.favourite.FavouriteResponse;
 import com.example.findaroomver2.sharedpreferences.MySharedPreferences;
 import com.example.findaroomver2.ui.activity.CommentActivity;
+import com.example.findaroomver2.ui.activity.DetailActivity;
 import com.example.findaroomver2.ui.activity.LoginActivity;
+import com.example.findaroomver2.ui.activity.ProfileActivity;
 import com.example.findaroomver2.ui.bottomsheet.BottomSheetBookmark;
 import com.example.findaroomver2.ui.bottomsheet.BottomSheetPersonFavourite;
 
@@ -225,6 +227,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     Intent intent = new Intent(holder.binding.comment.getContext(), CommentActivity.class);
                     intent.putExtra(AppConstant.ID_POST, item.get_id());
                     holder.binding.comment.getContext().startActivity(intent);
+                }
+            });
+
+            holder.binding.profile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+                    intent.putExtra(AppConstant.ID_USER, item.getIdUser());
+                    view.getContext().startActivity(intent);
                 }
             });
         }
