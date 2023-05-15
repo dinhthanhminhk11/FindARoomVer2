@@ -410,10 +410,13 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onClick(View view) {
+                int value = Integer.parseInt(binding.timeAds.getText().toString());
                 if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && images.size() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
-                    if (!isPhoneNumberOrGmail(binding.phone.getText().toString())){
+                    if (!isPhoneNumberOrGmail(binding.phone.getText().toString())) {
                         CustomToast.ct(getActivity(), "Nhập sai định dạng số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                    }else {
+                    } else if (value < 1 || value > 30) {
+                        CustomToast.ct(getActivity(), "Vui lòng nhập thời gian quảng cáo giá trị từ 1 đến 30", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                    } else {
                         int sum;
                         if (isAds) {
                             dateAds = Integer.parseInt(binding.timeAds.getText().toString());
