@@ -127,7 +127,6 @@ public class NewPasswordActivity extends AppCompatActivity {
             @Override
             public void onChanged(UserResponseLogin userResponseLogin) {
                 if (userResponseLogin.getMessage().isStatus()) {
-
                     MySharedPreferences.getInstance(NewPasswordActivity.this).putString(AppConstant.USER_TOKEN, userResponseLogin.getData().getAccessToken());
                     UserClient userClient = UserClient.getInstance();
                     userClient.setEmail(userResponseLogin.getData().getEmail());

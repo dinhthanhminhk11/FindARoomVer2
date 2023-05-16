@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -102,6 +103,8 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private int countPostUser = 0;
     private int priceCashUser = 0;
     private boolean checkMoneyUser = false;
+    private int minValue = 1;
+    private int maxValue = 30;
     private int dateAds = 0;
     private ActivityResultLauncher<Intent> startForResultCallback = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -410,13 +413,10 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
             @SuppressLint("StaticFieldLeak")
             @Override
             public void onClick(View view) {
-                int value = Integer.parseInt(binding.timeAds.getText().toString());
                 if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && images.size() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
                     if (!isPhoneNumberOrGmail(binding.phone.getText().toString())) {
                         CustomToast.ct(getActivity(), "Nhập sai định dạng số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                    } else if (value < 1 || value > 30) {
-                        CustomToast.ct(getActivity(), "Vui lòng nhập thời gian quảng cáo giá trị từ 1 đến 30", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                    } else {
+                    }  else {
                         int sum;
                         if (isAds) {
                             dateAds = Integer.parseInt(binding.timeAds.getText().toString());
@@ -558,6 +558,29 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
                 priceCashUser = integer;
             }
         });
+
+        binding.timeAds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Không cần xử lý trước khi văn bản thay đổi
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Không cần xử lý khi văn bản đang thay đổi
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Kiểm tra giá trị sau khi văn bản thay đổi
+                validateInput();
+            }
+        });
+
+        // Giới hạn độ dài của EditText để không quá 2 chữ số
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(2);
+        binding.timeAds.setFilters(filters);
 
     }
 
@@ -839,5 +862,19 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private boolean isPhoneNumberOrGmail(String input) {
         String phoneRegex = "^(03|05|07|08|09)+([0-9]{8})\\b";
         return input.matches(phoneRegex);
+    }
+
+    private void validateInput() {
+        String input = binding.timeAds.getText().toString().trim();
+
+        if (input.isEmpty()) {
+            CustomToast.ct(getActivity(), "Vui lòng nhập giá trị từ 1 đến 30", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+        } else {
+            int value = Integer.parseInt(input);
+
+            if (value < minValue || value > maxValue) {
+                CustomToast.ct(getActivity(), "Vui lòng nhập giá trị từ 1 đến 30", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+            }
+        }
     }
 }

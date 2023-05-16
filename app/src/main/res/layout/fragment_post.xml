@@ -955,7 +955,7 @@
                     android:drawablePadding="@dimen/size_10"
                     android:hint="Nhập số điện thoại"
                     android:inputType="number"
-                    android:maxLines="10"
+                    android:maxLength="10"
                     android:paddingVertical="@dimen/size_16"
                     android:paddingLeft="@dimen/size_16"
                     android:textColor="@color/black"

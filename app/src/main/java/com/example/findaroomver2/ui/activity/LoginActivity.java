@@ -77,6 +77,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        binding.forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, ForgotActivity.class));
+            }
+        });
+
+
         loginViewModel.getProgress().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
