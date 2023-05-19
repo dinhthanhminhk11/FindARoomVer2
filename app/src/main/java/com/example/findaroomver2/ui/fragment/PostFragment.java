@@ -786,9 +786,9 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private void initConfig() {
         try {
             Map config = new HashMap();
-            config.put("cloud_name", "dl4lo9r1y");
-            config.put("api_key", "477111637363519");
-            config.put("api_secret", "q4gJ0kJOSRSDHKujijgYaSMhfJY");
+            config.put("cloud_name","davtd1wwh");
+            config.put("api_key", "561768533215143");
+            config.put("api_secret", "vS6VLfO-lXLDJRJ7kQWerVrjkKM");
             MediaManager.init(getActivity(), config);
         } catch (Exception e) {
             e.printStackTrace();

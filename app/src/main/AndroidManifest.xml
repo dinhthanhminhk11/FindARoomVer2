@@ -133,7 +133,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="CLOUDINARY_URL"
-            android:value="cloudinary://477111637363519:q4gJ0kJOSRSDHKujijgYaSMhfJY@dl4lo9r1y" />
+            android:value="CLOUDINARY_URL=cloudinary://561768533215143:vS6VLfO-lXLDJRJ7kQWerVrjkKM@davtd1wwh" />
     </application>
 
 </manifest>
