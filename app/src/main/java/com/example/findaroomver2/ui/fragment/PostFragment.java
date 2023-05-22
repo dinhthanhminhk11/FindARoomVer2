@@ -410,82 +410,139 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
         });
 
         binding.btnCreate.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("StaticFieldLeak")
             @Override
             public void onClick(View view) {
-                if (binding.title.getText().toString().length() > 0 && binding.cty.getText().toString().length() > 0 && binding.district.getText().toString().length() > 0 && binding.street.getText().toString().length() > 0 && binding.wards.getText().toString().length() > 0 && binding.address.getText().toString().length() > 0 && binding.acreage.getText().toString().length() > 0 && binding.depositMoney.getText().toString().length() > 0 && binding.bedroom.getText().toString().length() > 0 && binding.bathroom.getText().toString().length() > 0 && images.size() > 0 && binding.startDay.getText().toString().length() > 0 && binding.price.getText().toString().length() > 0 && binding.electricityPrice.getText().toString().length() > 0 && binding.waterPrice.getText().toString().length() > 0 && binding.wifiPrice.getText().toString().length() > 0 && binding.textMore.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && binding.phone.getText().toString().length() > 0 && path.size() > 0 && supplements.size() > 0) {
-                    if (!isPhoneNumberOrGmail(binding.phone.getText().toString())) {
-                        CustomToast.ct(getActivity(), "Nhập sai định dạng số điện thoại", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                    }  else {
-                        int sum;
-                        if (isAds) {
-                            dateAds = Integer.parseInt(binding.timeAds.getText().toString());
-                            sum = pricePost + (priceAdvertisement * dateAds);
-                        } else {
-                            dateAds = 0;
-                            sum = pricePost;
-                        }
-                        if (priceCashUser < sum) {
-                            checkMoneyUser = true;
-//                        CustomToast.ct(getActivity(), "Số dư tài khoản không đủ xin hay nạp thêm", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
-                        } else {
-                            checkMoneyUser = false;
-                        }
-                        BottomSheetBill bottomSheetBill = new BottomSheetBill(getActivity(),
-                                dateAds,
-                                sum,
-                                isAds,
-                                checkMoneyUser
-                        );
-                        bottomSheetBill.setCallback(new BottomSheetBill.Callback() {
-                            @Override
-                            public void onClick() {
-                                binding.progressBar.setVisibility(View.VISIBLE);
-                                repository.createPost(new Post(
-                                        UserClient.getInstance().getId(),
-                                        nameCategory,
-                                        binding.title.getText().toString(),
-                                        images,
-                                        binding.cty.getText().toString(),
-                                        binding.district.getText().toString(),
-                                        binding.wards.getText().toString(),
-                                        binding.street.getText().toString(),
-                                        binding.address.getText().toString(),
-                                        Integer.parseInt(binding.acreage.getText().toString()),
-                                        Integer.parseInt(binding.depositMoney.getText().toString().replaceAll(AppConstant.DOT, "")),
-                                        Integer.parseInt(binding.bedroom.getText().toString()),
-                                        Integer.parseInt(binding.bathroom.getText().toString()),
-                                        Integer.parseInt(binding.countPerson.getText().toString()),
-                                        binding.startDay.getText().toString(),
-                                        Integer.parseInt(binding.price.getText().toString().replaceAll(AppConstant.DOT, "")),
-                                        Integer.parseInt(binding.electricityPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
-                                        Integer.parseInt(binding.waterPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
-                                        Integer.parseInt(binding.wifiPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
-                                        binding.textMore.getText().toString(),
-                                        binding.phone.getText().toString(),
-                                        supplements,
-                                        isAds,
-                                        dateAds,
-                                        sum), new Consumer<PostResponse>() {
-                                    @Override
-                                    public void accept(PostResponse postResponse) {
-                                        binding.progressBar.setVisibility(View.GONE);
-                                        if (postResponse.getMessage().isStatus()) {
-                                            if (dateAds > 0) {
-                                                postViewModel.updateAds(postResponse.getData().get_id(), String.valueOf(dateAds));
-                                            }
-                                            startActivity(new Intent(getActivity(), PostSuccessActivity.class));
-                                        } else {
-                                            initdialogFailed();
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                        bottomSheetBill.show();
-                    }
+
+                if (path.size() == 0) {
+                    Toast.makeText(getActivity(), "Hãy chọn ảnh cho bài đăng", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.choseImage.getTop());
+                } else if (binding.title.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tiêu đề", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.title.getTop());
+                } else if (binding.cty.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tên thành phố", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.cty.getTop());
+                } else if (binding.district.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tên quận huyện", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.district.getTop());
+                } else if (binding.street.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tên đường phố", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.street.getTop());
+                } else if (binding.wards.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tên phường xã", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.wards.getTop());
+                } else if (binding.address.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập địa chỉ cụ thể", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.address.getTop());
+                } else if (binding.acreage.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập diện tích", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutAcreage.getTop());
+                } else if (binding.depositMoney.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập tiền đặt cọc", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutDeposiMoney.getTop());
+                } else if (binding.bedroom.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập số lượng phòng ngủ", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.bedroom.getTop());
+                } else if (binding.bathroom.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập số lượng phòng tắm", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.bathroom.getTop());
+                } else if (binding.startDay.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập ngày bắt đầu vào ở", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.startDay.getTop());
+                } else if (binding.countPerson.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập số lượng người ở", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.countPerson.getTop());
+                } else if (binding.price.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập giá tiền phòng", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutPrice.getTop());
+                } else if (binding.electricityPrice.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập giá tiền điện", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutElectricityPrice.getTop());
+                } else if (binding.waterPrice.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập giá tiền nước", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutWaterPrice.getTop());
+                } else if (binding.wifiPrice.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập giá tiền wifi", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutWifiPrice.getTop());
+                } else if (binding.textMore.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập mô tả", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.textMore.getTop());
+                } else if (binding.phone.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập số điện thoại", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.phone.getTop());
+                } else if (!isPhoneNumberOrGmail(binding.phone.getText().toString())) {
+                    Toast.makeText(getActivity(), "Hãy nhập số điện thoại ở việt nam", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.phone.getTop());
+                } else if (supplements.size() < 0) {
+                    Toast.makeText(getActivity(), "Bạn chưa chọn tiện tích", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.listUtilities.getTop());
+                } else if (Integer.parseInt(binding.depositMoney.getText().toString().replaceAll(AppConstant.DOT, "")) > Integer.parseInt(binding.price.getText().toString().replaceAll(AppConstant.DOT, ""))) {
+                    Toast.makeText(getActivity(), "Tiền cọc không được lớn hơn tiền phòng", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.contentLayoutDeposiMoney.getTop());
+                } else if (binding.checkBoxAds.isChecked() && binding.timeAds.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập số thời gian quảng cáo", Toast.LENGTH_SHORT).show();
+                    binding.yourScrollView.scrollTo(0, binding.checkBoxAds.getTop());
                 } else {
-                    CustomToast.ct(getActivity(), "Các trường không được để trống", CustomToast.LENGTH_SHORT, CustomToast.INFO, true).show();
+                    int sum;
+                    if (isAds) {
+                        dateAds = Integer.parseInt(binding.timeAds.getText().toString());
+                        sum = pricePost + (priceAdvertisement * dateAds);
+                    } else {
+                        dateAds = 0;
+                        sum = pricePost;
+                    }
+                    if (priceCashUser < sum) {
+                        checkMoneyUser = true;
+                    } else {
+                        checkMoneyUser = false;
+                    }
+                    BottomSheetBill bottomSheetBill = new BottomSheetBill(getActivity(), dateAds, sum, isAds, checkMoneyUser);
+                    bottomSheetBill.setCallback(new BottomSheetBill.Callback() {
+                        @Override
+                        public void onClick() {
+                            binding.progressBar.setVisibility(View.VISIBLE);
+                            repository.createPost(new Post(
+                                    UserClient.getInstance().getId(),
+                                    nameCategory,
+                                    binding.title.getText().toString(),
+                                    images,
+                                    binding.cty.getText().toString(),
+                                    binding.district.getText().toString(),
+                                    binding.wards.getText().toString(),
+                                    binding.street.getText().toString(),
+                                    binding.address.getText().toString(),
+                                    Integer.parseInt(binding.acreage.getText().toString()),
+                                    Integer.parseInt(binding.depositMoney.getText().toString().replaceAll(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.bedroom.getText().toString()),
+                                    Integer.parseInt(binding.bathroom.getText().toString()),
+                                    Integer.parseInt(binding.countPerson.getText().toString()),
+                                    binding.startDay.getText().toString(),
+                                    Integer.parseInt(binding.price.getText().toString().replaceAll(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.electricityPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.waterPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
+                                    Integer.parseInt(binding.wifiPrice.getText().toString().replaceAll(AppConstant.DOT, "")),
+                                    binding.textMore.getText().toString(),
+                                    binding.phone.getText().toString(),
+                                    supplements,
+                                    isAds,
+                                    dateAds,
+                                    sum), new Consumer<PostResponse>() {
+                                @Override
+                                public void accept(PostResponse postResponse) {
+                                    binding.progressBar.setVisibility(View.GONE);
+                                    if (postResponse.getMessage().isStatus()) {
+                                        if (dateAds > 0) {
+                                            postViewModel.updateAds(postResponse.getData().get_id(), String.valueOf(dateAds));
+                                        }
+                                        startActivity(new Intent(getActivity(), PostSuccessActivity.class));
+                                    } else {
+                                        initdialogFailed();
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    bottomSheetBill.show();
                 }
             }
         });
@@ -786,7 +843,7 @@ public class PostFragment extends Fragment implements SupplementAdapter.OnItemCl
     private void initConfig() {
         try {
             Map config = new HashMap();
-            config.put("cloud_name","davtd1wwh");
+            config.put("cloud_name", "davtd1wwh");
             config.put("api_key", "561768533215143");
             config.put("api_secret", "vS6VLfO-lXLDJRJ7kQWerVrjkKM");
             MediaManager.init(getActivity(), config);

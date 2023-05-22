@@ -120,6 +120,7 @@
 
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/yourScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never">
@@ -559,6 +560,7 @@
                     android:textSize="16dp" />
 
                 <RelativeLayout
+                    android:id="@+id/contentLayoutAcreage"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -600,6 +602,7 @@
                     android:textSize="16dp" />
 
                 <LinearLayout
+                    android:id="@+id/contentLayoutDeposiMoney"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -747,6 +750,7 @@
                     android:textSize="16dp" />
 
                 <RelativeLayout
+                    android:id="@+id/contentLayoutPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -788,6 +792,7 @@
                     android:textSize="16dp" />
 
                 <RelativeLayout
+                    android:id="@+id/contentLayoutElectricityPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -828,6 +833,7 @@
                     android:textSize="16dp" />
 
                 <RelativeLayout
+                    android:id="@+id/contentLayoutWaterPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -868,6 +874,7 @@
                     android:textSize="16dp" />
 
                 <RelativeLayout
+                    android:id="@+id/contentLayoutWifiPrice"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
